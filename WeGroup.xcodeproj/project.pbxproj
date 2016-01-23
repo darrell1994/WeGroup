@@ -8,20 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		5B50A0D11C51758400D5FE31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B50A0D01C51758400D5FE31 /* AppDelegate.swift */; };
-		5B50A0D31C51758400D5FE31 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B50A0D21C51758400D5FE31 /* ViewController.swift */; };
+		5B50A0D31C51758400D5FE31 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B50A0D21C51758400D5FE31 /* LoginView.swift */; };
 		5B50A0D61C51758400D5FE31 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B50A0D41C51758400D5FE31 /* Main.storyboard */; };
 		5B50A0D81C51758400D5FE31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B50A0D71C51758400D5FE31 /* Assets.xcassets */; };
 		5B50A0DB1C51758400D5FE31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B50A0D91C51758400D5FE31 /* LaunchScreen.storyboard */; };
+		5B50A1031C5342DA00D5FE31 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B50A1021C5342DA00D5FE31 /* SignupView.swift */; };
+		5B50A1051C534BC000D5FE31 /* WeGroup icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B50A1041C534BC000D5FE31 /* WeGroup icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5B50A0CD1C51758400D5FE31 /* WeGroup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeGroup.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B50A0D01C51758400D5FE31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5B50A0D21C51758400D5FE31 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5B50A0D21C51758400D5FE31 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		5B50A0D51C51758400D5FE31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5B50A0D71C51758400D5FE31 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5B50A0DA1C51758400D5FE31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5B50A0DC1C51758400D5FE31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5B50A1021C5342DA00D5FE31 /* SignupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
+		5B50A1041C534BC000D5FE31 /* WeGroup icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WeGroup icon.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +58,32 @@
 		5B50A0CF1C51758400D5FE31 /* WeGroup */ = {
 			isa = PBXGroup;
 			children = (
+				5B50A1061C534EB500D5FE31 /* ViewControllers */,
+				5B50A1071C534EC100D5FE31 /* Images */,
 				5B50A0D01C51758400D5FE31 /* AppDelegate.swift */,
-				5B50A0D21C51758400D5FE31 /* ViewController.swift */,
 				5B50A0D41C51758400D5FE31 /* Main.storyboard */,
-				5B50A0D71C51758400D5FE31 /* Assets.xcassets */,
-				5B50A0D91C51758400D5FE31 /* LaunchScreen.storyboard */,
 				5B50A0DC1C51758400D5FE31 /* Info.plist */,
 			);
 			path = WeGroup;
+			sourceTree = "<group>";
+		};
+		5B50A1061C534EB500D5FE31 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				5B50A0D21C51758400D5FE31 /* LoginView.swift */,
+				5B50A1021C5342DA00D5FE31 /* SignupView.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		5B50A1071C534EC100D5FE31 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				5B50A1041C534BC000D5FE31 /* WeGroup icon.png */,
+				5B50A0D91C51758400D5FE31 /* LaunchScreen.storyboard */,
+				5B50A0D71C51758400D5FE31 /* Assets.xcassets */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,6 +146,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B50A0DB1C51758400D5FE31 /* LaunchScreen.storyboard in Resources */,
+				5B50A1051C534BC000D5FE31 /* WeGroup icon.png in Resources */,
 				5B50A0D81C51758400D5FE31 /* Assets.xcassets in Resources */,
 				5B50A0D61C51758400D5FE31 /* Main.storyboard in Resources */,
 			);
@@ -136,7 +159,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B50A0D31C51758400D5FE31 /* ViewController.swift in Sources */,
+				5B50A1031C5342DA00D5FE31 /* SignupView.swift in Sources */,
+				5B50A0D31C51758400D5FE31 /* LoginView.swift in Sources */,
 				5B50A0D11C51758400D5FE31 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,6 +274,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = WeGroup/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Purdue-University.WeGroup";
@@ -261,6 +286,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = WeGroup/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Purdue-University.WeGroup";
@@ -287,6 +313,7 @@
 				5B50A0E11C51758400D5FE31 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

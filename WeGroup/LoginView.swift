@@ -8,11 +8,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class LoginView: UIViewController {
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -23,3 +27,13 @@ class ViewController: UIViewController {
 
 }
 
+extension LoginView: UITextFieldDelegate {
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if textField == emailTextField {
+            passwordTextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        return true
+    }
+}
