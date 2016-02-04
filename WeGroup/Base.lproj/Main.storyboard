@@ -34,7 +34,7 @@
                             <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kMR-1p-HOo">
                                 <rect key="frame" x="55" y="382" width="264" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.33725490200000002" green="0.47843137250000001" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.33333333329999998" green="0.46666666670000001" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
                                 <state key="normal" title="Login">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -46,7 +46,7 @@
                             <button opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WKi-kM-bXu">
                                 <rect key="frame" x="55" y="428" width="264" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.33725490200000002" green="0.47843137250000001" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.33333333329999998" green="0.46666666670000001" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
                                 <state key="normal" title="Signup">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -56,7 +56,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.49411764705882355" green="0.61568627450980395" blue="0.81960784313725488" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.64313725489999995" green="0.77647058820000003" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="LjR-Av-pxG"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
@@ -98,7 +98,7 @@
                             <button opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="b86-eb-kzw">
                                 <rect key="frame" x="55" y="482" width="264" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.33725490200000002" green="0.47843137250000001" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.33333333329999998" green="0.46666666670000001" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
                                 <state key="normal" title="Back to Login">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -110,7 +110,7 @@
                             <button opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wzE-wf-H1W">
                                 <rect key="frame" x="55" y="436" width="264" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.33725490200000002" green="0.47843137250000001" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.33333333329999998" green="0.46666666670000001" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
                                 <state key="normal" title="Signup">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -124,7 +124,7 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES"/>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" red="0.4941176471" green="0.61568627450000002" blue="0.81960784310000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.64313725489999995" green="0.77647058820000003" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="gNc-HT-G1T"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
@@ -147,13 +147,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.98431372549999996" green="0.31764705879999999" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" id="jUk-5w-oa0"/>
+                    <navigationItem key="navigationItem" title="Settings" id="Tn0-gJ-meL"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jFD-gf-gkU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="937.5" y="1957.5"/>
+            <point key="canvasLocation" x="1524.5" y="1957.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Chats-->
         <scene sceneID="UGM-as-h3p">
             <objects>
                 <viewController id="Baj-hE-oeB" sceneMemberID="viewController">
@@ -162,7 +162,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.64313725489999995" green="0.77647058820000003" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="cW6-37-IxC"/>
+                    <navigationItem key="navigationItem" title="Chats" id="cW6-37-IxC"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x0s-ct-3J5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -180,7 +180,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="Gut-7z-Mm6" kind="relationship" relationship="viewControllers" id="wL5-8e-y5d"/>
-                        <segue destination="7bL-Wo-IsF" kind="relationship" relationship="viewControllers" id="yKK-mb-wo3"/>
+                        <segue destination="Pot-0b-rX0" kind="relationship" relationship="viewControllers" id="yKK-mb-wo3"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="suQ-xv-aRi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -191,7 +191,7 @@
         <scene sceneID="BrF-Mm-MSQ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Gut-7z-Mm6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Chat" id="Trk-T8-hrc"/>
+                    <tabBarItem key="tabBarItem" title="Chat" image="chats" id="Trk-T8-hrc"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="eSI-8B-HeT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -206,8 +206,29 @@
             </objects>
             <point key="canvasLocation" x="-81.5" y="1957.5"/>
         </scene>
+        <!--Settings-->
+        <scene sceneID="WXS-Im-ruX">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Pot-0b-rX0" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Settings" image="settings" id="jUk-5w-oa0"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="RNl-7A-ckY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="7bL-Wo-IsF" kind="relationship" relationship="rootViewController" id="Dtd-QP-UkS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x6F-YO-kQ1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="937.5" y="1957.5"/>
+        </scene>
     </scenes>
     <resources>
         <image name="WeGroup icon.png" width="1028" height="1028"/>
+        <image name="chats" width="30" height="30"/>
+        <image name="settings" width="30" height="30"/>
     </resources>
 </document>
