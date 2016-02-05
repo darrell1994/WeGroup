@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B2CC7701C63AB2B00CAFB2F /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2CC76F1C63AB2B00CAFB2F /* ChatCell.swift */; };
+		5B2CC7721C63AD7E00CAFB2F /* ChatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2CC7711C63AD7E00CAFB2F /* ChatsView.swift */; };
 		5B50A0D11C51758400D5FE31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B50A0D01C51758400D5FE31 /* AppDelegate.swift */; };
 		5B50A0D31C51758400D5FE31 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B50A0D21C51758400D5FE31 /* LoginView.swift */; };
 		5B50A0D61C51758400D5FE31 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B50A0D41C51758400D5FE31 /* Main.storyboard */; };
@@ -14,9 +16,12 @@
 		5B50A0DB1C51758400D5FE31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B50A0D91C51758400D5FE31 /* LaunchScreen.storyboard */; };
 		5B50A1031C5342DA00D5FE31 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B50A1021C5342DA00D5FE31 /* SignupView.swift */; };
 		5B50A1051C534BC000D5FE31 /* WeGroup icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B50A1041C534BC000D5FE31 /* WeGroup icon.png */; };
+		5BC628E21C650E9600CB5B8A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC628E11C650E9600CB5B8A /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5B2CC76F1C63AB2B00CAFB2F /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
+		5B2CC7711C63AD7E00CAFB2F /* ChatsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsView.swift; sourceTree = "<group>"; };
 		5B50A0CD1C51758400D5FE31 /* WeGroup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeGroup.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B50A0D01C51758400D5FE31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5B50A0D21C51758400D5FE31 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -26,6 +31,7 @@
 		5B50A0DC1C51758400D5FE31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B50A1021C5342DA00D5FE31 /* SignupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		5B50A1041C534BC000D5FE31 /* WeGroup icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WeGroup icon.png"; sourceTree = "<group>"; };
+		5BC628E11C650E9600CB5B8A /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +68,7 @@
 				5B50A1071C534EC100D5FE31 /* Images */,
 				5B50A0D01C51758400D5FE31 /* AppDelegate.swift */,
 				5B50A0D41C51758400D5FE31 /* Main.storyboard */,
+				5B2CC76F1C63AB2B00CAFB2F /* ChatCell.swift */,
 				5B50A0DC1C51758400D5FE31 /* Info.plist */,
 			);
 			path = WeGroup;
@@ -72,6 +79,8 @@
 			children = (
 				5B50A0D21C51758400D5FE31 /* LoginView.swift */,
 				5B50A1021C5342DA00D5FE31 /* SignupView.swift */,
+				5B2CC7711C63AD7E00CAFB2F /* ChatsView.swift */,
+				5BC628E11C650E9600CB5B8A /* SettingsView.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -160,6 +169,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B50A1031C5342DA00D5FE31 /* SignupView.swift in Sources */,
+				5B2CC7701C63AB2B00CAFB2F /* ChatCell.swift in Sources */,
+				5B2CC7721C63AD7E00CAFB2F /* ChatsView.swift in Sources */,
+				5BC628E21C650E9600CB5B8A /* SettingsView.swift in Sources */,
 				5B50A0D31C51758400D5FE31 /* LoginView.swift in Sources */,
 				5B50A0D11C51758400D5FE31 /* AppDelegate.swift in Sources */,
 			);
