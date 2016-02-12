@@ -21,6 +21,7 @@
 		5BC629A71C6D867C00CB5B8A /* TwitterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC629A61C6D867C00CB5B8A /* TwitterClient.swift */; };
 		5BC629A91C6D87B000CB5B8A /* Twitter_icon_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC629A81C6D87B000CB5B8A /* Twitter_icon_white.png */; };
 		9A11867DB26B846F143DAD19 /* Pods_WeGroup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83471C6054F155624D6F22D2 /* Pods_WeGroup.framework */; };
+		BBDDFD991C6E708D0083044A /* SettingTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDDFD981C6E708D0083044A /* SettingTable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		5BC629A61C6D867C00CB5B8A /* TwitterClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterClient.swift; sourceTree = "<group>"; };
 		5BC629A81C6D87B000CB5B8A /* Twitter_icon_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Twitter_icon_white.png; sourceTree = "<group>"; };
 		83471C6054F155624D6F22D2 /* Pods_WeGroup.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeGroup.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBDDFD981C6E708D0083044A /* SettingTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				5B50A1021C5342DA00D5FE31 /* SignupView.swift */,
 				5B2CC7711C63AD7E00CAFB2F /* ChatsView.swift */,
 				5BC628E11C650E9600CB5B8A /* SettingsView.swift */,
+				BBDDFD981C6E708D0083044A /* SettingTable.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				5BC629A71C6D867C00CB5B8A /* TwitterClient.swift in Sources */,
 				5B50A1031C5342DA00D5FE31 /* SignupView.swift in Sources */,
 				5B2CC7701C63AB2B00CAFB2F /* ChatCell.swift in Sources */,
+				BBDDFD991C6E708D0083044A /* SettingTable.swift in Sources */,
 				5B2CC7721C63AD7E00CAFB2F /* ChatsView.swift in Sources */,
 				5BC628E21C650E9600CB5B8A /* SettingsView.swift in Sources */,
 				5B50A0D31C51758400D5FE31 /* LoginView.swift in Sources */,
