@@ -9,7 +9,7 @@
         <!--Login View-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginView" customModule="WeGroup" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginView" customModule="WeGroup" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Cco-vt-Mor"/>
                         <viewControllerLayoutGuide type="bottom" id="IdY-8S-aN1"/>
@@ -45,7 +45,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="ywP-JX-kZn" kind="modal" id="xz8-Fg-6Cp"/>
+                                    <segue destination="ywP-JX-kZn" kind="modal" identifier="ToTabBarController" id="xz8-Fg-6Cp"/>
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WKi-kM-bXu">
@@ -59,6 +59,20 @@
                                     <segue destination="yIC-v4-CmW" kind="modal" modalTransitionStyle="flipHorizontal" id="XgV-co-aGD"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TVP-yK-ixp">
+                                <rect key="frame" x="55" y="474" width="264" height="38"/>
+                                <color key="backgroundColor" red="0.33333333329999998" green="0.67450980390000004" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
+                                <state key="normal" title="Login with Twitter">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onTwitterLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qSI-7O-xJ1"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Twitter_icon_white.png" translatesAutoresizingMaskIntoConstraints="NO" id="Jpn-PW-0Oy">
+                                <rect key="frame" x="73" y="473" width="44" height="42"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.64313725489999995" green="0.77647058820000003" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -261,7 +275,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="31r-ze-hHl">
             <objects>
-                <tabBarController id="ywP-JX-kZn" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="HomeTabBarController" id="ywP-JX-kZn" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="ugO-0g-J2J">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -317,6 +331,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Twitter_icon_white.png" width="300" height="300"/>
         <image name="WeGroup icon.png" width="1028" height="1028"/>
         <image name="chats" width="30" height="30"/>
         <image name="settings" width="30" height="30"/>

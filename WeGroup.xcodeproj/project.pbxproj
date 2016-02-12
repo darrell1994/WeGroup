@@ -17,9 +17,15 @@
 		5B50A1031C5342DA00D5FE31 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B50A1021C5342DA00D5FE31 /* SignupView.swift */; };
 		5B50A1051C534BC000D5FE31 /* WeGroup icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B50A1041C534BC000D5FE31 /* WeGroup icon.png */; };
 		5BC628E21C650E9600CB5B8A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC628E11C650E9600CB5B8A /* SettingsView.swift */; };
+		5BC629A41C6D864C00CB5B8A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC629A31C6D864C00CB5B8A /* User.swift */; };
+		5BC629A71C6D867C00CB5B8A /* TwitterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC629A61C6D867C00CB5B8A /* TwitterClient.swift */; };
+		5BC629A91C6D87B000CB5B8A /* Twitter_icon_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC629A81C6D87B000CB5B8A /* Twitter_icon_white.png */; };
+		9A11867DB26B846F143DAD19 /* Pods_WeGroup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83471C6054F155624D6F22D2 /* Pods_WeGroup.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		190A1AF00C7AAFF27D58168C /* Pods-WeGroup.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeGroup.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeGroup/Pods-WeGroup.debug.xcconfig"; sourceTree = "<group>"; };
+		301B905B2F882A3FBEC49E52 /* Pods-WeGroup.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeGroup.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeGroup/Pods-WeGroup.release.xcconfig"; sourceTree = "<group>"; };
 		5B2CC76F1C63AB2B00CAFB2F /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		5B2CC7711C63AD7E00CAFB2F /* ChatsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsView.swift; sourceTree = "<group>"; };
 		5B50A0CD1C51758400D5FE31 /* WeGroup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeGroup.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -32,6 +38,10 @@
 		5B50A1021C5342DA00D5FE31 /* SignupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		5B50A1041C534BC000D5FE31 /* WeGroup icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WeGroup icon.png"; sourceTree = "<group>"; };
 		5BC628E11C650E9600CB5B8A /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		5BC629A31C6D864C00CB5B8A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		5BC629A61C6D867C00CB5B8A /* TwitterClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterClient.swift; sourceTree = "<group>"; };
+		5BC629A81C6D87B000CB5B8A /* Twitter_icon_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Twitter_icon_white.png; sourceTree = "<group>"; };
+		83471C6054F155624D6F22D2 /* Pods_WeGroup.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeGroup.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A11867DB26B846F143DAD19 /* Pods_WeGroup.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +61,8 @@
 			children = (
 				5B50A0CF1C51758400D5FE31 /* WeGroup */,
 				5B50A0CE1C51758400D5FE31 /* Products */,
+				86E1F2BABFDA537775551211 /* Pods */,
+				DA29F897E27244396E1D98E7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +77,8 @@
 		5B50A0CF1C51758400D5FE31 /* WeGroup */ = {
 			isa = PBXGroup;
 			children = (
+				5BC629A51C6D867200CB5B8A /* API */,
+				5BC629A21C6D863C00CB5B8A /* Models */,
 				5B50A1061C534EB500D5FE31 /* ViewControllers */,
 				5B50A1071C534EC100D5FE31 /* Images */,
 				5B50A0D01C51758400D5FE31 /* AppDelegate.swift */,
@@ -88,11 +103,45 @@
 		5B50A1071C534EC100D5FE31 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5BC629A81C6D87B000CB5B8A /* Twitter_icon_white.png */,
 				5B50A1041C534BC000D5FE31 /* WeGroup icon.png */,
 				5B50A0D91C51758400D5FE31 /* LaunchScreen.storyboard */,
 				5B50A0D71C51758400D5FE31 /* Assets.xcassets */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		5BC629A21C6D863C00CB5B8A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5BC629A31C6D864C00CB5B8A /* User.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		5BC629A51C6D867200CB5B8A /* API */ = {
+			isa = PBXGroup;
+			children = (
+				5BC629A61C6D867C00CB5B8A /* TwitterClient.swift */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
+		86E1F2BABFDA537775551211 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				190A1AF00C7AAFF27D58168C /* Pods-WeGroup.debug.xcconfig */,
+				301B905B2F882A3FBEC49E52 /* Pods-WeGroup.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		DA29F897E27244396E1D98E7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				83471C6054F155624D6F22D2 /* Pods_WeGroup.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -102,9 +151,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5B50A0DF1C51758400D5FE31 /* Build configuration list for PBXNativeTarget "WeGroup" */;
 			buildPhases = (
+				0201C3CE30CF1303F8170D00 /* Check Pods Manifest.lock */,
 				5B50A0C91C51758400D5FE31 /* Sources */,
 				5B50A0CA1C51758400D5FE31 /* Frameworks */,
 				5B50A0CB1C51758400D5FE31 /* Resources */,
+				3DB1D68B5A95A5EEE91827A2 /* Embed Pods Frameworks */,
+				918A5AD14A6508D8694CCED8 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -155,6 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B50A0DB1C51758400D5FE31 /* LaunchScreen.storyboard in Resources */,
+				5BC629A91C6D87B000CB5B8A /* Twitter_icon_white.png in Resources */,
 				5B50A1051C534BC000D5FE31 /* WeGroup icon.png in Resources */,
 				5B50A0D81C51758400D5FE31 /* Assets.xcassets in Resources */,
 				5B50A0D61C51758400D5FE31 /* Main.storyboard in Resources */,
@@ -163,17 +216,67 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0201C3CE30CF1303F8170D00 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		3DB1D68B5A95A5EEE91827A2 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WeGroup/Pods-WeGroup-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		918A5AD14A6508D8694CCED8 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WeGroup/Pods-WeGroup-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5B50A0C91C51758400D5FE31 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BC629A71C6D867C00CB5B8A /* TwitterClient.swift in Sources */,
 				5B50A1031C5342DA00D5FE31 /* SignupView.swift in Sources */,
 				5B2CC7701C63AB2B00CAFB2F /* ChatCell.swift in Sources */,
 				5B2CC7721C63AD7E00CAFB2F /* ChatsView.swift in Sources */,
 				5BC628E21C650E9600CB5B8A /* SettingsView.swift in Sources */,
 				5B50A0D31C51758400D5FE31 /* LoginView.swift in Sources */,
 				5B50A0D11C51758400D5FE31 /* AppDelegate.swift in Sources */,
+				5BC629A41C6D864C00CB5B8A /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,25 +387,31 @@
 		};
 		5B50A0E01C51758400D5FE31 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 190A1AF00C7AAFF27D58168C /* Pods-WeGroup.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = WeGroup/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Purdue-University.WeGroup";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
 		5B50A0E11C51758400D5FE31 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 301B905B2F882A3FBEC49E52 /* Pods-WeGroup.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = WeGroup/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Purdue-University.WeGroup";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

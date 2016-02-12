@@ -23,8 +23,16 @@ class LoginView: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    @IBAction func onTwitterLogin(sender: AnyObject) {
+        TwitterClient.sharedInstance.loginWithComplition { (user, error) -> () in
+            if user != nil {
+                self.performSegueWithIdentifier("ToTabBarController", sender: nil)
+            } else {
+                print(error)
+            }
+        }
+    }
 }
 
 extension LoginView: UITextFieldDelegate {
