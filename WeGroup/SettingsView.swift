@@ -22,6 +22,11 @@ class SettingsView: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    @IBAction func onLogout(sender: AnyObject) {
+        User.currentUser?.logOut()
+        performSegueWithIdentifier("ToLogin", sender: nil)
+    }
 
     /*
     // MARK: - Navigation

@@ -158,56 +158,6 @@
             </objects>
             <point key="canvasLocation" x="591.5" y="330.5"/>
         </scene>
-        <!--Settings-->
-        <scene sceneID="7SD-bB-zpG">
-            <objects>
-                <viewController id="7bL-Wo-IsF" customClass="SettingsView" customModule="WeGroup" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="64" sectionHeaderHeight="28" sectionFooterHeight="28" id="QJd-0e-UH9">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SettingCell" rowHeight="64" id="g2L-Ob-oNI">
-                                <rect key="frame" x="0.0" y="92" width="375" height="64"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="g2L-Ob-oNI" id="hsp-PY-2wy">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="63.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="C0k-KA-mpK" kind="push" id="me0-Uh-tjM"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Settings" id="Tn0-gJ-meL"/>
-                    <connections>
-                        <outlet property="tableView" destination="QJd-0e-UH9" id="Jri-3S-246"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jFD-gf-gkU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1524.5" y="1957.5"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="hXG-5V-cNm">
-            <objects>
-                <viewController id="C0k-KA-mpK" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="a3U-8I-Ps5"/>
-                        <viewControllerLayoutGuide type="bottom" id="lrI-O8-sSm"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="B5I-zV-Z56">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="tYw-sR-rVi"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="P7S-Z0-8Oc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1941.5" y="1957.5"/>
-        </scene>
         <!--Chats-->
         <scene sceneID="UGM-as-h3p">
             <objects>
@@ -321,9 +271,6 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="7bL-Wo-IsF" kind="relationship" relationship="rootViewController" id="Dtd-QP-UkS"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x6F-YO-kQ1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
