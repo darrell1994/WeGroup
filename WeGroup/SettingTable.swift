@@ -9,7 +9,6 @@
 import UIKit
 
 class SettingTableViewController: UITableViewController {
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -19,7 +18,7 @@ class SettingTableViewController: UITableViewController {
         self.title = "Setting"
         //self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         self.tableView.tableFooterView = UIView()
-    }
+        }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -27,6 +26,15 @@ class SettingTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 1 {
+            onLogout()
+        }
+    }
     
+    private func onLogout() {
+        User.currentUser?.logOut()
+        performSegueWithIdentifier("ToLogin", sender: nil)
+    }
 }
 
