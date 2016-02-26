@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class SettingTableViewController: UITableViewController {
     override func viewDidLoad() {
@@ -32,9 +33,21 @@ class SettingTableViewController: UITableViewController {
         }
     }
     
+    
+    
     private func onLogout() {
-        User.currentUser?.logOut()
-        performSegueWithIdentifier("ToLogin", sender: nil)
+        if let twitterUser = User.currentUser {
+            twitterUser.logOut()
+            performSegueWithIdentifier("ToLogin", sender: nil)
+        } else {
+            PFUser.logOutInBackgroundWithBlock({ (error) -> Void in
+                if error == nil {
+                    self.performSegueWithIdentifier("ToLogin", sender: nil)
+                } else {
+                    print("Failed to logout")
+                }
+            })
+        }
     }
 }
 

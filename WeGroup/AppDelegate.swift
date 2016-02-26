@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,11 +19,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: userDidLogoutNotification, object: nil)
         
+        Parse.initializeWithConfiguration(
+            ParseClientConfiguration(block: { (configuration:ParseMutableClientConfiguration) -> Void in
+                configuration.applicationId = "wegroup-408-ios"
+                configuration.clientKey = "sapHaW35sTEx"
+                configuration.server = "http://wegroup-408.herokuapp.com/parse"
+            })
+        )
+        
         if User.currentUser != nil {
             print("current user detected!")
             let vc = storyBoard.instantiateViewControllerWithIdentifier("HomeTabBarController") as! UITabBarController
             window?.rootViewController = vc
-            
         }
         
         return true
