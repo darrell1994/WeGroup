@@ -1,5 +1,8 @@
 # WeGroup
 
+## Owners
+Hanqi Du, Ao Liu, Xiaoyang Lin, Wanqi Jiang, Qinxin Shi, Zhixuan Yu
+
 ## Problem Statement
 Nowadays group messaging applications play an important role in everyone’s daily life. A problem arises where a group chat with too many people can get messy and unorganized. It takes time to read through all the messages but the fact is not all of them matter. 
 
