@@ -132,7 +132,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="129.5" y="330.5"/>
+            <point key="canvasLocation" x="94" y="340"/>
         </scene>
         <!--Signup View-->
         <scene sceneID="DLN-fa-W6A">
@@ -260,7 +260,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ega-2f-8xU" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="531" y="330"/>
+            <point key="canvasLocation" x="563" y="340"/>
         </scene>
         <!--Chats-->
         <scene sceneID="UGM-as-h3p">
@@ -300,8 +300,8 @@
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Chat preview" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tmH-E8-rF1">
-                                            <rect key="frame" x="66" y="37" width="286" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chat preview" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tmH-E8-rF1">
+                                            <rect key="frame" x="66" y="37" width="246" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -309,12 +309,15 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="1ou-lO-jBe" firstAttribute="top" secondItem="oLw-ZN-L8d" secondAttribute="topMargin" constant="6" id="5aZ-Db-E2C"/>
+                                        <constraint firstItem="tmH-E8-rF1" firstAttribute="top" secondItem="c9l-mK-kMi" secondAttribute="bottom" constant="5" id="Cno-Fz-pSN"/>
                                         <constraint firstItem="47W-R4-gyA" firstAttribute="leading" secondItem="oLw-ZN-L8d" secondAttribute="leading" constant="8" id="NwO-H9-d4i"/>
                                         <constraint firstItem="47W-R4-gyA" firstAttribute="top" secondItem="oLw-ZN-L8d" secondAttribute="top" constant="8" id="Nwi-Jq-2M9"/>
                                         <constraint firstItem="c9l-mK-kMi" firstAttribute="leading" secondItem="47W-R4-gyA" secondAttribute="trailing" constant="8" id="TI6-Nz-yZO"/>
                                         <constraint firstItem="c9l-mK-kMi" firstAttribute="top" secondItem="oLw-ZN-L8d" secondAttribute="topMargin" constant="3" id="Zp4-WL-gRN"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="1ou-lO-jBe" secondAttribute="trailing" constant="15" id="bfl-GJ-uH2"/>
                                         <constraint firstItem="1ou-lO-jBe" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="c9l-mK-kMi" secondAttribute="trailing" constant="8" id="le8-Ps-aiw"/>
+                                        <constraint firstItem="tmH-E8-rF1" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="oLw-ZN-L8d" secondAttribute="trailingMargin" id="nB7-1T-oDK"/>
+                                        <constraint firstItem="tmH-E8-rF1" firstAttribute="leading" secondItem="47W-R4-gyA" secondAttribute="trailing" constant="8" id="qWq-4U-QRn"/>
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -350,14 +353,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mr6-or-76F">
-                                                    <rect key="frame" x="8" y="8" width="40" height="40"/>
+                                                    <rect key="frame" x="8" y="5" width="45" height="45"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="40" id="HJ0-aS-bf3"/>
-                                                        <constraint firstAttribute="width" constant="40" id="RzD-sd-srJ"/>
+                                                        <constraint firstAttribute="height" constant="45" id="HJ0-aS-bf3"/>
+                                                        <constraint firstAttribute="width" constant="45" id="RzD-sd-srJ"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UUT-DQ-nUh">
-                                                    <rect key="frame" x="56" y="17.5" width="45" height="20.5"/>
+                                                    <rect key="frame" x="61" y="17" width="45" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -414,7 +417,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="suQ-xv-aRi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="326" y="1026"/>
+            <point key="canvasLocation" x="338" y="1041"/>
         </scene>
         <!--Chat-->
         <scene sceneID="BrF-Mm-MSQ">
