@@ -12,7 +12,6 @@ import Parse
 class LoginView: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    
     @IBOutlet weak var processIndicator: UIActivityIndicatorView!
 
     override func viewDidLoad() {
@@ -26,18 +25,32 @@ class LoginView: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    private func checkInputValidity() -> Bool {
+        if usernameTextField.text == "" {
+            popupMessage("Error", message: "Please provide username")
+            return false
+        }
+        if passwordTextField.text == "" {
+            popupMessage("Error", message: "Please provide password")
+            return false
+        }
+        return true
+    }
+    
     @IBAction func onLogin(sender: AnyObject) {
+        if !checkInputValidity() {
+            return
+        }
         processIndicator.startAnimating()
         PFUser.logInWithUsernameInBackground(usernameTextField.text!, password: passwordTextField.text!) { (user, error) -> Void in
             self.processIndicator.stopAnimating()
             if user != nil {
                 self.performSegueWithIdentifier("ToMainPage", sender: nil)
             } else {
-                print(error.debugDescription)
+                self.popupMessage("Failed to login", message: "Username and password don't match")
             }
         }
     }
-    
     
     @IBAction func onTwitterLogin(sender: AnyObject) {
         TwitterClient.sharedInstance.loginWithComplition{ (user, error) -> () in
@@ -51,14 +64,8 @@ class LoginView: UIViewController {
     
     private func popupMessage(title: String?, message: String?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        self.presentViewController(alert, animated: true) { () -> Void in
-            let recognizer = UITapGestureRecognizer(target: self, action: "onTapBackgroundWithSegue")
-            alert.view.superview?.addGestureRecognizer(recognizer)
-        }
-    }
-    
-    func onTapBackground() {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 }
 
@@ -68,6 +75,7 @@ extension LoginView: UITextFieldDelegate {
             passwordTextField.becomeFirstResponder()
         } else {
             textField.resignFirstResponder()
+            onLogin("")
         }
         return true
     }

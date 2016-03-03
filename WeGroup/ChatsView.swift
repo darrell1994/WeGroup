@@ -7,29 +7,90 @@
 //
 
 import UIKit
+import Parse
 
 class ChatsView: UIViewController {
-
+    @IBOutlet var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        loadContacts()
+        
+        NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: "onTimer", userInfo: nil, repeats: true)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewWillAppear(animated: Bool) {
+        tableView.reloadData()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
-    */
+    
+    func onTimer() { // checks for new conversations
+        loadConversations()
+    }
+    
+    private func loadContacts() {
+        let query = PFQuery(className: "Friendship")
+        query.includeKey("friend")
+        query.whereKey("user", equalTo: PFUser.currentUser()!)
+        query.findObjectsInBackgroundWithBlock { (results, error) -> Void in
+            if let results = results {
+                for result in results {
+                    let user = result["friend"] as! PFUser
+                    Data.contacts.append(user)
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
+    
+    // loading conversations from the server
+    // only receive conversations started by other users
+    // conversations started by the current user is stored locally
+    private func loadConversations() {
+        let query = PFQuery(className: "Conversation")
+        query.includeKey("from")
+        query.whereKey("to", equalTo: PFUser.currentUser()!)
+        query.findObjectsInBackgroundWithBlock { (results, error) -> Void in
+            if let results = results {
+                for result in results {
+                    let conversation = Conversation(id: result.objectId!, toUsers: [result["from"] as! PFUser])
+                    result.deleteInBackground()
+                    Data.conversations.append(conversation)
+                }
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    @IBAction func onAddConversation(sender: AnyObject) {
+        self.performSegueWithIdentifier("ToContactPicker", sender: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ToChat" {
+            let cell = sender as! ChatCell
+            let indexPath = tableView.indexPathForCell(cell)
+            let vc = segue.destinationViewController as! MessageView
+            vc.conversation = Data.conversations[indexPath!.row]
+        }
+    }
+}
 
+extension ChatsView: UITableViewDelegate, UITableViewDataSource {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return Data.conversations.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("ChatCell") as! ChatCell
+        cell.conversation = Data.conversations[indexPath.row]
+        return cell
+    }
 }

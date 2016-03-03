@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B1155751C8657370094EF0E /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1155741C8657370094EF0E /* MessageView.swift */; };
+		5B1155771C86594D0094EF0E /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1155761C86594D0094EF0E /* Data.swift */; };
+		5B1155791C8695AF0094EF0E /* ContactPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1155781C8695AF0094EF0E /* ContactPickerView.swift */; };
 		5B2CC7701C63AB2B00CAFB2F /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2CC76F1C63AB2B00CAFB2F /* ChatCell.swift */; };
 		5B2CC7721C63AD7E00CAFB2F /* ChatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2CC7711C63AD7E00CAFB2F /* ChatsView.swift */; };
 		5B399E5D1C80E67100370724 /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B399E5C1C80E67100370724 /* ContactsView.swift */; };
@@ -18,17 +21,21 @@
 		5B50A0DB1C51758400D5FE31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B50A0D91C51758400D5FE31 /* LaunchScreen.storyboard */; };
 		5B50A1031C5342DA00D5FE31 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B50A1021C5342DA00D5FE31 /* SignupView.swift */; };
 		5B50A1051C534BC000D5FE31 /* WeGroup icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B50A1041C534BC000D5FE31 /* WeGroup icon.png */; };
-		5BC628E21C650E9600CB5B8A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC628E11C650E9600CB5B8A /* SettingsView.swift */; };
+		5BBBDD8D1C860B5A00F453EF /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBBDD8C1C860B5A00F453EF /* Conversation.swift */; };
+		5BBBDD8F1C860B6700F453EF /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBBDD8E1C860B6700F453EF /* Message.swift */; };
 		5BC629A41C6D864C00CB5B8A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC629A31C6D864C00CB5B8A /* User.swift */; };
 		5BC629A71C6D867C00CB5B8A /* TwitterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC629A61C6D867C00CB5B8A /* TwitterClient.swift */; };
 		5BC629A91C6D87B000CB5B8A /* Twitter_icon_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC629A81C6D87B000CB5B8A /* Twitter_icon_white.png */; };
 		9A11867DB26B846F143DAD19 /* Pods_WeGroup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83471C6054F155624D6F22D2 /* Pods_WeGroup.framework */; };
-		BBDDFD991C6E708D0083044A /* SettingTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDDFD981C6E708D0083044A /* SettingTable.swift */; };
+		BBDDFD991C6E708D0083044A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDDFD981C6E708D0083044A /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		190A1AF00C7AAFF27D58168C /* Pods-WeGroup.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeGroup.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeGroup/Pods-WeGroup.debug.xcconfig"; sourceTree = "<group>"; };
 		301B905B2F882A3FBEC49E52 /* Pods-WeGroup.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeGroup.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeGroup/Pods-WeGroup.release.xcconfig"; sourceTree = "<group>"; };
+		5B1155741C8657370094EF0E /* MessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		5B1155761C86594D0094EF0E /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		5B1155781C8695AF0094EF0E /* ContactPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactPickerView.swift; sourceTree = "<group>"; };
 		5B2CC76F1C63AB2B00CAFB2F /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		5B2CC7711C63AD7E00CAFB2F /* ChatsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsView.swift; sourceTree = "<group>"; };
 		5B399E5C1C80E67100370724 /* ContactsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsView.swift; sourceTree = "<group>"; };
@@ -42,12 +49,13 @@
 		5B50A0DC1C51758400D5FE31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B50A1021C5342DA00D5FE31 /* SignupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		5B50A1041C534BC000D5FE31 /* WeGroup icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WeGroup icon.png"; sourceTree = "<group>"; };
-		5BC628E11C650E9600CB5B8A /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		5BBBDD8C1C860B5A00F453EF /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
+		5BBBDD8E1C860B6700F453EF /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		5BC629A31C6D864C00CB5B8A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5BC629A61C6D867C00CB5B8A /* TwitterClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterClient.swift; sourceTree = "<group>"; };
 		5BC629A81C6D87B000CB5B8A /* Twitter_icon_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Twitter_icon_white.png; sourceTree = "<group>"; };
 		83471C6054F155624D6F22D2 /* Pods_WeGroup.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeGroup.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BBDDFD981C6E708D0083044A /* SettingTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTable.swift; sourceTree = "<group>"; };
+		BBDDFD981C6E708D0083044A /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,9 +118,10 @@
 				5B50A0D21C51758400D5FE31 /* LoginView.swift */,
 				5B50A1021C5342DA00D5FE31 /* SignupView.swift */,
 				5B2CC7711C63AD7E00CAFB2F /* ChatsView.swift */,
+				5B1155781C8695AF0094EF0E /* ContactPickerView.swift */,
+				5B1155741C8657370094EF0E /* MessageView.swift */,
 				5B399E5C1C80E67100370724 /* ContactsView.swift */,
-				5BC628E11C650E9600CB5B8A /* SettingsView.swift */,
-				BBDDFD981C6E708D0083044A /* SettingTable.swift */,
+				BBDDFD981C6E708D0083044A /* SettingsView.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -132,6 +141,9 @@
 			isa = PBXGroup;
 			children = (
 				5BC629A31C6D864C00CB5B8A /* User.swift */,
+				5BBBDD8C1C860B5A00F453EF /* Conversation.swift */,
+				5BBBDD8E1C860B6700F453EF /* Message.swift */,
+				5B1155761C86594D0094EF0E /* Data.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -286,17 +298,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BBBDD8D1C860B5A00F453EF /* Conversation.swift in Sources */,
 				5BC629A71C6D867C00CB5B8A /* TwitterClient.swift in Sources */,
 				5B50A1031C5342DA00D5FE31 /* SignupView.swift in Sources */,
 				5B2CC7701C63AB2B00CAFB2F /* ChatCell.swift in Sources */,
 				5B399E5D1C80E67100370724 /* ContactsView.swift in Sources */,
-				BBDDFD991C6E708D0083044A /* SettingTable.swift in Sources */,
+				BBDDFD991C6E708D0083044A /* SettingsView.swift in Sources */,
 				5B2CC7721C63AD7E00CAFB2F /* ChatsView.swift in Sources */,
+				5B1155791C8695AF0094EF0E /* ContactPickerView.swift in Sources */,
 				5B399E601C80E6F700370724 /* ContactCell.swift in Sources */,
-				5BC628E21C650E9600CB5B8A /* SettingsView.swift in Sources */,
+				5BBBDD8F1C860B6700F453EF /* Message.swift in Sources */,
 				5B50A0D31C51758400D5FE31 /* LoginView.swift in Sources */,
 				5B50A0D11C51758400D5FE31 /* AppDelegate.swift in Sources */,
+				5B1155751C8657370094EF0E /* MessageView.swift in Sources */,
 				5BC629A41C6D864C00CB5B8A /* User.swift in Sources */,
+				5B1155771C86594D0094EF0E /* Data.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

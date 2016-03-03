@@ -14,7 +14,6 @@ class SignupView: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var passwordConformationTextField: UITextField!
-    
     @IBOutlet weak var processIndicator: UIActivityIndicatorView!
 
     override func viewDidLoad() {
@@ -31,20 +30,21 @@ class SignupView: UIViewController {
     }
 
     @IBAction func onSignup(sender: AnyObject) {
-        if checkInputValidity() {
-            processIndicator.startAnimating()
-            let user = PFUser()
-            user.username = usernameTextField.text
-            user.email = emailTextField.text
-            user.password = passwordTextField.text
-            user.signUpInBackgroundWithBlock { (success, error) -> Void in
-                self.processIndicator.stopAnimating()
-                if success {
-                    self.popupMessage(nil, message: "Welcome to WeGroup!", segue: true)
-                } else {
-                    print(error.debugDescription)
-                    self.popupMessage(nil, message: "Failed to sign up", segue: false)
-                }
+        if !checkInputValidity() {
+           return
+        }
+        processIndicator.startAnimating()
+        let user = PFUser()
+        user.username = usernameTextField.text
+        user.email = emailTextField.text
+        user.password = passwordTextField.text
+        user.signUpInBackgroundWithBlock { (success, error) -> Void in
+            self.processIndicator.stopAnimating()
+            if success {
+                self.popupMessage("Success", message: "Welcome to WeGroup!", segue: true)
+            } else {
+                print(error.debugDescription)
+                self.popupMessage(nil, message: "Failed to sign up", segue: false)
             }
         }
     }
@@ -71,26 +71,16 @@ class SignupView: UIViewController {
     
     private func popupMessage(title: String?, message: String?, segue: Bool) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        self.presentViewController(alert, animated: true) { () -> Void in
-            var recognizer: UITapGestureRecognizer
-            if segue {
-                recognizer = UITapGestureRecognizer(target: self, action: "onTapBackgroundWithSegue")
-            } else {
-                recognizer = UITapGestureRecognizer(target: self, action: "onTapBackground")
-            }
-            alert.view.superview?.addGestureRecognizer(recognizer)
+        if segue {
+            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
+                self.performSegueWithIdentifier("ToMainPage", sender: nil)
+                })
+            )
+        } else {
+            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
         }
+        self.presentViewController(alert, animated: true, completion: nil)
     }
-    
-    func onTapBackground() {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func onTapBackgroundWithSegue() {
-        self.dismissViewControllerAnimated(true, completion: nil)
-        self.performSegueWithIdentifier("ToMainPage", sender: nil)
-    }
-
 }
 
 extension SignupView: UITextFieldDelegate {

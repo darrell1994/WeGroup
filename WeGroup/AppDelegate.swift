@@ -27,8 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
         )
         
-        if User.currentUser != nil {
-            print("current user detected!")
+        if User.currentUser != nil || PFUser.currentUser() != nil{
             let vc = storyBoard.instantiateViewControllerWithIdentifier("HomeTabBarController") as! UITabBarController
             window?.rootViewController = vc
         }

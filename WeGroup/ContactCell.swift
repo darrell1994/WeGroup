@@ -7,10 +7,23 @@
 //
 
 import UIKit
+import Parse
 
 class ContactCell: UITableViewCell {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
+    var user: PFUser? {
+        didSet {
+            usernameLabel.text = user?.username
+            profileImageView.contentMode = UIViewContentMode.ScaleAspectFill
+            profileImageView.clipsToBounds = true
+            profileImageView.layer.cornerRadius = 23
+            if let profileData = user?["profile_image"] as? NSData {
+                let image = UIImage(data: profileData)
+                profileImageView.image = image
+            }
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
