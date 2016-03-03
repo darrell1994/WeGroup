@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  LoginView.swift
 //  WeGroup
 //
 //  Created by Darrell Shi on 1/21/16.
@@ -70,6 +70,15 @@ class LoginView: UIViewController {
 }
 
 extension LoginView: UITextFieldDelegate {
+    func textFieldDidBeginEditing(textField: UITextField) {
+        let gesture = UITapGestureRecognizer(target: self, action: "onDismissKeyboard")
+        self.view.addGestureRecognizer(gesture)
+    }
+    
+    func onDismissKeyboard() {
+        view.endEditing(true)
+    }
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if textField == usernameTextField {
             passwordTextField.becomeFirstResponder()

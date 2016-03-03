@@ -9,10 +9,11 @@
 import UIKit
 import Parse
 
+var messageTimer = NSTimer()
+
 class MessageView: UIViewController {
     @IBOutlet weak var tableView: UITableView!
-    var conversation: Conversation?
-    var messages: [Message]?
+    var conversation: Conversation!
     @IBOutlet weak var inputBox: UITextField!
     
     override func viewDidLoad() {
@@ -22,67 +23,48 @@ class MessageView: UIViewController {
         tableView.dataSource = self
         inputBox.delegate = self
         
-        NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: "onTimer", userInfo: nil, repeats: true)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "onReceiveNewMessage", name: didReceiveNewMessage, object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
         if let messages = conversation?.messages {
-            self.messages = messages
+            conversation.messages = messages
         } else {
-            messages = [Message]()
-            onTimer()
+            conversation.messages = [Message]()
         }
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        conversation?.messages = messages
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    func onTimer() {
-        if let currentUser = PFUser.currentUser() {
-            let query = PFQuery(className: "Message")
-            query.includeKey("from")
-            query.whereKey("to", equalTo: currentUser)
-            query.findObjectsInBackgroundWithBlock { (messages, error) -> Void in
-                if let message_objs = messages {
-                    for obj in message_objs {
-                        self.messages?.append(Message.getMessagefromPFObject(obj))
-                        obj.deleteInBackground()
-                        self.tableView.reloadData()
-                    }}}
-        }
+    func onSend() {
+        let message_obj = PFObject(className: "Message")
+        message_obj["from"] = PFUser.currentUser()
+        message_obj["to"] = conversation?.toUsers.first
+        message_obj["text"] = inputBox.text
+        message_obj["conversationID"] = conversation.id
+        message_obj.saveInBackgroundWithBlock({ (success, error) -> Void in
+            if success {
+                self.conversation.messages?.append(Message(from: PFUser.currentUser(), to: self.conversation?.toUsers.first, text: self.inputBox.text))
+                self.conversation.updatedAt = NSDate()
+                self.tableView.reloadData()
+                self.inputBox.text = ""
+            } else {
+                // TODO warn user
+                print("Failed to send message")
+            }
+        })
     }
     
-    @IBAction func onSend(sender: AnyObject) {
-        if inputBox.text!.isEmpty {
-            // TODO warn user
-            print("input empty")
-        } else {
-            let message_obj = PFObject(className: "Message")
-            message_obj["from"] = PFUser.currentUser()
-            message_obj["to"] = conversation?.toUsers.first
-            message_obj["text"] = inputBox.text
-            message_obj.saveInBackgroundWithBlock({ (success, error) -> Void in
-                if success {
-                    self.messages?.append(Message(from: PFUser.currentUser(), to: self.conversation?.toUsers.first, text: self.inputBox.text))
-                    self.tableView.reloadData()
-                    self.inputBox.text = ""
-                } else {
-                    // TODO warn user
-                    print("Failed to send message")
-                }
-            })
-        }
+    func onReceiveNewMessage() {
+        tableView.reloadData()
     }
 }
 
 extension MessageView: UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let messages = messages {
+        if let messages = conversation.messages {
             return messages.count
         } else {
             return 0
@@ -91,12 +73,24 @@ extension MessageView: UITableViewDelegate, UITableViewDataSource, UITextFieldDe
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MessageCell")!
-        cell.textLabel?.text = messages![indexPath.row].from!.username! + ": " + messages![indexPath.row].text!
+        if let messages = conversation.messages {
+            cell.textLabel?.text = messages[indexPath.row].from!.username! + ": " + messages[indexPath.row].text!
+        }
+        
         return cell
     }
     
+//    func textFieldDidBeginEditing(textField: UITextField) {
+//        let gesture = UITapGestureRecognizer(target: self, action: "onDismissKeyboard")
+//        self.view.addGestureRecognizer(gesture)
+//    }
+//    
+//    func onDismissKeyboard() {
+//        view.endEditing(true)
+//    }
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        onSend("")
+        onSend()
         textField.resignFirstResponder()
         return true
     }

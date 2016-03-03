@@ -84,6 +84,15 @@ class SignupView: UIViewController {
 }
 
 extension SignupView: UITextFieldDelegate {
+    func textFieldDidBeginEditing(textField: UITextField) {
+        let gesture = UITapGestureRecognizer(target: self, action: "onDismissKeyboard")
+        self.view.addGestureRecognizer(gesture)
+    }
+    
+    func onDismissKeyboard() {
+        view.endEditing(true)
+    }
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if textField == usernameTextField {
             emailTextField.becomeFirstResponder()

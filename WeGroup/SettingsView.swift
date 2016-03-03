@@ -1,5 +1,5 @@
 //
-//  SettingTable.swift
+//  SettingsView.swift
 //  WeGroup
 //
 //  Created by Hanqi Du on 2/12/16.
@@ -111,6 +111,8 @@ class SettingsView: UITableViewController {
     private func onLogout() {
         PFUser.logOut()
         NSNotificationCenter.defaultCenter().postNotificationName(userDidLogoutNotification, object: nil)
+        
+        timer.invalidate()
         
         if let twitterUser = User.currentUser {
             twitterUser.logOut()

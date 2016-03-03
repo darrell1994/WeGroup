@@ -13,6 +13,7 @@ class Conversation {
     var id: String
     var messages: [Message]?
     var toUsers: [PFUser]
+    var updatedAt: NSDate?
     
     init(id: String, toUsers: [PFUser]) {
         self.id = id

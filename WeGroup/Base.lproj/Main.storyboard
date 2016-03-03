@@ -271,7 +271,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatCell" rowHeight="67" id="ake-fp-j6O" customClass="ChatCell" customModule="WeGroup" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatCell" rowHeight="67" id="ake-fp-j6O" customClass="ConversationCell" customModule="WeGroup" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="320" height="67"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ake-fp-j6O" id="oLw-ZN-L8d">
@@ -496,9 +496,14 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="d4d-Q2-MCc">
                                 <rect key="frame" x="-4" y="64" width="328" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" id="2Jf-b7-b2l">
+                                    <rect key="frame" x="0.0" y="0.0" width="328" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </searchBar>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactCell" rowHeight="55" id="CiU-es-Ctz" customClass="ContactCell" customModule="WeGroup" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="328" height="55"/>
+                                        <rect key="frame" x="0.0" y="72" width="328" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CiU-es-Ctz" id="YwE-No-OZJ">
                                             <rect key="frame" x="0.0" y="0.0" width="328" height="54.5"/>
@@ -665,12 +670,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="65.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date of Birth" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qWV-ao-RQh">
-                                                    <rect key="frame" x="21" y="18" width="346" height="30"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date of Birth" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qWV-ao-RQh">
+                                                    <rect key="frame" x="8" y="24.5" width="304" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="qWV-ao-RQh" firstAttribute="leading" secondItem="Iom-Kc-44E" secondAttribute="leadingMargin" id="HR1-KQ-APy"/>
+                                                <constraint firstItem="qWV-ao-RQh" firstAttribute="centerY" secondItem="Iom-Kc-44E" secondAttribute="centerY" id="K0N-Md-WXo"/>
+                                                <constraint firstItem="qWV-ao-RQh" firstAttribute="trailing" secondItem="Iom-Kc-44E" secondAttribute="trailingMargin" id="bf0-3U-7Pw"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="94" id="pav-dn-jqj">
@@ -680,12 +690,18 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="93.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Short bio" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DGu-iI-i8T">
-                                                    <rect key="frame" x="19" y="8" width="336" height="77.5"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Short bio" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DGu-iI-i8T">
+                                                    <rect key="frame" x="8" y="8" width="304" height="77.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="DGu-iI-i8T" firstAttribute="trailing" secondItem="quv-rO-7bP" secondAttribute="trailingMargin" id="Ho3-KV-bKD"/>
+                                                <constraint firstItem="DGu-iI-i8T" firstAttribute="top" secondItem="quv-rO-7bP" secondAttribute="topMargin" id="cYS-ny-g8I"/>
+                                                <constraint firstItem="DGu-iI-i8T" firstAttribute="bottom" secondItem="quv-rO-7bP" secondAttribute="bottomMargin" id="iFZ-3X-j7P"/>
+                                                <constraint firstItem="DGu-iI-i8T" firstAttribute="leading" secondItem="quv-rO-7bP" secondAttribute="leadingMargin" id="uxD-jM-NyZ"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>

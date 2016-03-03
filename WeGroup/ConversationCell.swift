@@ -1,5 +1,5 @@
 //
-//  ChatCell.swift
+//  ConversationCell.swift
 //  WeGroup
 //
 //  Created by Darrell Shi on 2/4/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChatCell: UITableViewCell {
+class ConversationCell: UITableViewCell {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var previewLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
@@ -28,6 +28,12 @@ class ChatCell: UITableViewCell {
             if let profileData = conversation?.toUsers.first?["profile_image"] as? NSData {
                 let image = UIImage(data: profileData)
                 profileImageView.image = image
+            }
+            if let time = conversation?.updatedAt{
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "hh:mm"
+                let dateString = dateFormatter.stringFromDate(time)
+                timeLabel.text = dateString
             }
         }
     }
