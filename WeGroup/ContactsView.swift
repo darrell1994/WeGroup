@@ -22,11 +22,16 @@ class ContactsView: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        Conversation.checkNewConversations()
+        tableView.reloadData()
+    }
+    
     @IBAction func onAddFriend(sender: AnyObject) {
         let alert = UIAlertController(title: "Add Friend", message: "Enter username", preferredStyle: .Alert)
         alert.addTextFieldWithConfigurationHandler(nil)
         
-        alert.addAction(UIAlertAction(title: "Send Request", style: .Default, handler: { (action) -> Void in
+        alert.addAction(UIAlertAction(title: "Add Friend", style: .Default, handler: { (action) -> Void in
             let textField = alert.textFields![0] as UITextField
             if let username = textField.text {
                 // check empty
@@ -49,16 +54,26 @@ class ContactsView: UIViewController {
                             return
                         }
                         // check if they are already freinds
-                        if Data.contacts.contains(friend) {
+                        if Data.contacts.contains(friend) { // TODO check username instead of object
                             self.popupMessage("You are already friends")
                             return
                         }
                         // send friend request
-                        let relationship = PFObject(className: "Friendship")
-                        relationship["user"] = PFUser.currentUser()!
-                        relationship["friend"] = friend
+                        let relationship1 = PFObject(className: "Friendship")
+                        relationship1["user"] = PFUser.currentUser()!
+                        relationship1["friend"] = friend
+                        let relationship2 = PFObject(className: "Friendship")
+                        relationship2["user"] = friend
+                        relationship2["friend"] = PFUser.currentUser()!
                         
-                        relationship.saveInBackgroundWithBlock({ (success, error) -> Void in
+                        // TODO optimize
+                        relationship1.saveInBackgroundWithBlock({ (success, error) -> Void in
+                            if success {
+                            } else {
+                                self.popupMessage("Failed to add friend")
+                            }
+                        })
+                        relationship2.saveInBackgroundWithBlock({ (success, error) -> Void in
                             if success {
                                 self.popupMessage("friend added")
                                 Data.contacts.append(friend)

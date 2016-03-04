@@ -36,7 +36,7 @@ class ChatsView: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    func onTimer() { // checks for new conversations
+    func onTimer() {
         checkNewConversations()
         checkNewMessages()
     }
@@ -47,13 +47,14 @@ class ChatsView: UIViewController {
             query.includeKey("friend")
             query.whereKey("user", equalTo: currentUser)
             query.findObjectsInBackgroundWithBlock { (results, error) -> Void in
-                if let results = results {
-                    Data.contacts.removeAll()
+                // TODO inform user that new friends have been added
+                if let results = results { // Add Contacts model
+                    Data.contacts.removeAll() // TODO add contacts count AND not remove every time
                     for result in results {
                         let user = result["friend"] as! PFUser
                         Data.contacts.append(user)
-                        self.tableView.reloadData()
                     }
+                    self.tableView.reloadData()
                 }
             }
         }
@@ -77,6 +78,7 @@ class ChatsView: UIViewController {
                         result.deleteInBackground()
                     }
                     self.tableView.reloadData()
+                    // sort conversations by time
                 }
             }
         }
@@ -91,16 +93,12 @@ class ChatsView: UIViewController {
                 if let message_objs = messages {
                     for obj in message_objs {
                         if let conversation = self.getConversationWithID(obj["conversationID"] as! String) {
-                            if conversation.messages == nil {
-                                conversation.messages = [Message]()
-                            }
-                            conversation.messages?.append(Message.getMessagefromPFObject(obj))
+                            conversation.messages.append(Message.getMessagefromPFObject(obj))
                             conversation.updatedAt = NSDate()
-                        } else {
+                        } else { // create new conversation
                             let conversation = Conversation(id: obj["conversationID"] as! String, toUsers: [obj["from"] as! PFUser])
-                            conversation.messages = [Message]()
                             Data.conversations.append(conversation)
-                            conversation.messages?.append(Message.getMessagefromPFObject(obj))
+                            conversation.messages.append(Message.getMessagefromPFObject(obj))
                             conversation.updatedAt = NSDate()
                         }
                         obj.deleteInBackground()
@@ -120,6 +118,7 @@ class ChatsView: UIViewController {
     }
     
     @IBAction func onAddConversation(sender: AnyObject) {
+        // TODO check if the conversation already exits
         self.performSegueWithIdentifier("ToContactPicker", sender: nil)
     }
     

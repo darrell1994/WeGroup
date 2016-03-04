@@ -25,6 +25,10 @@ class LoginView: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    /*
+    - checks if username is provided
+    - checks if password is provided
+    */
     private func checkInputValidity() -> Bool {
         if usernameTextField.text == "" {
             popupMessage("Error", message: "Please provide username")

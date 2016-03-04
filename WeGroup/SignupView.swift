@@ -54,6 +54,9 @@ class SignupView: UIViewController {
             popupMessage("Error", message: "Please provide username", segue: false)
             return false
         }
+        if usernameTextField.text?.characters.count > 14 {
+            popupMessage("Error", message: "Username must be 0-14 characters", segue: false)
+        }
         if emailTextField.text == "" {
             popupMessage("Error", message: "Please provide email address", segue: false)
             return false

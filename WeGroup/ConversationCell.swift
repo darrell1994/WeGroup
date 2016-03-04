@@ -17,7 +17,7 @@ class ConversationCell: UITableViewCell {
     var conversation: Conversation? {
         didSet {
             usernameLabel.text = conversation?.toUsers.first?.username
-            if let preview = conversation?.messages?.last?.text {
+            if let preview = conversation?.messages.last?.text {
                 previewLabel.text = preview
             } else {
                 previewLabel.text = ""

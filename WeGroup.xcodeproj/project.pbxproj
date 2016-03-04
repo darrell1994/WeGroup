@@ -21,6 +21,7 @@
 		5B50A0DB1C51758400D5FE31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B50A0D91C51758400D5FE31 /* LaunchScreen.storyboard */; };
 		5B50A1031C5342DA00D5FE31 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B50A1021C5342DA00D5FE31 /* SignupView.swift */; };
 		5B50A1051C534BC000D5FE31 /* WeGroup icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B50A1041C534BC000D5FE31 /* WeGroup icon.png */; };
+		5BBB5C041C8959A30084D4D8 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBB5C031C8959A30084D4D8 /* MessageCell.swift */; };
 		5BBBDD8D1C860B5A00F453EF /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBBDD8C1C860B5A00F453EF /* Conversation.swift */; };
 		5BBBDD8F1C860B6700F453EF /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBBDD8E1C860B6700F453EF /* Message.swift */; };
 		5BC629A41C6D864C00CB5B8A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC629A31C6D864C00CB5B8A /* User.swift */; };
@@ -49,6 +50,7 @@
 		5B50A0DC1C51758400D5FE31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B50A1021C5342DA00D5FE31 /* SignupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		5B50A1041C534BC000D5FE31 /* WeGroup icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WeGroup icon.png"; sourceTree = "<group>"; };
+		5BBB5C031C8959A30084D4D8 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		5BBBDD8C1C860B5A00F453EF /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		5BBBDD8E1C860B6700F453EF /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		5BC629A31C6D864C00CB5B8A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 			children = (
 				5B2CC76F1C63AB2B00CAFB2F /* ConversationCell.swift */,
 				5B399E5F1C80E6F700370724 /* ContactCell.swift */,
+				5BBB5C031C8959A30084D4D8 /* MessageCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BBBDD8D1C860B5A00F453EF /* Conversation.swift in Sources */,
+				5BBB5C041C8959A30084D4D8 /* MessageCell.swift in Sources */,
 				5BC629A71C6D867C00CB5B8A /* TwitterClient.swift in Sources */,
 				5B50A1031C5342DA00D5FE31 /* SignupView.swift in Sources */,
 				5B2CC7701C63AB2B00CAFB2F /* ConversationCell.swift in Sources */,
@@ -429,6 +433,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = WeGroup/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Purdue-University.WeGroup";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -444,6 +449,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = WeGroup/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Purdue-University.WeGroup";
 				PRODUCT_NAME = "$(TARGET_NAME)";
