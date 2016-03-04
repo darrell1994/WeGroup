@@ -71,27 +71,6 @@
                                     <segue destination="yIC-v4-CmW" kind="modal" modalTransitionStyle="flipHorizontal" id="XgV-co-aGD"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TVP-yK-ixp">
-                                <rect key="frame" x="51" y="443" width="217" height="38"/>
-                                <color key="backgroundColor" red="0.33333333329999998" green="0.67450980390000004" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="38" id="FPp-eR-pIH"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
-                                <state key="normal" title="Login with Twitter">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="onTwitterLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qSI-7O-xJ1"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Twitter_icon_white.png" translatesAutoresizingMaskIntoConstraints="NO" id="Jpn-PW-0Oy">
-                                <rect key="frame" x="51" y="441" width="44" height="42"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="42" id="SpZ-GJ-c5i"/>
-                                    <constraint firstAttribute="width" constant="44" id="tuG-q8-ofg"/>
-                                </constraints>
-                            </imageView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="VnQ-AS-VDW">
                                 <rect key="frame" x="150" y="186" width="20" height="20"/>
                             </activityIndicatorView>
@@ -99,24 +78,19 @@
                         <color key="backgroundColor" red="0.64313725489999995" green="0.77647058820000003" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="oUT-9e-eLI" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="1qV-rU-suP"/>
-                            <constraint firstItem="TVP-yK-ixp" firstAttribute="top" secondItem="WKi-kM-bXu" secondAttribute="bottom" constant="8" id="2BN-0Z-6Bk"/>
                             <constraint firstItem="VnQ-AS-VDW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5VB-K5-81G"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="TVP-yK-ixp" secondAttribute="trailing" constant="36" id="6Oe-qF-VOl"/>
                             <constraint firstItem="Bfk-V1-ZxQ" firstAttribute="top" secondItem="oUT-9e-eLI" secondAttribute="bottom" constant="10" id="6Y0-OP-2qi"/>
                             <constraint firstItem="aXu-Ni-gun" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9tI-My-nCo"/>
                             <constraint firstItem="aXu-Ni-gun" firstAttribute="top" secondItem="Cco-vt-Mor" secondAttribute="bottom" id="DcB-OK-Zvy"/>
-                            <constraint firstItem="TVP-yK-ixp" firstAttribute="leading" secondItem="Jpn-PW-0Oy" secondAttribute="leading" id="LcX-Y6-Nlr"/>
                             <constraint firstItem="WKi-kM-bXu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="35" id="RqE-R5-Lua"/>
                             <constraint firstItem="oUT-9e-eLI" firstAttribute="top" secondItem="aXu-Ni-gun" secondAttribute="bottom" id="UMx-mJ-u9D"/>
                             <constraint firstItem="oUT-9e-eLI" firstAttribute="top" secondItem="VnQ-AS-VDW" secondAttribute="bottom" constant="8" id="VHG-7D-FWb"/>
                             <constraint firstItem="WKi-kM-bXu" firstAttribute="top" secondItem="kMR-1p-HOo" secondAttribute="bottom" constant="10" id="VWG-IF-3T2"/>
-                            <constraint firstItem="TVP-yK-ixp" firstAttribute="centerY" secondItem="Jpn-PW-0Oy" secondAttribute="centerY" id="YAK-d7-8Xu"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kMR-1p-HOo" secondAttribute="trailing" constant="36" id="bPg-0Q-ci7"/>
                             <constraint firstItem="kMR-1p-HOo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="35" id="dq8-pT-oiv"/>
                             <constraint firstItem="Bfk-V1-ZxQ" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="mA5-Oi-G0m"/>
                             <constraint firstItem="Bfk-V1-ZxQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="mOZ-zQ-OSY"/>
                             <constraint firstAttribute="trailingMargin" secondItem="WKi-kM-bXu" secondAttribute="trailing" constant="36" id="q9J-wg-U6j"/>
-                            <constraint firstItem="TVP-yK-ixp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="35" id="riO-1M-J67"/>
                             <constraint firstItem="oUT-9e-eLI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="wHB-RM-LMb"/>
                             <constraint firstItem="kMR-1p-HOo" firstAttribute="top" secondItem="Bfk-V1-ZxQ" secondAttribute="bottom" constant="45" id="we3-ZY-CZu"/>
                         </constraints>
@@ -812,11 +786,16 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="SLj-r7-Rt8">
+                                                    <rect key="frame" x="103" y="15" width="20" height="20"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <color key="backgroundColor" red="0.98431372549999996" green="0.31764705879999999" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="Gax-po-02u" firstAttribute="centerX" secondItem="Wad-nq-EvN" secondAttribute="centerX" id="7yz-er-2J0"/>
                                                 <constraint firstItem="Gax-po-02u" firstAttribute="centerY" secondItem="Wad-nq-EvN" secondAttribute="centerY" id="UeL-Ct-D2S"/>
+                                                <constraint firstItem="SLj-r7-Rt8" firstAttribute="centerY" secondItem="Wad-nq-EvN" secondAttribute="centerY" id="Wlm-Tn-YXZ"/>
+                                                <constraint firstItem="Gax-po-02u" firstAttribute="leading" secondItem="SLj-r7-Rt8" secondAttribute="trailing" constant="8" id="lKg-Ye-Eqv"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -830,6 +809,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="mmt-NP-7lt"/>
                     <connections>
+                        <outlet property="logoutProcessIndicator" destination="SLj-r7-Rt8" id="hJA-3x-wlO"/>
                         <outlet property="nameLabel" destination="125-5i-T7K" id="1ss-sO-wBS"/>
                         <outlet property="profileImageView" destination="vTn-sV-HBY" id="jAu-UJ-5kC"/>
                         <segue destination="BYZ-38-t0r" kind="modal" identifier="ToLogin" modalTransitionStyle="flipHorizontal" id="SOA-UX-qVy"/>
@@ -878,7 +858,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Twitter_icon_white.png" width="300" height="300"/>
         <image name="WeGroup icon.png" width="1028" height="1028"/>
         <image name="chats" width="30" height="30"/>
         <image name="contacts" width="29" height="29"/>

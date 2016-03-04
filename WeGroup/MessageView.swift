@@ -52,7 +52,6 @@ class MessageView: UIViewController {
     }
     
     @IBAction func onSend(sender: AnyObject) {
-        /*
         let message_obj = PFObject(className: "Message")
         message_obj["from"] = PFUser.currentUser()
         message_obj["to"] = conversation?.toUsers.first
@@ -60,7 +59,7 @@ class MessageView: UIViewController {
         message_obj["conversationID"] = conversation.id
         message_obj.saveInBackgroundWithBlock({ (success, error) -> Void in
             if success {
-                self.conversation.messages?.append(Message(from: PFUser.currentUser(), to: self.conversation?.toUsers.first, text: self.inputBox.text))
+                self.conversation.messages.append(Message(from: PFUser.currentUser(), to: self.conversation?.toUsers.first, text: self.inputBox.text))
                 self.conversation.updatedAt = NSDate()
                 self.tableView.reloadData()
                 self.inputBox.text = ""
@@ -69,7 +68,6 @@ class MessageView: UIViewController {
                 print("Failed to send message")
             }
         })
-*/
     }
     
     func onReceiveNewMessage() {

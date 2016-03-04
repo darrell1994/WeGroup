@@ -4,8 +4,6 @@
 use_frameworks!
 
 target 'WeGroup' do
-pod 'AFNetworking'
-pod 'BDBOAuth1Manager'
 pod 'Parse'
 end
 

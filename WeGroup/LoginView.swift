@@ -56,16 +56,6 @@ class LoginView: UIViewController {
         }
     }
     
-    @IBAction func onTwitterLogin(sender: AnyObject) {
-        TwitterClient.sharedInstance.loginWithComplition{ (user, error) -> () in
-            if user != nil {
-                self.performSegueWithIdentifier("ToTabBarController", sender: nil)
-            } else {
-                self.popupMessage("Error", message: error?.debugDescription)
-            }
-        }
-    }
-    
     private func popupMessage(title: String?, message: String?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))

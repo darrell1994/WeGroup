@@ -84,14 +84,10 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "Pods-WeGroup/AFNetworking.framework"
-  install_framework "Pods-WeGroup/BDBOAuth1Manager.framework"
   install_framework "Pods-WeGroup/Bolts.framework"
   install_framework "Pods-WeGroup/Parse.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "Pods-WeGroup/AFNetworking.framework"
-  install_framework "Pods-WeGroup/BDBOAuth1Manager.framework"
   install_framework "Pods-WeGroup/Bolts.framework"
   install_framework "Pods-WeGroup/Parse.framework"
 fi

@@ -12,6 +12,7 @@ import Parse
 class SettingsView: UITableViewController {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var logoutProcessIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,23 +110,19 @@ class SettingsView: UITableViewController {
     }
     
     private func onLogout() {
-        PFUser.logOut()
-        NSNotificationCenter.defaultCenter().postNotificationName(userDidLogoutNotification, object: nil)
+        logoutProcessIndicator.startAnimating()
         
         timer.invalidate()
         
-        if let twitterUser = User.currentUser {
-            twitterUser.logOut()
-            self.dismissViewControllerAnimated(true, completion: nil)
-        } else {
-            PFUser.logOutInBackgroundWithBlock({ (error) -> Void in
-                if error == nil {
-                    self.dismissViewControllerAnimated(true, completion: nil)
-                } else {
-                    print("Failed to logout")
-                }
-            })
-        }
+        PFUser.logOutInBackgroundWithBlock({ (error) -> Void in
+            if error != nil {
+                print("Failed to logout")
+            } else {
+                self.logoutProcessIndicator.stopAnimating()
+                self.dismissViewControllerAnimated(true, completion: nil)
+                NSNotificationCenter.defaultCenter().postNotificationName(userDidLogoutNotification, object: nil)
+            }
+        })
     }
 }
 
