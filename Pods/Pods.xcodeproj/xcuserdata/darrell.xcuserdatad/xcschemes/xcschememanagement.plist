@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>BALoadingView-BALoadingView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>BALoadingView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Bolts.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,6 +32,16 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>67D2ECFA7896BA4E6DA272C5130FF107</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>92C585897CC64BA9832AF31D3769EB76</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>B0214E86E9E229E292863BC821997C4D</key>
 		<dict>
 			<key>primary</key>
@@ -32,7 +52,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DAC4A5ED50A484FE54143ABB909941C0</key>
+		<key>E8F1EC74C7612D31B6A3715275569BC9</key>
 		<dict>
 			<key>primary</key>
 			<true/>

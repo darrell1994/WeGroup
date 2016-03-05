@@ -8,13 +8,14 @@
 
 import UIKit
 import Parse
+import BALoadingView
 
 class SignupView: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var passwordConformationTextField: UITextField!
-    @IBOutlet weak var processIndicator: UIActivityIndicatorView!
+    var loadingIndicator: BALoadingView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,16 @@ class SignupView: UIViewController {
         emailTextField.delegate = self
         passwordTextField.delegate = self
         passwordConformationTextField.delegate = self
+        
+        setupLoadingIndicator()
+    }
+    
+    private func setupLoadingIndicator() {
+        loadingIndicator = BALoadingView.init(frame: CGRect(x: view.frame.width/2-20, y: 172, width: 40, height: 40))
+        loadingIndicator.initialize()
+        loadingIndicator.segmentColor = UIColor.whiteColor()
+        loadingIndicator.lineCap = kCALineCapRound;
+        self.view.addSubview(loadingIndicator)
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,13 +44,13 @@ class SignupView: UIViewController {
         if !checkInputValidity() {
            return
         }
-        processIndicator.startAnimating()
+        loadingIndicator.startAnimation(.FullCircle)
         let user = PFUser()
         user.username = usernameTextField.text
         user.email = emailTextField.text
         user.password = passwordTextField.text
         user.signUpInBackgroundWithBlock { (success, error) -> Void in
-            self.processIndicator.stopAnimating()
+            self.loadingIndicator.stopAnimation()
             if success {
                 self.popupMessage("Success", message: "Welcome to WeGroup!", segue: true)
             } else {

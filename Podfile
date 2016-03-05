@@ -5,5 +5,6 @@ use_frameworks!
 
 target 'WeGroup' do
 pod 'Parse'
+pod 'BALoadingView'
 end
 

@@ -71,20 +71,15 @@
                                     <segue destination="yIC-v4-CmW" kind="modal" modalTransitionStyle="flipHorizontal" id="XgV-co-aGD"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="VnQ-AS-VDW">
-                                <rect key="frame" x="150" y="186" width="20" height="20"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.64313725489999995" green="0.77647058820000003" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="oUT-9e-eLI" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="1qV-rU-suP"/>
-                            <constraint firstItem="VnQ-AS-VDW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5VB-K5-81G"/>
                             <constraint firstItem="Bfk-V1-ZxQ" firstAttribute="top" secondItem="oUT-9e-eLI" secondAttribute="bottom" constant="10" id="6Y0-OP-2qi"/>
                             <constraint firstItem="aXu-Ni-gun" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9tI-My-nCo"/>
                             <constraint firstItem="aXu-Ni-gun" firstAttribute="top" secondItem="Cco-vt-Mor" secondAttribute="bottom" id="DcB-OK-Zvy"/>
                             <constraint firstItem="WKi-kM-bXu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="35" id="RqE-R5-Lua"/>
                             <constraint firstItem="oUT-9e-eLI" firstAttribute="top" secondItem="aXu-Ni-gun" secondAttribute="bottom" id="UMx-mJ-u9D"/>
-                            <constraint firstItem="oUT-9e-eLI" firstAttribute="top" secondItem="VnQ-AS-VDW" secondAttribute="bottom" constant="8" id="VHG-7D-FWb"/>
                             <constraint firstItem="WKi-kM-bXu" firstAttribute="top" secondItem="kMR-1p-HOo" secondAttribute="bottom" constant="10" id="VWG-IF-3T2"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kMR-1p-HOo" secondAttribute="trailing" constant="36" id="bPg-0Q-ci7"/>
                             <constraint firstItem="kMR-1p-HOo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="35" id="dq8-pT-oiv"/>
@@ -99,7 +94,6 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="passwordTextField" destination="Bfk-V1-ZxQ" id="nRD-Gm-gX6"/>
-                        <outlet property="processIndicator" destination="VnQ-AS-VDW" id="O1f-1x-pC0"/>
                         <outlet property="usernameTextField" destination="oUT-9e-eLI" id="ca0-D3-uyn"/>
                         <segue destination="ywP-JX-kZn" kind="modal" identifier="ToMainPage" modalTransitionStyle="flipHorizontal" id="f2f-yK-vm0"/>
                     </connections>
@@ -191,9 +185,6 @@
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
                             </textField>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="fMF-Nu-Frp">
-                                <rect key="frame" x="150" y="186" width="20" height="20"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.64313725489999995" green="0.77647058820000003" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -209,14 +200,12 @@
                             <constraint firstItem="hKJ-mf-Dfb" firstAttribute="leading" secondItem="7lR-Lc-x5p" secondAttribute="leadingMargin" id="Yw7-1l-n6X"/>
                             <constraint firstAttribute="trailingMargin" secondItem="wzE-wf-H1W" secondAttribute="trailing" constant="36" id="dXN-gn-HTb"/>
                             <constraint firstItem="hKJ-mf-Dfb" firstAttribute="top" secondItem="xI4-Lo-kzW" secondAttribute="bottom" id="eW9-f5-KRT"/>
-                            <constraint firstItem="hKJ-mf-Dfb" firstAttribute="top" secondItem="fMF-Nu-Frp" secondAttribute="bottom" constant="8" id="ebK-zy-fjy"/>
                             <constraint firstItem="hvg-qe-QZ6" firstAttribute="trailing" secondItem="7lR-Lc-x5p" secondAttribute="trailingMargin" id="gLS-5G-JLj"/>
                             <constraint firstItem="Wtz-An-n2I" firstAttribute="trailing" secondItem="7lR-Lc-x5p" secondAttribute="trailingMargin" id="hsO-5f-5qY"/>
                             <constraint firstItem="hvg-qe-QZ6" firstAttribute="top" secondItem="fvx-so-q7n" secondAttribute="bottom" constant="10" id="iXP-sz-puT"/>
                             <constraint firstItem="Wtz-An-n2I" firstAttribute="top" secondItem="hvg-qe-QZ6" secondAttribute="bottom" constant="10" id="lT4-XY-pbH"/>
                             <constraint firstItem="Wtz-An-n2I" firstAttribute="leading" secondItem="7lR-Lc-x5p" secondAttribute="leadingMargin" id="nti-G4-qL4"/>
                             <constraint firstItem="fvx-so-q7n" firstAttribute="leading" secondItem="7lR-Lc-x5p" secondAttribute="leadingMargin" id="pn2-W6-VyT"/>
-                            <constraint firstItem="fMF-Nu-Frp" firstAttribute="centerX" secondItem="7lR-Lc-x5p" secondAttribute="centerX" id="vKL-EF-Oae"/>
                             <constraint firstItem="xI4-Lo-kzW" firstAttribute="top" secondItem="MzH-Z5-Qcw" secondAttribute="bottom" id="vLh-CC-aDR"/>
                             <constraint firstItem="fvx-so-q7n" firstAttribute="top" secondItem="hKJ-mf-Dfb" secondAttribute="bottom" constant="10" id="w3H-8M-3Hx"/>
                         </constraints>
@@ -227,7 +216,6 @@
                         <outlet property="emailTextField" destination="fvx-so-q7n" id="eD8-G3-eAf"/>
                         <outlet property="passwordConformationTextField" destination="Wtz-An-n2I" id="z3b-ff-IlU"/>
                         <outlet property="passwordTextField" destination="hvg-qe-QZ6" id="Iy4-vL-nBC"/>
-                        <outlet property="processIndicator" destination="fMF-Nu-Frp" id="7gh-uR-3kO"/>
                         <outlet property="usernameTextField" destination="hKJ-mf-Dfb" id="mx0-rT-SzO"/>
                         <segue destination="ywP-JX-kZn" kind="modal" identifier="ToMainPage" modalTransitionStyle="flipHorizontal" id="dGe-ck-ikf"/>
                     </connections>
@@ -415,8 +403,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="84" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fzd-51-uFD">
-                                <rect key="frame" x="-4" y="64" width="328" height="406"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="84" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fzd-51-uFD">
+                                <rect key="frame" x="-4" y="64" width="328" height="455"/>
                                 <color key="backgroundColor" red="0.96716159467713791" green="0.96716159467713791" blue="0.96716159467713791" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" rowHeight="67" id="d65-oQ-9Hn" customClass="MessageCell" customModule="WeGroup" customModuleProvider="target">
@@ -466,7 +454,7 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jCa-Nn-PTG">
-                                <rect key="frame" x="-4" y="470" width="328" height="49"/>
+                                <rect key="frame" x="-4" y="519" width="328" height="49"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="gE8-Pb-sE7">
                                         <rect key="frame" x="8" y="8" width="268" height="33"/>
@@ -522,12 +510,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="pBj-id-ous" firstAttribute="top" secondItem="jCa-Nn-PTG" secondAttribute="bottom" id="3VG-3u-wKV"/>
                             <constraint firstItem="jCa-Nn-PTG" firstAttribute="top" secondItem="fzd-51-uFD" secondAttribute="bottom" id="Ak3-Tg-wGc"/>
                             <constraint firstItem="jCa-Nn-PTG" firstAttribute="leading" secondItem="QRK-HI-cTk" secondAttribute="leadingMargin" constant="-20" id="NQh-Gn-3gX"/>
                             <constraint firstAttribute="trailingMargin" secondItem="fzd-51-uFD" secondAttribute="trailing" constant="-20" id="Xf6-0J-lw9"/>
                             <constraint firstItem="fzd-51-uFD" firstAttribute="leading" secondItem="QRK-HI-cTk" secondAttribute="leadingMargin" constant="-20" id="bBs-Jy-J79"/>
                             <constraint firstItem="fzd-51-uFD" firstAttribute="top" secondItem="xLG-F0-beX" secondAttribute="bottom" id="cqh-a4-JGy"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="jCa-Nn-PTG" secondAttribute="bottom" id="suq-It-FtK"/>
                             <constraint firstAttribute="trailingMargin" secondItem="jCa-Nn-PTG" secondAttribute="trailing" constant="-20" id="tLA-dc-5Cb"/>
                         </constraints>
                     </view>
@@ -535,7 +523,7 @@
                         <nil key="title"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="bottomConstraint" destination="3VG-3u-wKV" id="KCv-ra-ehq"/>
+                        <outlet property="bottomConstraint" destination="suq-It-FtK" id="0UZ-BF-Rz1"/>
                         <outlet property="inputBox" destination="gE8-Pb-sE7" id="Djl-I4-4xT"/>
                         <outlet property="sendButton" destination="FS5-T6-g65" id="UlR-U1-fYf"/>
                         <outlet property="tableView" destination="fzd-51-uFD" id="yn2-m7-LFn"/>
@@ -864,7 +852,7 @@
         <image name="settings" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="f2f-yK-vm0"/>
-        <segue reference="SOA-UX-qVy"/>
+        <segue reference="obz-pv-jjn"/>
+        <segue reference="dGe-ck-ikf"/>
     </inferredMetricsTieBreakers>
 </document>

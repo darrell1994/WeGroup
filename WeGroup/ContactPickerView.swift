@@ -39,19 +39,21 @@ extension ContactPickerView: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    private func popupMessage(title: String?, message: String?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let user = Data.contacts[indexPath.row]
-        let conversation_obj = PFObject(className: "Conversation")
-        conversation_obj["from"] = PFUser.currentUser()
-        conversation_obj["to"] = user
-        conversation_obj.saveInBackgroundWithBlock { (success, error) -> Void in
-            if success {
-                let newConversation = Conversation(id: conversation_obj.objectId!, toUsers: [user])
-                Data.conversations.append(newConversation)
-                self.dismissViewControllerAnimated(true, completion: nil)
-            } else {
-                print("Failed to add conversation")
-            }
+        // check if the conversation already exits
+        if let _ = Data.getConversationWithUser(user) {
+            popupMessage(nil, message: "Conversation already exists")
+        } else {
+            let conversation = Conversation(toUsers: [user])
+            Data.conversations.append(conversation)
+            self.dismissViewControllerAnimated(true, completion: nil)
         }
     }
 }

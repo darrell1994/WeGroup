@@ -23,8 +23,10 @@ class ContactsView: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        Conversation.checkNewConversations()
-        tableView.reloadData()
+        super.viewWillAppear(animated)
+        Data.checkNewContacts { () -> Void in
+            self.tableView.reloadData()
+        }
     }
     
     @IBAction func onAddFriend(sender: AnyObject) {
@@ -54,19 +56,19 @@ class ContactsView: UIViewController {
                             return
                         }
                         // check if they are already freinds
-                        if Data.contacts.contains(friend) { // TODO check username instead of object
-                            self.popupMessage("You are already friends")
-                            return
+                        for contact in Data.contacts {
+                            if contact.username == friend.username {
+                                self.popupMessage("You are already friends with \(friend.username!)")
+                                return
+                            }
                         }
-                        // send friend request
+                        // create relationship
                         let relationship1 = PFObject(className: "Friendship")
                         relationship1["user"] = PFUser.currentUser()!
                         relationship1["friend"] = friend
                         let relationship2 = PFObject(className: "Friendship")
                         relationship2["user"] = friend
                         relationship2["friend"] = PFUser.currentUser()!
-                        
-                        // TODO optimize
                         relationship1.saveInBackgroundWithBlock({ (success, error) -> Void in
                             if success {
                             } else {

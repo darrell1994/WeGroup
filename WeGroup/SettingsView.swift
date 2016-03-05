@@ -120,6 +120,9 @@ class SettingsView: UITableViewController {
             } else {
                 self.logoutProcessIndicator.stopAnimating()
                 self.dismissViewControllerAnimated(true, completion: nil)
+            
+                Data.contacts.removeAll()
+                Data.conversations.removeAll()
                 NSNotificationCenter.defaultCenter().postNotificationName(userDidLogoutNotification, object: nil)
             }
         })

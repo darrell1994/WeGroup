@@ -39,12 +39,19 @@ class MessageView: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-//        setTabBarVisible(false, animated: true)
+        super.viewWillAppear(animated)
+        setTabBarVisible(false, animated: true)
         if let messages = conversation?.messages {
             conversation.messages = messages
         } else {
             conversation.messages = [Message]()
         }
+    }
+    
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        setTabBarVisible(true, animated: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,7 +63,6 @@ class MessageView: UIViewController {
         message_obj["from"] = PFUser.currentUser()
         message_obj["to"] = conversation?.toUsers.first
         message_obj["text"] = inputBox.text
-        message_obj["conversationID"] = conversation.id
         message_obj.saveInBackgroundWithBlock({ (success, error) -> Void in
             if success {
                 self.conversation.messages.append(Message(from: PFUser.currentUser(), to: self.conversation?.toUsers.first, text: self.inputBox.text))
@@ -114,7 +120,7 @@ extension MessageView: UITableViewDelegate, UITableViewDataSource, UITextViewDel
         let frame = (notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
         
         UIView.animateWithDuration(0.5) { () -> Void in
-            self.bottomConstraint.constant = frame.height - self.tabBarController!.tabBar.frame.height
+            self.bottomConstraint.constant = frame.height
             self.view.layoutIfNeeded()
         }
     }

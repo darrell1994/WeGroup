@@ -8,21 +8,32 @@
 
 import UIKit
 import Parse
+import BALoadingView
 
 class LoginView: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var processIndicator: UIActivityIndicatorView!
+    var loadingIndicator: BALoadingView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         usernameTextField.delegate = self
         passwordTextField.delegate = self
+        
+        setupLoadingIndicator()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    private func setupLoadingIndicator() {
+        loadingIndicator = BALoadingView.init(frame: CGRect(x: view.frame.width/2-20, y: 172, width: 40, height: 40))
+        loadingIndicator.initialize()
+        loadingIndicator.segmentColor = UIColor.whiteColor()
+        loadingIndicator.lineCap = kCALineCapRound;
+        self.view.addSubview(loadingIndicator)
     }
     
     /*
@@ -45,9 +56,9 @@ class LoginView: UIViewController {
         if !checkInputValidity() {
             return
         }
-        processIndicator.startAnimating()
+        loadingIndicator.startAnimation(.FullCircle)
         PFUser.logInWithUsernameInBackground(usernameTextField.text!, password: passwordTextField.text!) { (user, error) -> Void in
-            self.processIndicator.stopAnimating()
+            self.loadingIndicator.stopAnimation()
             if user != nil {
                 self.performSegueWithIdentifier("ToMainPage", sender: nil)
             } else {
@@ -65,12 +76,13 @@ class LoginView: UIViewController {
 
 extension LoginView: UITextFieldDelegate {
     func textFieldDidBeginEditing(textField: UITextField) {
-        let gesture = UITapGestureRecognizer(target: self, action: "onDismissKeyboard")
+        let gesture = UITapGestureRecognizer(target: self, action: "onDismissKeyboard:")
         self.view.addGestureRecognizer(gesture)
     }
     
-    func onDismissKeyboard() {
+    func onDismissKeyboard(gesture: UITapGestureRecognizer) {
         view.endEditing(true)
+        self.view.removeGestureRecognizer(gesture)
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
