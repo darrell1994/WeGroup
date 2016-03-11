@@ -31,6 +31,10 @@ class ContactPickerView: UIViewController {
     @IBAction func onCancel(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    func onDoneSeletingContacts() {
+        
+    }
 }
 
 extension ContactPickerView: UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
@@ -54,14 +58,30 @@ extension ContactPickerView: UITableViewDelegate, UITableViewDataSource, UISearc
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let user = Data.contacts[indexPath.row]
-        // check if the conversation already exits
-        if let _ = Data.getConversationWithUser(user) {
-            popupMessage(nil, message: "Conversation already exists")
+        if let indexPaths = tableView.indexPathsForSelectedRows {
+            if indexPaths.count == 1 {
+                let button = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: "onDoneSeletingContacts")
+                navigationItem.rightBarButtonItem = button
+            }
+        }
+//        let user = Data.contacts[indexPath.row]
+//        // check if the conversation already exits
+//        if let _ = Data.getConversationWithUser(user) {
+//            popupMessage(nil, message: "Conversation already exists")
+//        } else {
+//            let conversation = Conversation(toUsers: [user])
+//            Data.conversations.append(conversation)
+//            self.dismissViewControllerAnimated(true, completion: nil)
+//        }
+    }
+    
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        if let indexPaths = tableView.indexPathsForSelectedRows {
+            if indexPaths.count == 0 {
+                navigationItem.rightBarButtonItem = nil
+            }
         } else {
-            let conversation = Conversation(toUsers: [user])
-            Data.conversations.append(conversation)
-            self.dismissViewControllerAnimated(true, completion: nil)
+            navigationItem.rightBarButtonItem = nil
         }
     }
     
