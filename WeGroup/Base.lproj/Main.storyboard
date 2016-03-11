@@ -611,6 +611,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Contacts" id="tal-AU-Qmj">
+                        <barButtonItem key="leftBarButtonItem" title="Delete" id="Qfe-wQ-W2y">
+                            <color key="tintColor" red="0.98431372549999996" green="0.31764705879999999" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="onDelete:" destination="07p-zX-ys5" id="ely-5E-OAJ"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="rBd-S5-QBk">
                             <connections>
                                 <action selector="onAddFriend:" destination="07p-zX-ys5" id="uR7-3L-V17"/>

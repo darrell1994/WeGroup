@@ -13,6 +13,7 @@ class ContactsView: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     var filteredContacts: [PFUser]?
+    var deleting = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,6 +101,16 @@ class ContactsView: UIViewController {
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
+    @IBAction func onDelete(sender: AnyObject) {
+        if deleting {
+            navigationItem.leftBarButtonItem?.title = "Delete"
+            deleting = false
+        } else {
+            navigationItem.leftBarButtonItem?.title = "Cancel"
+            deleting = true
+        }
+    }
+    
     private func popupMessage(message: String) {
         let alert = UIAlertController(title: "", message: message, preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
@@ -119,6 +130,42 @@ extension ContactsView: UITableViewDelegate, UITableViewDataSource, UISearchBarD
         let cell = tableView.dequeueReusableCellWithIdentifier("ContactCell") as! ContactCell
         cell.user = filteredContacts?[indexPath.row]
         return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if deleting {
+            if let currentUser = PFUser.currentUser() {
+                let friend = Data.contacts[indexPath.row]
+                let query1 = PFQuery(className: "Friendship")
+                query1.whereKey("user", equalTo: currentUser)
+                query1.whereKey("friend", equalTo: friend)
+                let query2 = PFQuery(className: "Friendship")
+                query2.whereKey("user", equalTo: friend)
+                query2.whereKey("friend", equalTo: currentUser)
+                query2.findObjectsInBackgroundWithBlock({ (results, error) -> Void in
+                    if let results = results {
+                        for result in results {
+                            result.deleteInBackground()
+                        }
+                    }
+                })
+                query1.findObjectsInBackgroundWithBlock { (results, error) -> Void in
+                    if let results = results {
+                        for result in results {
+                            result.deleteInBackgroundWithBlock({ (success:Bool, error) -> Void in
+                                if success {
+                                    Data.contacts.removeAtIndex(indexPath.row)
+                                    self.filteredContacts = Data.contacts
+                                    self.tableView.reloadData()
+                                }
+                            })
+                        }
+                    }
+                }
+            }
+        } else {
+            // TODO add a user profile page
+        }
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {

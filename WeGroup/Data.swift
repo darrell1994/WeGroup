@@ -22,7 +22,6 @@ struct Data {
                 if let results = results {
                     if results.count > contacts.count {
                         // TODO inform user that new friends have been added
-                        print("New friends added!")
                         
                         Data.contacts.removeAll()
                         for result in results {
