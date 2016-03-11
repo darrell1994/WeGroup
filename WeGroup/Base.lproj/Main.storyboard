@@ -292,13 +292,13 @@
                                     <outlet property="profileImageView" destination="47W-R4-gyA" id="AOf-ed-WGW"/>
                                     <outlet property="timeLabel" destination="1ou-lO-jBe" id="Jdf-eo-hAF"/>
                                     <outlet property="usernameLabel" destination="c9l-mK-kMi" id="grD-gU-e9G"/>
-                                    <segue destination="Mo1-c4-BwX" kind="push" identifier="ToChat" id="HTv-0q-mVY"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" title="Chats" id="cW6-37-IxC">
-                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="7IT-AS-Iqm">
+                        <barButtonItem key="leftBarButtonItem" title="Delete" id="7IT-AS-Iqm">
+                            <color key="tintColor" red="0.98431372549999996" green="0.31764705879999999" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="onEdit:" destination="Baj-hE-oeB" id="zpV-ZH-OGB"/>
                             </connections>
@@ -312,6 +312,7 @@
                     <connections>
                         <outlet property="tableView" destination="6Qc-yH-CBi" id="fKV-OG-2vO"/>
                         <segue destination="stI-A3-nOp" kind="modal" identifier="ToContactPicker" id="6IG-bi-ycz"/>
+                        <segue destination="Mo1-c4-BwX" kind="push" identifier="ToChat" id="C1F-sa-GA5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x0s-ct-3J5" userLabel="First Responder" sceneMemberID="firstResponder"/>
