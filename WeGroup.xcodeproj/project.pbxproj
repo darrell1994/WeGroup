@@ -11,7 +11,7 @@
 		5B1155771C86594D0094EF0E /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1155761C86594D0094EF0E /* Data.swift */; };
 		5B1155791C8695AF0094EF0E /* ContactPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1155781C8695AF0094EF0E /* ContactPickerView.swift */; };
 		5B2CC7701C63AB2B00CAFB2F /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2CC76F1C63AB2B00CAFB2F /* ConversationCell.swift */; };
-		5B2CC7721C63AD7E00CAFB2F /* ChatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2CC7711C63AD7E00CAFB2F /* ChatsView.swift */; };
+		5B2CC7721C63AD7E00CAFB2F /* ConversationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2CC7711C63AD7E00CAFB2F /* ConversationsView.swift */; };
 		5B399E5D1C80E67100370724 /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B399E5C1C80E67100370724 /* ContactsView.swift */; };
 		5B399E601C80E6F700370724 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B399E5F1C80E6F700370724 /* ContactCell.swift */; };
 		5B50A0D11C51758400D5FE31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B50A0D01C51758400D5FE31 /* AppDelegate.swift */; };
@@ -36,7 +36,7 @@
 		5B1155761C86594D0094EF0E /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		5B1155781C8695AF0094EF0E /* ContactPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactPickerView.swift; sourceTree = "<group>"; };
 		5B2CC76F1C63AB2B00CAFB2F /* ConversationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
-		5B2CC7711C63AD7E00CAFB2F /* ChatsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsView.swift; sourceTree = "<group>"; };
+		5B2CC7711C63AD7E00CAFB2F /* ConversationsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsView.swift; sourceTree = "<group>"; };
 		5B399E5C1C80E67100370724 /* ContactsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsView.swift; sourceTree = "<group>"; };
 		5B399E5F1C80E6F700370724 /* ContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
 		5B50A0CD1C51758400D5FE31 /* WeGroup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeGroup.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,7 +116,7 @@
 			children = (
 				5B50A0D21C51758400D5FE31 /* LoginView.swift */,
 				5B50A1021C5342DA00D5FE31 /* SignupView.swift */,
-				5B2CC7711C63AD7E00CAFB2F /* ChatsView.swift */,
+				5B2CC7711C63AD7E00CAFB2F /* ConversationsView.swift */,
 				5B1155781C8695AF0094EF0E /* ContactPickerView.swift */,
 				5B1155741C8657370094EF0E /* MessageView.swift */,
 				5B399E5C1C80E67100370724 /* ContactsView.swift */,
@@ -292,7 +292,7 @@
 				5B2CC7701C63AB2B00CAFB2F /* ConversationCell.swift in Sources */,
 				5B399E5D1C80E67100370724 /* ContactsView.swift in Sources */,
 				BBDDFD991C6E708D0083044A /* SettingsView.swift in Sources */,
-				5B2CC7721C63AD7E00CAFB2F /* ChatsView.swift in Sources */,
+				5B2CC7721C63AD7E00CAFB2F /* ConversationsView.swift in Sources */,
 				5B1155791C8695AF0094EF0E /* ContactPickerView.swift in Sources */,
 				5B399E601C80E6F700370724 /* ContactCell.swift in Sources */,
 				5BBBDD8F1C860B6700F453EF /* Message.swift in Sources */,

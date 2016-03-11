@@ -12,8 +12,9 @@ import Parse
 var timer = NSTimer()
 let didReceiveNewMessage = "didReceiveNewMessage"
 
-class ChatsView: UIViewController {
+class ConversationsView: UIViewController {
     @IBOutlet var tableView: UITableView!
+    var deleting = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +50,7 @@ class ChatsView: UIViewController {
     }
     
     @IBAction func onEdit(sender: AnyObject) {
+//        deleting = true
         let numberOfRows = tableView.numberOfRowsInSection(0)
         let gesture = UITapGestureRecognizer(target: self, action: "onDeleteConversation:")
         for row in 0...numberOfRows-1 {
@@ -68,6 +70,7 @@ class ChatsView: UIViewController {
     
     func onDeleteConversation(gesture: UITapGestureRecognizer) {
         gesture.view?.backgroundColor = UIColor.blackColor()
+        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -80,7 +83,7 @@ class ChatsView: UIViewController {
     }
 }
 
-extension ChatsView: UITableViewDelegate, UITableViewDataSource {
+extension ConversationsView: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Data.conversations.count
     }
@@ -90,4 +93,8 @@ extension ChatsView: UITableViewDelegate, UITableViewDataSource {
         cell.conversation = Data.conversations[indexPath.row]
         return cell
     }
+    
+//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        <#code#>
+//    }
 }
