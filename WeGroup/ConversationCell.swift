@@ -15,9 +15,13 @@ class ConversationCell: UITableViewCell {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var notificationView: UIView!
     
-    var conversation: Conversation? {
+    var conversation: Conversation! {
         didSet {
-            usernameLabel.text = conversation?.toUsers.first?.username
+            var username = ""
+            for user in conversation.toUsers {
+                username += "\(user.username!) "
+            }
+            usernameLabel.text = username
             if let preview = conversation?.messages.last?.text {
                 previewLabel.text = preview
             } else {

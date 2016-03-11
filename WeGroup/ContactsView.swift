@@ -86,6 +86,7 @@ class ContactsView: UIViewController {
                             if success {
                                 self.popupMessage("friend added")
                                 Data.contacts.append(friend)
+                                self.filteredContacts?.append(friend)
                                 self.tableView.reloadData()
                             } else {
                                 self.popupMessage("Failed to add friend")

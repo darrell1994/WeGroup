@@ -33,6 +33,25 @@ class ContactPickerView: UIViewController {
     }
     
     func onDoneSeletingContacts() {
+        if let indexPaths = tableView.indexPathsForSelectedRows {
+            var users = [PFUser]()
+            for indexPath in indexPaths {
+                users.append(Data.contacts[indexPath.row])
+            }
+            for user in users {
+                print(user.username)
+            }
+            // check if the conversation already exits
+//            if let _ = Data.getConversationWithUser(user) {
+//                popupMessage(nil, message: "Conversation already exists")
+//            } else {
+                let conversation = Conversation(toUsers: users)
+                Data.conversations.append(conversation)
+                self.dismissViewControllerAnimated(true, completion: nil)
+//            }
+        } else {
+            dismissViewControllerAnimated(true, completion: nil)
+        }
         
     }
 }
@@ -64,15 +83,6 @@ extension ContactPickerView: UITableViewDelegate, UITableViewDataSource, UISearc
                 navigationItem.rightBarButtonItem = button
             }
         }
-//        let user = Data.contacts[indexPath.row]
-//        // check if the conversation already exits
-//        if let _ = Data.getConversationWithUser(user) {
-//            popupMessage(nil, message: "Conversation already exists")
-//        } else {
-//            let conversation = Conversation(toUsers: [user])
-//            Data.conversations.append(conversation)
-//            self.dismissViewControllerAnimated(true, completion: nil)
-//        }
     }
     
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {

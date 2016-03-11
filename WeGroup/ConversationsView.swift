@@ -21,9 +21,7 @@ class ConversationsView: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        
-        tableView.keyboardDismissMode = UIScrollViewKeyboardDismissMode.Interactive
-        
+                
         timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: "onTimer", userInfo: nil, repeats: true)
         
         Data.checkNewContacts(nil)

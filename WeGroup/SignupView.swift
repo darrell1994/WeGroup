@@ -82,6 +82,10 @@ class SignupView: UIViewController {
             popupMessage("Error", message: "Please provide both password and password confirmation", segue: false)
             return false
         }
+        if passwordTextField.text?.characters.count < 6 {
+            popupMessage("Error", message: "Password must be at least 6 characters", segue: false)
+            return false
+        }
         if passwordTextField.text != passwordConformationTextField.text {
             popupMessage("Error", message: "Password doesn't match password confirmation", segue: false)
             return false
