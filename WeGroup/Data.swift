@@ -43,22 +43,23 @@ struct Data {
             query.whereKey("to", equalTo: currentUser)
             query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
                 if let objects = objects {
+                    if objects.count == 0 {
+                        return
+                    }
                     for obj in objects {
                         // if the conversation already exists
                         let from = obj["from"] as! PFUser
                         let message = Message.getMessagefromPFObject(obj)
                         if let conversation = self.getConversationWithUser(from) {
-                            // add the message to conversation
                             conversation.messages.append(message)
                         } else {
-                            // create a conversation
-                            // add the message to conversation
                             let conversation = Conversation(toUsers: [from])
                             conversation.messages.append(message)
                             Data.conversations.append(conversation)
                         }
                         obj.deleteInBackground()
                     }
+                    NSNotificationCenter.defaultCenter().postNotificationName(didReceiveNewMessage, object: nil)
                     received?()
                 }
             }}
@@ -96,7 +97,7 @@ struct Data {
     
     static func getConversationWithUser(user: PFUser)->Conversation? {
         for conversation in conversations {
-            if conversation.toUsers.first == user {
+            if conversation.toUsers.first?.username == user.username {
                 return conversation
             }
         }

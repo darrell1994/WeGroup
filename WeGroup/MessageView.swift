@@ -13,14 +13,12 @@ var messageTimer = NSTimer()
 
 class MessageView: UIViewController {
     @IBOutlet weak var tableView: UITableView!
-    var conversation: Conversation!
     @IBOutlet weak var inputBox: UITextView!
-    
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var textViewHeightConstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var sendButton: UIButton!
     var inputBoxEditing = false
+    var conversation: Conversation!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,13 +39,7 @@ class MessageView: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         setTabBarVisible(false, animated: true)
-        if let messages = conversation?.messages {
-            conversation.messages = messages
-        } else {
-            conversation.messages = [Message]()
-        }
     }
-    
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
@@ -69,6 +61,8 @@ class MessageView: UIViewController {
                 self.conversation.updatedAt = NSDate()
                 self.tableView.reloadData()
                 self.inputBox.text = ""
+                self.sendButton.enabled = false
+                self.tableViewScrollToBottom(true)
             } else {
                 // TODO warn user
                 print("Failed to send message")
@@ -78,6 +72,9 @@ class MessageView: UIViewController {
     
     func onReceiveNewMessage() {
         tableView.reloadData()
+        tableViewScrollToBottom(true)
+//        let indexPath = NSIndexPath(forRow: conversation.messages.count, inSection: 0)
+//        tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Top, animated: true)
     }
 }
 
@@ -97,15 +94,7 @@ extension MessageView: UITableViewDelegate, UITableViewDataSource, UITextViewDel
         let messages = conversation.messages
             cell.message = messages[indexPath.row]
         
-//        tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
-        
         return cell
-    }
-    
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        if inputBoxEditing {
-            inputBox.resignFirstResponder()
-        }
     }
     
     func textViewDidBeginEditing(textView: UITextView) {
@@ -122,6 +111,7 @@ extension MessageView: UITableViewDelegate, UITableViewDataSource, UITextViewDel
         UIView.animateWithDuration(0.5) { () -> Void in
             self.bottomConstraint.constant = frame.height
             self.view.layoutIfNeeded()
+            self.tableViewScrollToBottom(true)
         }
     }
     
@@ -130,6 +120,10 @@ extension MessageView: UITableViewDelegate, UITableViewDataSource, UITextViewDel
             self.bottomConstraint.constant = 0
             self.view.layoutIfNeeded()
         }
+    }
+    
+    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        view.endEditing(true)
     }
     
     func textViewDidChange(textView: UITextView) {
@@ -178,5 +172,21 @@ extension MessageView: UITableViewDelegate, UITableViewDataSource, UITextViewDel
     
     func tabBarIsVisible() ->Bool {
         return self.tabBarController?.tabBar.frame.origin.y < CGRectGetMaxY(self.view.frame)
+    }
+    
+    func tableViewScrollToBottom(animated: Bool) {
+        let delay = 0.1 * Double(NSEC_PER_SEC)
+        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+        
+        dispatch_after(time, dispatch_get_main_queue(), {
+            
+            let numberOfSections = self.tableView.numberOfSections
+            let numberOfRows = self.tableView.numberOfRowsInSection(numberOfSections-1)
+            
+            if numberOfRows > 0 {
+                let indexPath = NSIndexPath(forRow: numberOfRows-1, inSection: (numberOfSections-1))
+                self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: animated)
+            }
+        })
     }
 }

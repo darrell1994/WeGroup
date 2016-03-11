@@ -60,7 +60,9 @@ class LoginView: UIViewController {
         PFUser.logInWithUsernameInBackground(usernameTextField.text!, password: passwordTextField.text!) { (user, error) -> Void in
             self.loadingIndicator.stopAnimation()
             if user != nil {
-                self.performSegueWithIdentifier("ToMainPage", sender: nil)
+                NSNotificationCenter.defaultCenter().postNotificationName(userDidLoginNotification, object: nil)
+                self.dismissViewControllerAnimated(true, completion: nil)
+//                self.performSegueWithIdentifier("ToMainPage", sender: nil)
             } else {
                 self.popupMessage("Failed to login", message: "Username and password don't match")
             }

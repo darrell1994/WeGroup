@@ -53,11 +53,17 @@ class SignupView: UIViewController {
             self.loadingIndicator.stopAnimation()
             if success {
                 self.popupMessage("Success", message: "Welcome to WeGroup!", segue: true)
+                NSNotificationCenter.defaultCenter().postNotificationName(userDidLoginNotification, object: nil)
+                self.dismissViewControllerAnimated(true, completion: nil)
             } else {
                 print(error.debugDescription)
                 self.popupMessage(nil, message: "Failed to sign up", segue: false)
             }
         }
+    }
+    
+    @IBAction func onBackToLogin(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     private func checkInputValidity()->Bool {

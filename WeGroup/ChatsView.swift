@@ -20,7 +20,9 @@ class ChatsView: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-                
+        
+        tableView.keyboardDismissMode = UIScrollViewKeyboardDismissMode.Interactive
+        
         timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: "onTimer", userInfo: nil, repeats: true)
         
         Data.checkNewContacts(nil)
@@ -44,6 +46,28 @@ class ChatsView: UIViewController {
     
     @IBAction func onAddConversation(sender: AnyObject) {
         self.performSegueWithIdentifier("ToContactPicker", sender: nil)
+    }
+    
+    @IBAction func onEdit(sender: AnyObject) {
+        let numberOfRows = tableView.numberOfRowsInSection(0)
+        let gesture = UITapGestureRecognizer(target: self, action: "onDeleteConversation:")
+        for row in 0...numberOfRows-1 {
+            let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: 0))!
+            let origin = cell.contentView.frame.origin
+            let deleteView = UIImageView(frame: CGRect(x: -20, y: 25, width: 20, height: 20))
+            deleteView.image = UIImage(named: "delete_button")
+            deleteView.userInteractionEnabled = true
+            deleteView.addGestureRecognizer(gesture)
+            cell.contentView.addSubview(deleteView)
+            
+            UIView.animateWithDuration(0.3) { () -> Void in
+                cell.contentView.frame.origin = CGPoint(x: origin.x+30, y: origin.y)
+            }
+        }
+    }
+    
+    func onDeleteConversation(gesture: UITapGestureRecognizer) {
+        gesture.view?.backgroundColor = UIColor.blackColor()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

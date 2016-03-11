@@ -13,6 +13,7 @@ class ConversationCell: UITableViewCell {
     @IBOutlet weak var previewLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var notificationView: UIView!
     
     var conversation: Conversation? {
         didSet {
