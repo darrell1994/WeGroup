@@ -393,6 +393,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="searchBar" destination="VUQ-xN-Ud8" id="ClN-2A-mzy"/>
                         <outlet property="tableView" destination="8Sa-Sh-V0A" id="Bug-xO-Yfy"/>
                     </connections>
                 </viewController>

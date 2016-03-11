@@ -11,12 +11,17 @@ import Parse
 
 class ContactPickerView: UIViewController {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    var filteredContacts: [PFUser]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
+        searchBar.delegate = self
+        
+        filteredContacts = Data.contacts
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,14 +33,17 @@ class ContactPickerView: UIViewController {
     }
 }
 
-extension ContactPickerView: UITableViewDelegate, UITableViewDataSource {
+extension ContactPickerView: UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Data.contacts.count
+        if let contacts = filteredContacts {
+            return contacts.count
+        }
+        return 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ContactCell") as! ContactCell
-        cell.user = Data.contacts[indexPath.row]
+        cell.user = filteredContacts?[indexPath.row]
         return cell
     }
     
@@ -55,5 +63,31 @@ extension ContactPickerView: UITableViewDelegate, UITableViewDataSource {
             Data.conversations.append(conversation)
             self.dismissViewControllerAnimated(true, completion: nil)
         }
+    }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        if let searchText = searchBar.text {
+            if searchText == "" {
+                filteredContacts = Data.contacts
+            } else {
+                filteredContacts = Data.contacts.filter({ (user :PFUser) -> Bool in
+                    let username = user.username
+                    return username?.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: nil) != nil
+                })
+            }
+        }
+        tableView.reloadData()
+    }
+    
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        searchBar.showsCancelButton = true
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+        filteredContacts = Data.contacts
+        tableView.reloadData()
     }
 }
