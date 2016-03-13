@@ -38,17 +38,14 @@ class ContactPickerView: UIViewController {
             for indexPath in indexPaths {
                 users.append(Data.contacts[indexPath.row])
             }
-            for user in users {
-                print(user.username)
-            }
             // check if the conversation already exits
-//            if let _ = Data.getConversationWithUser(user) {
-//                popupMessage(nil, message: "Conversation already exists")
-//            } else {
+            if let _ = Data.getConversationWithUsers(users) {
+                popupMessage(nil, message: "Conversation already exists")
+            } else {
                 let conversation = Conversation(toUsers: users)
                 Data.conversations.append(conversation)
                 self.dismissViewControllerAnimated(true, completion: nil)
-//            }
+            }
         } else {
             dismissViewControllerAnimated(true, completion: nil)
         }

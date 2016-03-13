@@ -9,22 +9,19 @@
 import Foundation
 import Parse
 
-class Message {
+struct Message {
     var from: PFUser?
-    var to: PFUser?
     var text: String?
     
-    init(from: PFUser?, to: PFUser?, text: String?) {
+    init(from: PFUser, text: String?) {
         self.from = from
-        self.to = to
         self.text = text
     }
     
     static func getMessagefromPFObject(object: PFObject) -> Message {
-        let from = object["from"] as? PFUser
-        let to = object["to"] as? PFUser
+        let from = object["from"] as! PFUser
         let text = object["text"] as? String
-        let message = Message(from: from, to: to, text: text)
+        let message = Message(from: from, text: text)
         return message
     }
 }
