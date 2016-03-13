@@ -9,6 +9,8 @@
 import Foundation
 import Parse
 
+// I added this line
+
 class Conversation {
     var messages: [Message]
     var toUsers: [PFUser]
