@@ -28,6 +28,11 @@ class ConversationsView: UIViewController {
                 
         timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: "onTimer", userInfo: nil, repeats: true)
         
+        Data.loadConversationsFromLocalStorage { () -> Void in
+            self.filteredConversations = Data.conversations
+            self.tableView.reloadData()
+        }
+        Data.loadContactsFromLocalStorage(nil)
         Data.checkNewContacts(nil)
         onTimer()
     }
@@ -44,6 +49,7 @@ class ConversationsView: UIViewController {
     
     func onTimer() {
         Data.checkNewMessages { () -> Void in
+            self.filteredConversations = Data.conversations
             self.tableView.reloadData()
         }
     }
@@ -105,6 +111,7 @@ extension ConversationsView: UITableViewDelegate, UITableViewDataSource, UISearc
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if deleting {
+            _managedObjectContext.deleteObject(Data.conversations[indexPath.row])
             Data.conversations.removeAtIndex(indexPath.row)
             filteredConversations?.removeAtIndex(indexPath.row)
             tableView.reloadData()
@@ -120,8 +127,9 @@ extension ConversationsView: UITableViewDelegate, UITableViewDataSource, UISearc
             } else {
                 filteredConversations = Data.conversations.filter({ (conversation) -> Bool in
                     for user in conversation.toUsers {
-                        let username = user.username
-                        if username?.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: nil) == nil {
+                        let contact = user as! Contact
+                        let username = contact.username
+                        if username.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: nil) == nil {
                             continue
                         } else {
                             return true

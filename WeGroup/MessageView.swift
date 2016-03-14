@@ -52,7 +52,7 @@ class MessageView: UIViewController {
     
     @IBAction func onSend(sender: AnyObject) {
         let messageText = inputBox.text
-        conversation.messages.append(Message(from: PFUser.currentUser()!, text: messageText))
+        conversation.appendMessage(Message(text: messageText, from: Contact.getContactWithPFUser(PFUser.currentUser()!)))
         conversation.updatedAt = NSDate()
         tableView.reloadData()
         tableViewScrollToBottom(true)
@@ -61,7 +61,8 @@ class MessageView: UIViewController {
         if conversation.toUsers.count == 1 { // direct chat
             let message_obj = PFObject(className: "Message")
             message_obj["from"] = PFUser.currentUser()
-            message_obj["to"] = conversation?.toUsers.first
+            let user = conversation?.toUsers.allObjects[0] as! Contact
+            message_obj["to"] = PFUser(withoutDataWithObjectId: user.contactID)
             message_obj["text"] = messageText
             message_obj["isGroupMessage"] = false
             message_obj["chatters"] = [PFUser]()
@@ -74,12 +75,15 @@ class MessageView: UIViewController {
             for user in conversation.toUsers {
                 let message_obj = PFObject(className: "Message")
                 message_obj["from"] = PFUser.currentUser()
-                message_obj["to"] = user
+                message_obj["to"] = PFUser(withoutDataWithObjectId: (user as! Contact).contactID)
                 message_obj["text"] = messageText
                 message_obj["isGroupMessage"] = true
                 var chatters = [PFUser]()
                 chatters.append(PFUser.currentUser()!)
-                chatters.appendContentsOf(conversation.toUsers)
+                for contact in conversation.toUsers {
+                    let user = PFUser(withoutDataWithObjectId: (contact as! Contact).contactID)
+                    chatters.append(user)
+                }
                 message_obj["chatters"] = chatters
                 message_obj.saveInBackgroundWithBlock({ (success, error) -> Void in
                     if !success {
@@ -94,8 +98,6 @@ class MessageView: UIViewController {
     func onReceiveNewMessage() {
         tableView.reloadData()
         tableViewScrollToBottom(true)
-//        let indexPath = NSIndexPath(forRow: conversation.messages.count, inSection: 0)
-//        tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Top, animated: true)
     }
 }
 
@@ -113,11 +115,11 @@ extension MessageView: UITableViewDelegate, UITableViewDataSource, UITextViewDel
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MessageCell") as! MessageCell
         let messages = conversation.messages
-            cell.message = messages[indexPath.row]
+        cell.message = messages.objectAtIndex(indexPath.row) as! Message
         
         return cell
     }
-    
+        
     func textViewDidBeginEditing(textView: UITextView) {
         inputBoxEditing = true
     }

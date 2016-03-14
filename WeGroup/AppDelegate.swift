@@ -13,6 +13,12 @@ import Parse
 let userDidLogoutNotification = "userDidLogoutNotification"
 let userDidLoginNotification = "userDidLoginNotification"
 
+var _managedObjectContext: NSManagedObjectContext!
+var _persistentStoreCoordinator: NSPersistentStoreCoordinator!
+var contactEntity: NSEntityDescription!
+var messageEntity: NSEntityDescription!
+var conversationEntity: NSEntityDescription!
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -36,6 +42,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let vc = storyBoard.instantiateViewControllerWithIdentifier("HomeTabBarController") as! UITabBarController
             window?.rootViewController = vc
         }
+        
+        _managedObjectContext = self.managedObjectContext
+        _persistentStoreCoordinator = self.persistentStoreCoordinator
+        contactEntity =  NSEntityDescription.entityForName("Contact",
+            inManagedObjectContext: _managedObjectContext)
+        conversationEntity =  NSEntityDescription.entityForName("Conversation",
+            inManagedObjectContext: _managedObjectContext)
+        messageEntity = NSEntityDescription.entityForName("Message", inManagedObjectContext: _managedObjectContext)
         
         return true
     }
@@ -83,7 +97,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     lazy var managedObjectModel: NSManagedObjectModel = {
         // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
-        let modelURL = NSBundle.mainBundle().URLForResource("coreDataTest", withExtension: "momd")!
+        let modelURL = NSBundle.mainBundle().URLForResource("CoreDataModel", withExtension: "momd")!
         return NSManagedObjectModel(contentsOfURL: modelURL)!
     }()
     

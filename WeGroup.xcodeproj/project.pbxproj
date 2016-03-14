@@ -21,10 +21,11 @@
 		5B50A0DB1C51758400D5FE31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B50A0D91C51758400D5FE31 /* LaunchScreen.storyboard */; };
 		5B50A1031C5342DA00D5FE31 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B50A1021C5342DA00D5FE31 /* SignupView.swift */; };
 		5B50A1051C534BC000D5FE31 /* WeGroup icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B50A1041C534BC000D5FE31 /* WeGroup icon.png */; };
+		5B7C94401C96351F00E8207A /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7C943C1C96351F00E8207A /* Contact.swift */; };
+		5B7C94431C96354800E8207A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7C94411C96354800E8207A /* Message.swift */; };
+		5B7C94441C96354800E8207A /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7C94421C96354800E8207A /* Conversation.swift */; };
 		5BBB5C041C8959A30084D4D8 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBB5C031C8959A30084D4D8 /* MessageCell.swift */; };
 		5BBB5C461C8B6A840084D4D8 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5BBB5C441C8B6A840084D4D8 /* CoreDataModel.xcdatamodeld */; };
-		5BBBDD8D1C860B5A00F453EF /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBBDD8C1C860B5A00F453EF /* Conversation.swift */; };
-		5BBBDD8F1C860B6700F453EF /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBBDD8E1C860B6700F453EF /* Message.swift */; };
 		9A11867DB26B846F143DAD19 /* Pods_WeGroup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83471C6054F155624D6F22D2 /* Pods_WeGroup.framework */; };
 		BBDDFD991C6E708D0083044A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDDFD981C6E708D0083044A /* SettingsView.swift */; };
 /* End PBXBuildFile section */
@@ -48,10 +49,11 @@
 		5B50A0DC1C51758400D5FE31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B50A1021C5342DA00D5FE31 /* SignupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		5B50A1041C534BC000D5FE31 /* WeGroup icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WeGroup icon.png"; sourceTree = "<group>"; };
+		5B7C943C1C96351F00E8207A /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		5B7C94411C96354800E8207A /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		5B7C94421C96354800E8207A /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		5BBB5C031C8959A30084D4D8 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		5BBB5C451C8B6A840084D4D8 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
-		5BBBDD8C1C860B5A00F453EF /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
-		5BBBDD8E1C860B6700F453EF /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		83471C6054F155624D6F22D2 /* Pods_WeGroup.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeGroup.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBDDFD981C6E708D0083044A /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,8 +140,9 @@
 		5BC629A21C6D863C00CB5B8A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				5BBBDD8C1C860B5A00F453EF /* Conversation.swift */,
-				5BBBDD8E1C860B6700F453EF /* Message.swift */,
+				5B7C943C1C96351F00E8207A /* Contact.swift */,
+				5B7C94421C96354800E8207A /* Conversation.swift */,
+				5B7C94411C96354800E8207A /* Message.swift */,
 				5B1155761C86594D0094EF0E /* Data.swift */,
 			);
 			name = Models;
@@ -286,16 +289,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5BBBDD8D1C860B5A00F453EF /* Conversation.swift in Sources */,
 				5BBB5C041C8959A30084D4D8 /* MessageCell.swift in Sources */,
 				5B50A1031C5342DA00D5FE31 /* SignupView.swift in Sources */,
+				5B7C94401C96351F00E8207A /* Contact.swift in Sources */,
+				5B7C94431C96354800E8207A /* Message.swift in Sources */,
 				5B2CC7701C63AB2B00CAFB2F /* ConversationCell.swift in Sources */,
 				5B399E5D1C80E67100370724 /* ContactsView.swift in Sources */,
 				BBDDFD991C6E708D0083044A /* SettingsView.swift in Sources */,
+				5B7C94441C96354800E8207A /* Conversation.swift in Sources */,
 				5B2CC7721C63AD7E00CAFB2F /* ConversationsView.swift in Sources */,
 				5B1155791C8695AF0094EF0E /* ContactPickerView.swift in Sources */,
 				5B399E601C80E6F700370724 /* ContactCell.swift in Sources */,
-				5BBBDD8F1C860B6700F453EF /* Message.swift in Sources */,
 				5B50A0D31C51758400D5FE31 /* LoginView.swift in Sources */,
 				5B50A0D11C51758400D5FE31 /* AppDelegate.swift in Sources */,
 				5B1155751C8657370094EF0E /* MessageView.swift in Sources */,

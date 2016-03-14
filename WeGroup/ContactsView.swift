@@ -12,7 +12,7 @@ import Parse
 class ContactsView: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    var filteredContacts: [PFUser]?
+    var filteredContacts: [Contact]!
     var deleting = false
     
     override func viewDidLoad() {
@@ -85,8 +85,10 @@ class ContactsView: UIViewController {
                         relationship2.saveInBackgroundWithBlock({ (success, error) -> Void in
                             if success {
                                 self.popupMessage("friend added")
-                                Data.contacts.append(friend)
-                                self.filteredContacts?.append(friend)
+                                let contact = Contact(entity: contactEntity, insertIntoManagedObjectContext: _managedObjectContext)
+                                // todo
+                                Data.contacts.append(contact)
+                                self.filteredContacts?.append(contact)
                                 self.tableView.reloadData()
                             } else {
                                 self.popupMessage("Failed to add friend")
@@ -129,7 +131,7 @@ extension ContactsView: UITableViewDelegate, UITableViewDataSource, UISearchBarD
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ContactCell") as! ContactCell
-        cell.user = filteredContacts?[indexPath.row]
+        cell.contact = filteredContacts?[indexPath.row]
         return cell
     }
     
@@ -155,6 +157,7 @@ extension ContactsView: UITableViewDelegate, UITableViewDataSource, UISearchBarD
                         for result in results {
                             result.deleteInBackgroundWithBlock({ (success:Bool, error) -> Void in
                                 if success {
+                                    _managedObjectContext.deleteObject(Data.contacts[indexPath.row])
                                     Data.contacts.removeAtIndex(indexPath.row)
                                     self.filteredContacts = Data.contacts
                                     self.tableView.reloadData()
@@ -174,9 +177,9 @@ extension ContactsView: UITableViewDelegate, UITableViewDataSource, UISearchBarD
             if searchText == "" {
                 filteredContacts = Data.contacts
             } else {
-                filteredContacts = Data.contacts.filter({ (user :PFUser) -> Bool in
+                filteredContacts = Data.contacts.filter({ (user) -> Bool in
                     let username = user.username
-                    return username?.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: nil) != nil
+                    return username.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: nil) != nil
                 })
             }
         }

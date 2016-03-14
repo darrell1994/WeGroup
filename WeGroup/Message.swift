@@ -8,20 +8,38 @@
 
 import Foundation
 import Parse
+import CoreData
 
-struct Message {
-    var from: PFUser?
-    var text: String?
-    
-    init(from: PFUser, text: String?) {
-        self.from = from
+class Message: NSManagedObject {
+    init(text: String?, from: Contact) {
+        super.init(entity: messageEntity, insertIntoManagedObjectContext: _managedObjectContext)
         self.text = text
+        self.from = from
     }
+    
+    override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertIntoManagedObjectContext: context)
+    }
+    
+//    var from: PFUser?
+//    var text: String?
+//    
+//    init(from: PFUser, text: String?) {
+//        self.from = from
+//        self.text = text
+//    }
     
     static func getMessagefromPFObject(object: PFObject) -> Message {
-        let from = object["from"] as! PFUser
+        let from = Contact.getContactWithPFUser(object["from"] as! PFUser)
         let text = object["text"] as? String
-        let message = Message(from: from, text: text)
+        let message = Message(text: text, from: from)
         return message
     }
+}
+
+extension Message {
+    
+    @NSManaged var text: String?
+    @NSManaged var from: Contact
+    
 }

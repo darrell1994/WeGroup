@@ -7,11 +7,39 @@
 //
 
 import Foundation
+import CoreData
 import Parse
 
 struct Data {
-    static var contacts = [PFUser]()
+    static var contacts = [Contact]()
     static var conversations = [Conversation]()
+    
+    static func loadContactsFromLocalStorage(completion: (()->Void)?) {
+        let fetchRequest = NSFetchRequest(entityName: "Contact")
+        do {
+            if let results = try _managedObjectContext.executeFetchRequest(fetchRequest) as? [Contact] {
+                for contact in results {
+                    contacts.append(contact)
+                }
+            }
+        } catch {
+            fatalError("Error fetching data!")
+        }
+    }
+    
+    static func loadConversationsFromLocalStorage(completion: (()->Void)?) {
+        let fetchRequest = NSFetchRequest(entityName: "Conversation")
+        do {
+            if let results = try _managedObjectContext.executeFetchRequest(fetchRequest) as? [Conversation] {
+                for conversation in results {
+                    conversations.append(conversation)
+                }
+                completion?()
+            }
+        } catch {
+            fatalError("Error fetching data!")
+        }
+    }
     
     static func checkNewContacts(received: (()->Void)?) {
         if let currentUser = PFUser.currentUser() {
@@ -26,7 +54,8 @@ struct Data {
                         Data.contacts.removeAll()
                         for result in results {
                             let user = result["friend"] as! PFUser
-                            Data.contacts.append(user)
+                            let contact = Contact.getContactWithPFUser(user)
+                            Data.contacts.append(contact)
                         }
                         received?()
                     }
@@ -55,23 +84,27 @@ struct Data {
                             if let indexOfCurrentUser = indexOfCurrentUserInChatters(chatters) {
                                 chatters.removeAtIndex(indexOfCurrentUser)
                             }
+                            var users = [Contact]()
+                            for chatter in chatters {
+                                users.append(Contact.getContactWithPFUser(chatter))
+                            }
                             let message = Message.getMessagefromPFObject(obj)
-                            if let conversation = getConversationWithUsers(chatters) {
-                                conversation.messages.append(message)
+                            if let conversation = getConversationWithContacts(Contact.getContactsWithPFUsers(chatters)) {
+                                conversation.appendMessage(message)
                             } else {
-                                let conversation = Conversation(toUsers: chatters)
-                                conversation.messages.append(message)
+                                let conversation = Conversation(toUsers: users, isGroupChat: true)
+                                conversation.appendMessage(message)
                                 Data.conversations.append(conversation)
                             }
                         } else {
                             // if the conversation already exists
-                            let from = obj["from"] as! PFUser
+                            let from = Contact.getContactWithPFUser(obj["from"] as! PFUser)
                             let message = Message.getMessagefromPFObject(obj)
-                            if let conversation = self.getConversationWithUser(from) {
-                                conversation.messages.append(message)
+                            if let conversation = self.getConversationWithContact(from) {
+                                conversation.appendMessage(message)
                             } else {
-                                let conversation = Conversation(toUsers: [from])
-                                conversation.messages.append(message)
+                                let conversation = Conversation(toUsers: [from], isGroupChat: false)
+                                conversation.appendMessage(message)
                                 Data.conversations.append(conversation)
                             }
                         }
@@ -94,37 +127,38 @@ struct Data {
         return nil
     }
     
-    static func getConversationWithUser(user: PFUser)->Conversation? {
+    static func getConversationWithContact(contact: Contact)->Conversation? {
         for conversation in conversations {
-            if conversation.toUsers.first?.username == user.username {
+            let toUsers = conversation.toUsers.allObjects as! [Contact]
+            if toUsers.first?.username == contact.username {
                 return conversation
             }
         }
         return nil
     }
     
-    static func getConversationWithUsers(users: [PFUser])->Conversation? {
-        let users1 = users.sort { (user1, user2) -> Bool in
-            if user1.objectId < user2.objectId {
+    static func getConversationWithContacts(contacts: [Contact])->Conversation? {
+        let users1 = contacts.sort { (user1, user2) -> Bool in
+            if user1.contactID < user2.contactID {
                 return true
             }
             return false
         }
-        let usersCount = users.count
+        let contactsCount = contacts.count
         for conversation in conversations {
-            if conversation.toUsers.count == usersCount {
+            if conversation.toUsers.count == contactsCount {
                 let users2 = conversation.toUsers.sort({ (user1, user2) -> Bool in
-                    if user1.objectId < user2.objectId {
+                    if user1.contactID < user2.contactID {
                         return true
                     }
                     return false
                 })
                 
-                for index in 0...usersCount-1 {
-                    if users1[index].objectId != users2[index].objectId {
+                for index in 0...contactsCount-1 {
+                    if users1[index].contactID != users2[index].contactID {
                         break
                     }
-                    if index == usersCount-1 {
+                    if index == contactsCount-1 {
                         return conversation
                     }
                 }

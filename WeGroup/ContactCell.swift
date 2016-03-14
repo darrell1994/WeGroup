@@ -12,13 +12,13 @@ import Parse
 class ContactCell: UITableViewCell {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
-    var user: PFUser? {
+    var contact: Contact! {
         didSet {
-            usernameLabel.text = user?.username
+            usernameLabel.text = contact.username
             profileImageView.contentMode = UIViewContentMode.ScaleAspectFill
             profileImageView.clipsToBounds = true
             profileImageView.layer.cornerRadius = 23
-            if let profileData = user?["profile_image"] as? NSData {
+            if let profileData = contact.profileImageData {
                 let image = UIImage(data: profileData)
                 profileImageView.image = image
             }

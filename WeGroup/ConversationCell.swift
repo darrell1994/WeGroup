@@ -18,17 +18,19 @@ class ConversationCell: UITableViewCell {
     
     var conversation: Conversation! {
         didSet {
+            let toUsers = Array(conversation.toUsers) as! [Contact]
+            
             var username = ""
             for index in 0...conversation.toUsers.count-1 {
-                username += "\(conversation.toUsers[index].username!)"
+                username += "\(toUsers[index].username)"
                 if index != conversation.toUsers.count-1 {
                     username += ", "
                 }
             }
             usernameLabel.text = username
             
-            if let preview = conversation?.messages.last?.text {
-                previewLabel.text = preview
+            if let lastMessage = conversation.messages.lastObject as? Message {
+                previewLabel.text = lastMessage.text
             } else {
                 previewLabel.text = ""
             }
@@ -37,9 +39,9 @@ class ConversationCell: UITableViewCell {
             profileImageView.clipsToBounds = true
             profileImageView.layer.cornerRadius = 25
             if conversation.isGroupChat {
-                profileImageView.backgroundColor = conversation.profileColor
+//                profileImageView.backgroundColor = conversation.profileColor
             } else {
-                if let profileData = conversation?.toUsers.first?["profile_image"] as? NSData {
+                if let profileData = toUsers.first?.profileImageData {
                     let image = UIImage(data: profileData)
                     profileImageView.image = image
                 }

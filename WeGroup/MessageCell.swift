@@ -13,18 +13,17 @@ class MessageCell: UITableViewCell {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var messageTextLabel: UILabel!
     
-    var message: Message? {
+    var message: Message! {
         didSet {
-            let from = message?.from
             profileImageView.contentMode = UIViewContentMode.ScaleAspectFill
             profileImageView.clipsToBounds = true
             profileImageView.layer.cornerRadius = 23
-            if let profileData = from?["profile_image"] as? NSData {
+            if let profileData = message.from.profileImageData {
                 let image = UIImage(data: profileData)
                 profileImageView.image = image
             }
-            usernameLabel.text = from?.username
-            messageTextLabel.text = message?.text            
+            usernameLabel.text = message.from.username
+            messageTextLabel.text = message.text
         }
     }
     

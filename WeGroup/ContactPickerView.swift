@@ -12,7 +12,7 @@ import Parse
 class ContactPickerView: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    var filteredContacts: [PFUser]?
+    var filteredContacts: [Contact]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,15 +34,15 @@ class ContactPickerView: UIViewController {
     
     func onDoneSeletingContacts() {
         if let indexPaths = tableView.indexPathsForSelectedRows {
-            var users = [PFUser]()
+            var selected = [Contact]()
             for indexPath in indexPaths {
-                users.append(Data.contacts[indexPath.row])
+                selected.append(Data.contacts[indexPath.row])
             }
             // check if the conversation already exits
-            if let _ = Data.getConversationWithUsers(users) {
+            if let _ = Data.getConversationWithContacts(selected) {
                 popupMessage(nil, message: "Conversation already exists")
             } else {
-                let conversation = Conversation(toUsers: users)
+                let conversation = Conversation(toUsers: selected, isGroupChat: true)
                 Data.conversations.append(conversation)
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
@@ -63,7 +63,7 @@ extension ContactPickerView: UITableViewDelegate, UITableViewDataSource, UISearc
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ContactCell") as! ContactCell
-        cell.user = filteredContacts?[indexPath.row]
+        cell.contact = filteredContacts?[indexPath.row]
         return cell
     }
     
@@ -97,9 +97,9 @@ extension ContactPickerView: UITableViewDelegate, UITableViewDataSource, UISearc
             if searchText == "" {
                 filteredContacts = Data.contacts
             } else {
-                filteredContacts = Data.contacts.filter({ (user :PFUser) -> Bool in
+                filteredContacts = Data.contacts.filter({ (user :Contact) -> Bool in
                     let username = user.username
-                    return username?.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: nil) != nil
+                    return username.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: nil) != nil
                 })
             }
         }
