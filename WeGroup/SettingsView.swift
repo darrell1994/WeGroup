@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import CoreData
 
 class SettingsView: UITableViewController {
     @IBOutlet weak var profileImageView: UIImageView!
@@ -118,11 +119,10 @@ class SettingsView: UITableViewController {
             if error != nil {
                 print("Failed to logout")
             } else {
+                Data.clearAllConversations()
+                Data.clearAllContacts()
                 self.logoutProcessIndicator.stopAnimating()
                 self.dismissViewControllerAnimated(true, completion: nil)
-            
-                Data.contacts.removeAll()
-                Data.conversations.removeAll()
                 NSNotificationCenter.defaultCenter().postNotificationName(userDidLogoutNotification, object: nil)
             }
         })

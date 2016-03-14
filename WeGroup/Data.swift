@@ -166,4 +166,18 @@ struct Data {
         }
         return nil
     }
+    
+    static func clearAllContacts() {
+        for contact in Data.contacts {
+            _managedObjectContext.deleteObject(contact)
+        }
+        Data.contacts.removeAll()
+    }
+    
+    static func clearAllConversations() {
+        for conversation in Data.conversations{
+            _managedObjectContext.deleteObject(conversation)
+        }
+        Data.conversations.removeAll()
+    }
 }
