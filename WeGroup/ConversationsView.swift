@@ -83,9 +83,10 @@ class ConversationsView: UIViewController {
     }
     
     func onReceiveNewMessage() {
- 
+        // TODO add notification
     }
     
+    /*
     private func moveConversationToTop(index: Int) {
         if index < Data.conversations.count {
             let conversation = Data.conversations[index]
@@ -95,12 +96,15 @@ class ConversationsView: UIViewController {
             tableView.reloadData()
         }
     }
+    */
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ToChat" {
             searchBarCancelButtonClicked(searchBar)
             let indexPath = sender as! NSIndexPath
             let vc = segue.destinationViewController as! MessageView
+            let cell = tableView.cellForRowAtIndexPath(indexPath) as! ConversationCell
+            vc.navigationItem.title = cell.usernameLabel.text
             vc.conversation = filteredConversations![indexPath.row]
         }
     }

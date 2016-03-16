@@ -19,7 +19,6 @@ class MessageView: UIViewController {
     @IBOutlet weak var sendButton: UIButton!
     var inputBoxEditing = false
     var conversation: Conversation!
-    var newMessageConversation: Conversation?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +31,7 @@ class MessageView: UIViewController {
         
         inputBox.sizeToFit()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "onReceiveNewMessage", name: didReceiveNewMessage, object: newMessageConversation)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "onReceiveNewMessage", name: didReceiveNewMessage, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide", name: UIKeyboardWillHideNotification, object: nil)
     }
@@ -97,12 +96,8 @@ class MessageView: UIViewController {
     }
     
     func onReceiveNewMessage() {
-        if let newMessageConversation = newMessageConversation {
-            if newMessageConversation == conversation { // TODO check if this workds
-                tableView.reloadData()
-                tableViewScrollToBottom(true)
-            }
-        }
+        tableView.reloadData()
+        tableViewScrollToBottom(true)
     }
 }
 

@@ -176,6 +176,7 @@ extension ContactsView: UITableViewDelegate, UITableViewDataSource, UISearchBarD
                 }
             }
         } else {
+            tableView.deselectRowAtIndexPath(indexPath, animated: false)
             performSegueWithIdentifier("ToProfileView", sender: indexPath)
         }
     }

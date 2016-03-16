@@ -14,12 +14,16 @@ class SettingsView: UITableViewController {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var logoutProcessIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var regionTextField: UITextField!
+    @IBOutlet weak var shortBioTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
+        regionTextField.delegate = self
+        shortBioTextField.delegate = self
         self.navigationController?.navigationBarHidden = false
         self.title = "Setting"
         //self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
@@ -32,6 +36,12 @@ class SettingsView: UITableViewController {
         if let profileData = PFUser.currentUser()?["profile_image"] as? NSData {
             let image = UIImage(data: profileData)
             profileImageView.image = image
+        }
+        if let region = PFUser.currentUser()?["region"] as? String {
+            regionTextField.text = region
+        }
+        if let shortBio = PFUser.currentUser()?["shortBio"] as? String {
+            shortBioTextField.text = shortBio
         }
         
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: "onChangeProfile")
@@ -129,13 +139,44 @@ class SettingsView: UITableViewController {
     }
 }
 
-extension SettingsView: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension SettingsView: UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         let edited = info[UIImagePickerControllerEditedImage] as! UIImage
         profileImageView.image = edited
         picker.dismissViewControllerAnimated(true, completion: {()->Void in
             self.uploadProfile()
         })
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Upload", style: UIBarButtonItemStyle.Plain, target: self, action: "onUploadProfile")
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        if textField.text == "" {
+            navigationItem.rightBarButtonItem = nil
+        }
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func onUploadProfile() {
+        self.view.endEditing(true)
+        if let user = PFUser.currentUser() {
+            user.setValue(regionTextField.text, forKey: "region")
+            user.setValue(shortBioTextField.text, forKey: "shortBio")
+            user.saveInBackgroundWithBlock({ (success, error) -> Void in
+                if success {
+                    self.navigationItem.rightBarButtonItem = nil
+                    self.popupMessage("Profile updated successfully")
+                } else {
+                    self.popupMessage("Failed to upload profile")
+                }
+            })
+        }
     }
 }
 

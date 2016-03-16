@@ -22,7 +22,6 @@ struct Data {
                     if contact.contactID == PFUser.currentUser()!.objectId {
                         continue
                     }
-                    print("loading \(contact.username) from local storage")
                     contacts.append(contact)
                 }
             }
@@ -59,7 +58,6 @@ struct Data {
                         for result in results {
                             let user = result["friend"] as! PFUser
                             let contact = Contact.getContactWithPFUser(user)
-                            print("adding \(contact.username) from server")
                             Data.contacts.append(contact)
                         }
                         received?()

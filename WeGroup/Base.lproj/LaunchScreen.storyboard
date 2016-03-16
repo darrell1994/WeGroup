@@ -14,14 +14,39 @@
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WeGroup icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="eE2-eW-K67">
+                                <rect key="frame" x="63" y="20" width="194" height="194"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="194" id="qO4-LI-f9L"/>
+                                    <constraint firstAttribute="height" constant="194" id="wAG-7G-OdK"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright © 2016 WeGroup. All Rights reserved." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lf1-N4-8CV">
+                                <rect key="frame" x="33" y="534" width="254" height="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.64313725489999995" green="0.77647058820000003" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="Lf1-N4-8CV" secondAttribute="bottom" constant="20" id="0xL-Ze-zJL"/>
+                            <constraint firstItem="eE2-eW-K67" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="MmO-R4-GHI"/>
+                            <constraint firstItem="eE2-eW-K67" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="PTD-l4-6OH"/>
+                            <constraint firstItem="Lf1-N4-8CV" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Pzh-0o-FJu"/>
+                        </constraints>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="WeGroup icon.png" width="1028" height="1028"/>
+    </resources>
 </document>

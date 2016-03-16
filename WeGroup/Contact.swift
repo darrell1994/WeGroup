@@ -23,6 +23,12 @@ class Contact: NSManagedObject {
     }
     
     static func getContactWithPFUser(user: PFUser)->Contact {
+        let userID = user.objectId
+        for contact in Data.contacts {
+            if contact.contactID == userID {
+                return contact
+            }
+        }
         let contact = Contact(contactID: user.objectId!, username: user.username!, profileImageData: user["profile_image"] as? NSData)
         if let region = user["region"] as? String {
             contact.region = region
