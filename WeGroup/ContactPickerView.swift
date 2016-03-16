@@ -42,7 +42,13 @@ class ContactPickerView: UIViewController {
             if let _ = Data.getConversationWithContacts(selected) {
                 popupMessage(nil, message: "Conversation already exists")
             } else {
-                let conversation = Conversation(toUsers: selected, isGroupChat: true)
+                var conversation: Conversation
+                if selected.count == 1 { // direct chat
+                    conversation = Conversation(toUsers: selected, isGroupChat: false)
+                } else { // group chat
+                    conversation = Conversation(toUsers: selected, isGroupChat: true)
+
+                }
                 Data.conversations.append(conversation)
                 self.dismissViewControllerAnimated(true, completion: nil)
             }

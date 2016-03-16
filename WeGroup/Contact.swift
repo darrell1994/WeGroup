@@ -24,6 +24,12 @@ class Contact: NSManagedObject {
     
     static func getContactWithPFUser(user: PFUser)->Contact {
         let contact = Contact(contactID: user.objectId!, username: user.username!, profileImageData: user["profile_image"] as? NSData)
+        if let region = user["region"] as? String {
+            contact.region = region
+        }
+        if let shortBio = user["shortBio"] as? String {
+            contact.shortBio = shortBio
+        }
         return contact
     }
     
@@ -43,5 +49,7 @@ extension Contact {
     @NSManaged var profileImageData: NSData?
     @NSManaged var messages: NSSet?
     @NSManaged var conversations: NSSet?
+    @NSManaged var region: String?
+    @NSManaged var shortBio: String?
     
 }

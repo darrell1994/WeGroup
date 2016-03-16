@@ -3,6 +3,8 @@
     <entity name="Contact" representedClassName=".Contact" syncable="YES">
         <attribute name="contactID" attributeType="String" syncable="YES"/>
         <attribute name="profileImageData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="region" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="shortBio" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="username" attributeType="String" syncable="YES"/>
         <relationship name="conversations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Conversation" inverseName="toUsers" inverseEntity="Conversation" syncable="YES"/>
         <relationship name="messages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Message" inverseName="from" inverseEntity="Message" syncable="YES"/>
@@ -19,8 +21,8 @@
         <relationship name="from" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Contact" inverseName="messages" inverseEntity="Contact" syncable="YES"/>
     </entity>
     <elements>
+        <element name="Contact" positionX="-9" positionY="63" width="128" height="150"/>
         <element name="Conversation" positionX="-63" positionY="-18" width="128" height="105"/>
         <element name="Message" positionX="-36" positionY="18" width="128" height="90"/>
-        <element name="Contact" positionX="-9" positionY="63" width="128" height="120"/>
     </elements>
 </model>

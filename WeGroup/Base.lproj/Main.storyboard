@@ -406,6 +406,68 @@
             </objects>
             <point key="canvasLocation" x="-22" y="3154"/>
         </scene>
+        <!--Profile View-->
+        <scene sceneID="0qn-Dv-eYs">
+            <objects>
+                <viewController id="ZeS-ir-cCf" customClass="ProfileView" customModule="WeGroup" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ggh-tp-Q0W"/>
+                        <viewControllerLayoutGuide type="bottom" id="kym-js-exD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JLA-w1-YsT">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Iqu-Od-g9e">
+                                <rect key="frame" x="120" y="94" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="4bq-96-Ucg"/>
+                                    <constraint firstAttribute="height" constant="80" id="PuA-7N-Kxx"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ILv-bd-tba">
+                                <rect key="frame" x="117" y="204" width="86.5" height="21.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Region" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRr-NV-OkX">
+                                <rect key="frame" x="136.5" y="255.5" width="47.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Short Bio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sOr-OK-jeZ">
+                                <rect key="frame" x="128.5" y="303.5" width="63.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Iqu-Od-g9e" firstAttribute="centerX" secondItem="JLA-w1-YsT" secondAttribute="centerX" id="0IY-Eo-6b4"/>
+                            <constraint firstItem="ILv-bd-tba" firstAttribute="top" secondItem="Iqu-Od-g9e" secondAttribute="bottom" constant="30" id="E6N-Vt-kQy"/>
+                            <constraint firstItem="Iqu-Od-g9e" firstAttribute="top" secondItem="Ggh-tp-Q0W" secondAttribute="bottom" constant="30" id="Fh5-55-aF4"/>
+                            <constraint firstItem="eRr-NV-OkX" firstAttribute="top" secondItem="ILv-bd-tba" secondAttribute="bottom" constant="30" id="bwj-b4-MUa"/>
+                            <constraint firstItem="ILv-bd-tba" firstAttribute="centerX" secondItem="JLA-w1-YsT" secondAttribute="centerX" id="dr5-Oa-TiZ"/>
+                            <constraint firstItem="sOr-OK-jeZ" firstAttribute="top" secondItem="eRr-NV-OkX" secondAttribute="bottom" constant="30" id="l3N-V4-DYH"/>
+                            <constraint firstItem="sOr-OK-jeZ" firstAttribute="centerX" secondItem="JLA-w1-YsT" secondAttribute="centerX" id="q1n-Vz-Bxc"/>
+                            <constraint firstItem="eRr-NV-OkX" firstAttribute="centerX" secondItem="JLA-w1-YsT" secondAttribute="centerX" id="zr4-DU-ScE"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="i8k-zg-jp2"/>
+                    <connections>
+                        <outlet property="profileImageView" destination="Iqu-Od-g9e" id="QZt-2m-MC4"/>
+                        <outlet property="regionLabel" destination="eRr-NV-OkX" id="61Z-iP-WCh"/>
+                        <outlet property="shortBioLabel" destination="sOr-OK-jeZ" id="ya0-3P-qbK"/>
+                        <outlet property="usernameLabel" destination="ILv-bd-tba" id="AYj-6S-nkd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mw5-Kg-t6Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="338" y="3154"/>
+        </scene>
         <!--Message View-->
         <scene sceneID="tPJ-D0-z1n">
             <objects>
@@ -632,6 +694,7 @@
                     <connections>
                         <outlet property="searchBar" destination="2Jf-b7-b2l" id="ay0-oZ-B97"/>
                         <outlet property="tableView" destination="d4d-Q2-MCc" id="Gho-im-COQ"/>
+                        <segue destination="ZeS-ir-cCf" kind="push" identifier="ToProfileView" id="Ca1-sr-7XG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zsQ-80-ExK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -746,7 +809,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="65.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date of Birth" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qWV-ao-RQh">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Region" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qWV-ao-RQh">
                                                     <rect key="frame" x="8" y="24.5" width="304" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>

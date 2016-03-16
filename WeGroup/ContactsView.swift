@@ -119,6 +119,14 @@ class ContactsView: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ToProfileView" {
+            let vc = segue.destinationViewController as! ProfileView
+            let indexPath = sender as! NSIndexPath
+            vc.contact = filteredContacts[indexPath.row]
+        }
+    }
 }
 
 extension ContactsView: UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
@@ -138,7 +146,7 @@ extension ContactsView: UITableViewDelegate, UITableViewDataSource, UISearchBarD
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if deleting {
             if let currentUser = PFUser.currentUser() {
-                let friend = Data.contacts[indexPath.row]
+                let friend = PFUser(withoutDataWithObjectId: Data.contacts[indexPath.row].contactID)
                 let query1 = PFQuery(className: "Friendship")
                 query1.whereKey("user", equalTo: currentUser)
                 query1.whereKey("friend", equalTo: friend)
@@ -168,7 +176,7 @@ extension ContactsView: UITableViewDelegate, UITableViewDataSource, UISearchBarD
                 }
             }
         } else {
-            // TODO add a user profile page
+            performSegueWithIdentifier("ToProfileView", sender: indexPath)
         }
     }
     

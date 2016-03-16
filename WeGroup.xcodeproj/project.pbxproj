@@ -21,6 +21,7 @@
 		5B50A0DB1C51758400D5FE31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B50A0D91C51758400D5FE31 /* LaunchScreen.storyboard */; };
 		5B50A1031C5342DA00D5FE31 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B50A1021C5342DA00D5FE31 /* SignupView.swift */; };
 		5B50A1051C534BC000D5FE31 /* WeGroup icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B50A1041C534BC000D5FE31 /* WeGroup icon.png */; };
+		5B54A40B1C98E94C007B28C2 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B54A40A1C98E94C007B28C2 /* ProfileView.swift */; };
 		5B7C94401C96351F00E8207A /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7C943C1C96351F00E8207A /* Contact.swift */; };
 		5B7C94431C96354800E8207A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7C94411C96354800E8207A /* Message.swift */; };
 		5B7C94441C96354800E8207A /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7C94421C96354800E8207A /* Conversation.swift */; };
@@ -49,6 +50,7 @@
 		5B50A0DC1C51758400D5FE31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B50A1021C5342DA00D5FE31 /* SignupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		5B50A1041C534BC000D5FE31 /* WeGroup icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WeGroup icon.png"; sourceTree = "<group>"; };
+		5B54A40A1C98E94C007B28C2 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		5B7C943C1C96351F00E8207A /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		5B7C94411C96354800E8207A /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		5B7C94421C96354800E8207A /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				5B1155781C8695AF0094EF0E /* ContactPickerView.swift */,
 				5B1155741C8657370094EF0E /* MessageView.swift */,
 				5B399E5C1C80E67100370724 /* ContactsView.swift */,
+				5B54A40A1C98E94C007B28C2 /* ProfileView.swift */,
 				BBDDFD981C6E708D0083044A /* SettingsView.swift */,
 			);
 			name = ViewControllers;
@@ -298,6 +301,7 @@
 				BBDDFD991C6E708D0083044A /* SettingsView.swift in Sources */,
 				5B7C94441C96354800E8207A /* Conversation.swift in Sources */,
 				5B2CC7721C63AD7E00CAFB2F /* ConversationsView.swift in Sources */,
+				5B54A40B1C98E94C007B28C2 /* ProfileView.swift in Sources */,
 				5B1155791C8695AF0094EF0E /* ContactPickerView.swift in Sources */,
 				5B399E601C80E6F700370724 /* ContactCell.swift in Sources */,
 				5B50A0D31C51758400D5FE31 /* LoginView.swift in Sources */,
