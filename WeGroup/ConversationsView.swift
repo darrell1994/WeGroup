@@ -28,6 +28,8 @@ class ConversationsView: UIViewController {
                 
         timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: "onTimer", userInfo: nil, repeats: true)
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "onReceiveNewMessage", name: didReceiveNewMessage, object: nil)
+        
         Data.loadConversationsFromLocalStorage { () -> Void in
             self.filteredConversations = Data.conversations
             self.tableView.reloadData()
@@ -80,9 +82,18 @@ class ConversationsView: UIViewController {
         }
     }
     
-    func onDeleteConversation(gesture: UITapGestureRecognizer) {
-        gesture.view?.backgroundColor = UIColor.blackColor()
-        
+    func onReceiveNewMessage() {
+ 
+    }
+    
+    private func moveConversationToTop(index: Int) {
+        if index < Data.conversations.count {
+            let conversation = Data.conversations[index]
+            Data.conversations.removeAtIndex(index)
+            Data.conversations.insert(conversation, atIndex: 0)
+            filteredConversations = Data.conversations
+            tableView.reloadData()
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

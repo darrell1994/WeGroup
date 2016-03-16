@@ -18,12 +18,12 @@ class ConversationCell: UITableViewCell {
     
     var conversation: Conversation! {
         didSet {
-            let toUsers = Array(conversation.toUsers) as! [Contact]
+            let toUsers = conversation.toUsers.allObjects as! [Contact]
             
             var username = ""
-            for index in 0...conversation.toUsers.count-1 {
+            for index in 0...toUsers.count-1 {
                 username += "\(toUsers[index].username)"
-                if index != conversation.toUsers.count-1 {
+                if index != toUsers.count-1 {
                     username += ", "
                 }
             }
@@ -44,6 +44,8 @@ class ConversationCell: UITableViewCell {
                 if let profileData = toUsers.first?.profileImageData {
                     let image = UIImage(data: profileData)
                     profileImageView.image = image
+                } else {
+                    // TODO assign a random color
                 }
             }
             
