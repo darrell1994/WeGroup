@@ -83,6 +83,7 @@ extension ContactPickerView: UITableViewDelegate, UITableViewDataSource, UISearc
         if let indexPaths = tableView.indexPathsForSelectedRows {
             if indexPaths.count == 1 {
                 let button = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: "onDoneSeletingContacts")
+                button.tintColor = UIColor.whiteColor()
                 navigationItem.rightBarButtonItem = button
             }
         }
