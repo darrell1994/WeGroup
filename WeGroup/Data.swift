@@ -51,9 +51,7 @@ struct Data {
             query.whereKey("user", equalTo: currentUser)
             query.findObjectsInBackgroundWithBlock { (results, error) -> Void in
                 if let results = results {
-                    if results.count > contacts.count {
-                        // TODO inform user that new friends have been added
-                        
+                    if results.count > contacts.count {                        
                         Data.contacts.removeAll()
                         for result in results {
                             let user = result["friend"] as! PFUser

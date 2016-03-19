@@ -85,8 +85,7 @@ class ContactsView: UIViewController {
                         relationship2.saveInBackgroundWithBlock({ (success, error) -> Void in
                             if success {
                                 self.popupMessage("friend added")
-                                let contact = Contact(entity: contactEntity, insertIntoManagedObjectContext: _managedObjectContext)
-                                // todo
+                                let contact = Contact.getContactWithPFUser(friend)
                                 Data.contacts.append(contact)
                                 self.filteredContacts?.append(contact)
                                 self.tableView.reloadData()
