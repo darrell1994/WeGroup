@@ -14,7 +14,6 @@ let didReceiveNewMessage = "didReceiveNewMessage"
 
 class ConversationsView: UIViewController {
     @IBOutlet var tableView: UITableView!
-    var deleting = false
     
     @IBOutlet weak var searchBar: UISearchBar!
     var filteredConversations: [Conversation]?
@@ -60,28 +59,6 @@ class ConversationsView: UIViewController {
         self.performSegueWithIdentifier("ToContactPicker", sender: nil)
     }
     
-    @IBAction func onEdit(sender: AnyObject) {
-        if deleting {
-            self.navigationItem.leftBarButtonItem?.title = "Delete"
-            deleting = false
-        } else {
-//            let numberOfRows = tableView.numberOfRowsInSection(0)
-//            for row in 0...numberOfRows-1 {
-//                let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: 0))!
-//                let origin = cell.contentView.frame.origin
-//                let deleteView = UIImageView(frame: CGRect(x: -20, y: 25, width: 20, height: 20))
-//                deleteView.image = UIImage(named: "delete_button")
-//                cell.contentView.addSubview(deleteView)
-//                
-//                UIView.animateWithDuration(0.3) { () -> Void in
-//                    cell.contentView.frame.origin = CGPoint(x: origin.x+30, y: origin.y)
-//                }
-            self.navigationItem.leftBarButtonItem?.title = "Cancel"
-            deleting = true
-//            }
-        }
-    }
-    
     func onReceiveNewMessage() {
         // TODO add notification
     }
@@ -125,14 +102,19 @@ extension ConversationsView: UITableViewDelegate, UITableViewDataSource, UISearc
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if deleting {
-            _managedObjectContext.deleteObject(Data.conversations[indexPath.row])
-            Data.conversations.removeAtIndex(indexPath.row)
-            filteredConversations?.removeAtIndex(indexPath.row)
-            tableView.reloadData()
-        } else {
-            self.performSegueWithIdentifier("ToChat", sender: indexPath)
-        }
+        self.performSegueWithIdentifier("ToChat", sender: indexPath)
+    }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    // on deleting conversation
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        _managedObjectContext.deleteObject(Data.conversations[indexPath.row])
+        Data.conversations.removeAtIndex(indexPath.row)
+        filteredConversations?.removeAtIndex(indexPath.row)
+        tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Left)
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {

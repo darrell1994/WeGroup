@@ -302,12 +302,6 @@
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" title="Chats" id="cW6-37-IxC">
-                        <barButtonItem key="leftBarButtonItem" title="Delete" id="7IT-AS-Iqm">
-                            <color key="tintColor" red="0.98431372549999996" green="0.31764705879999999" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="onEdit:" destination="Baj-hE-oeB" id="zpV-ZH-OGB"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="caX-aF-17i">
                             <connections>
                                 <action selector="onAddConversation:" destination="Baj-hE-oeB" id="yCX-hd-aON"/>
@@ -685,12 +679,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Contacts" id="tal-AU-Qmj">
-                        <barButtonItem key="leftBarButtonItem" title="Delete" id="Qfe-wQ-W2y">
-                            <color key="tintColor" red="0.98431372549999996" green="0.31764705879999999" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="onDelete:" destination="07p-zX-ys5" id="ely-5E-OAJ"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="rBd-S5-QBk">
                             <connections>
                                 <action selector="onAddFriend:" destination="07p-zX-ys5" id="uR7-3L-V17"/>
@@ -716,6 +704,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.52156862749999999" green="0.68235294120000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.52156862745098043" green="0.68235294117647061" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
                         <segue destination="Gut-7z-Mm6" kind="relationship" relationship="viewControllers" id="wL5-8e-y5d"/>
@@ -943,7 +936,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UmM-dC-XiL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="barTintColor" red="0.52156862749999999" green="0.68235294120000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

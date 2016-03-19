@@ -13,7 +13,6 @@ class ContactsView: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     var filteredContacts: [Contact]!
-    var deleting = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,16 +102,6 @@ class ContactsView: UIViewController {
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
-    @IBAction func onDelete(sender: AnyObject) {
-        if deleting {
-            navigationItem.leftBarButtonItem?.title = "Delete"
-            deleting = false
-        } else {
-            navigationItem.leftBarButtonItem?.title = "Cancel"
-            deleting = true
-        }
-    }
-    
     private func popupMessage(message: String) {
         let alert = UIAlertController(title: "", message: message, preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
@@ -143,40 +132,44 @@ extension ContactsView: UITableViewDelegate, UITableViewDataSource, UISearchBarD
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if deleting {
-            if let currentUser = PFUser.currentUser() {
-                let friend = PFUser(withoutDataWithObjectId: Data.contacts[indexPath.row].contactID)
-                let query1 = PFQuery(className: "Friendship")
-                query1.whereKey("user", equalTo: currentUser)
-                query1.whereKey("friend", equalTo: friend)
-                let query2 = PFQuery(className: "Friendship")
-                query2.whereKey("user", equalTo: friend)
-                query2.whereKey("friend", equalTo: currentUser)
-                query2.findObjectsInBackgroundWithBlock({ (results, error) -> Void in
-                    if let results = results {
-                        for result in results {
-                            result.deleteInBackground()
-                        }
-                    }
-                })
-                query1.findObjectsInBackgroundWithBlock { (results, error) -> Void in
-                    if let results = results {
-                        for result in results {
-                            result.deleteInBackgroundWithBlock({ (success:Bool, error) -> Void in
-                                if success {
-                                    _managedObjectContext.deleteObject(Data.contacts[indexPath.row])
-                                    Data.contacts.removeAtIndex(indexPath.row)
-                                    self.filteredContacts = Data.contacts
-                                    self.tableView.reloadData()
-                                }
-                            })
-                        }
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        performSegueWithIdentifier("ToProfileView", sender: indexPath)
+    }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    // on deleting contact
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if let currentUser = PFUser.currentUser() {
+            let friend = PFUser(withoutDataWithObjectId: Data.contacts[indexPath.row].contactID)
+            let query1 = PFQuery(className: "Friendship")
+            query1.whereKey("user", equalTo: currentUser)
+            query1.whereKey("friend", equalTo: friend)
+            let query2 = PFQuery(className: "Friendship")
+            query2.whereKey("user", equalTo: friend)
+            query2.whereKey("friend", equalTo: currentUser)
+            
+            _managedObjectContext.deleteObject(Data.contacts[indexPath.row])
+            Data.contacts.removeAtIndex(indexPath.row)
+            self.filteredContacts = Data.contacts
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Left)
+            
+            query1.findObjectsInBackgroundWithBlock { (results, error) -> Void in
+                if let results = results {
+                    for result in results {
+                        result.deleteInBackground()
                     }
                 }
             }
-        } else {
-            tableView.deselectRowAtIndexPath(indexPath, animated: false)
-            performSegueWithIdentifier("ToProfileView", sender: indexPath)
+            query2.findObjectsInBackgroundWithBlock({ (results, error) -> Void in
+                if let results = results {
+                    for result in results {
+                        result.deleteInBackground()
+                    }
+                }
+            })
         }
     }
     

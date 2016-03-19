@@ -40,7 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if PFUser.currentUser() != nil{
             let vc = storyBoard.instantiateViewControllerWithIdentifier("HomeTabBarController") as! UITabBarController
-            vc.tabBar.tintColor = UIColor(red: 133/255, green: 174/255, blue: 38/255, alpha: 1)
             window?.rootViewController = vc
         }
         
