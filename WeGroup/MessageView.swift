@@ -11,7 +11,7 @@ import Parse
 
 var messageTimer = NSTimer()
 
-class MessageView: UIViewController {
+class MessageView: UIViewController, MessageDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var inputBox: UITextView!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
@@ -28,10 +28,11 @@ class MessageView: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 63
         inputBox.delegate = self
+        Data.messageDelegate = self
         
         inputBox.sizeToFit()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "onReceiveNewMessage", name: didReceiveNewMessage, object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "onReceiveNewMessage", name: didReceiveNewMessage, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide", name: UIKeyboardWillHideNotification, object: nil)
     }
@@ -54,7 +55,9 @@ class MessageView: UIViewController {
         let messageText = inputBox.text
         conversation.appendMessage(Message(text: messageText, from: Contact.getContactWithPFUser(PFUser.currentUser()!)))
         conversation.updatedAt = NSDate()
-        tableView.reloadData()
+        let index = conversation.messages.count-1
+        tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Right)
+//        tableView.reloadData()
         tableViewScrollToBottom(true)
         inputBox.text = ""
         sendButton.enabled = false
@@ -95,8 +98,8 @@ class MessageView: UIViewController {
         }
     }
     
-    func onReceiveNewMessage() {
-        tableView.reloadData()
+    func newMessageReceived(indexPath: NSIndexPath) {
+        tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Left)
         tableViewScrollToBottom(true)
     }
 }

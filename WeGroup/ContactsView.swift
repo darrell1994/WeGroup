@@ -20,6 +20,7 @@ class ContactsView: UIViewController, ContactDelegate {
         tableView.dataSource = self
         searchBar.delegate = self
         Data.contactDelegate = self
+        Contact.contactDelegate = self
         
         filteredContacts = Data.contacts
     }

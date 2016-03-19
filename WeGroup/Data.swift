@@ -14,10 +14,15 @@ protocol ContactDelegate {
     func newContactFetched()
 }
 
+protocol MessageDelegate {
+    func newMessageReceived(indexPath: NSIndexPath)
+}
+
 struct Data {
     static var contacts = [Contact]()
     static var conversations = [Conversation]()
     static var contactDelegate: ContactDelegate?
+    static var messageDelegate: MessageDelegate?
     
     static func loadContactsFromLocalStorage(completion: (()->Void)?) {
         let fetchRequest = NSFetchRequest(entityName: "Contact")
@@ -92,26 +97,32 @@ struct Data {
                             }
                             var users = [Contact]()
                             for chatter in chatters {
-                                users.append(Contact.getContactWithPFUser(chatter))
+                                users.append(Contact.getContactWithPFUserAutoAddRelationship(chatter))
                             }
                             let message = Message.getMessagefromPFObject(obj)
                             if let conversation = getConversationWithContacts(Contact.getContactsWithPFUsers(chatters)) {
+                                let index = conversation.messages.count
                                 conversation.appendMessage(message)
+                                messageDelegate?.newMessageReceived(NSIndexPath(forRow: index, inSection: 0))
                             } else {
                                 let conversation = Conversation(toUsers: users, isGroupChat: true)
                                 conversation.appendMessage(message)
                                 Data.conversations.append(conversation)
+                                messageDelegate?.newMessageReceived(NSIndexPath(forRow: 0, inSection: 0))
                             }
-                        } else {
+                        } else { // direct message
                             // if the conversation already exists
                             let from = Contact.getContactWithPFUser(obj["from"] as! PFUser)
                             let message = Message.getMessagefromPFObject(obj)
                             if let conversation = self.getConversationWithContact(from) {
+                                let index = conversation.messages.count
                                 conversation.appendMessage(message)
+                                messageDelegate?.newMessageReceived(NSIndexPath(forRow: index, inSection: 0))
                             } else {
                                 let conversation = Conversation(toUsers: [from], isGroupChat: false)
                                 conversation.appendMessage(message)
                                 Data.conversations.append(conversation)
+                                messageDelegate?.newMessageReceived(NSIndexPath(forRow: 0, inSection: 0))
                             }
                         }
                         obj.deleteInBackground()

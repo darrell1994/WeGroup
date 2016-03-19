@@ -11,6 +11,8 @@ import CoreData
 import Parse
 
 class Contact: NSManagedObject {
+    static var contactDelegate: ContactDelegate?
+
     init(contactID: String, username: String, profileImageData: NSData?) {
         super.init(entity: contactEntity, insertIntoManagedObjectContext: _managedObjectContext)
         self.contactID = contactID
@@ -36,9 +38,40 @@ class Contact: NSManagedObject {
         if let shortBio = user["shortBio"] as? String {
             contact.shortBio = shortBio
         }
+    
         return contact
     }
     
+    static func getContactWithPFUserAutoAddRelationship(user: PFUser)->Contact {
+        let userID = user.objectId
+        for contact in Data.contacts {
+            if contact.contactID == userID {
+                return contact
+            }
+        }
+        let contact = Contact(contactID: user.objectId!, username: user.username!, profileImageData: user["profile_image"] as? NSData)
+        if let region = user["region"] as? String {
+            contact.region = region
+        }
+        if let shortBio = user["shortBio"] as? String {
+            contact.shortBio = shortBio
+        }
+        
+        Data.contacts.append(contact)
+        contactDelegate?.newContactFetched()
+        
+        let relationship1 = PFObject(className: "Friendship")
+        relationship1["user"] = PFUser.currentUser()!
+        relationship1["friend"] = user
+        let relationship2 = PFObject(className: "Friendship")
+        relationship2["user"] = user
+        relationship2["friend"] = PFUser.currentUser()!
+        relationship1.saveInBackground()
+        relationship2.saveInBackground()
+        
+        return contact
+    }
+
     static func getContactsWithPFUsers(users: [PFUser])-> [Contact] {
         var contacts = [Contact]()
         for user in users {

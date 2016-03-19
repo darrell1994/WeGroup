@@ -21,14 +21,6 @@ class Message: NSManagedObject {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
     
-//    var from: PFUser?
-//    var text: String?
-//    
-//    init(from: PFUser, text: String?) {
-//        self.from = from
-//        self.text = text
-//    }
-    
     static func getMessagefromPFObject(object: PFObject) -> Message {
         let from = Contact.getContactWithPFUser(object["from"] as! PFUser)
         let text = object["text"] as? String
