@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class ContactsView: UIViewController {
+class ContactsView: UIViewController, ContactDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     var filteredContacts: [Contact]!
@@ -19,6 +19,7 @@ class ContactsView: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
+        Data.contactDelegate = self
         
         filteredContacts = Data.contacts
     }
@@ -29,10 +30,12 @@ class ContactsView: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        Data.checkNewContacts { () -> Void in
-            self.filteredContacts = Data.contacts
-            self.tableView.reloadData()
-        }
+        Data.checkNewContacts(nil)
+    }
+    
+    func newContactFetched() {
+        filteredContacts = Data.contacts
+        tableView.reloadData()
     }
     
     @IBAction func onAddFriend(sender: AnyObject) {

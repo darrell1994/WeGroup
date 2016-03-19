@@ -24,7 +24,7 @@ class ConversationsView: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
-                
+        
         timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: "onTimer", userInfo: nil, repeats: true)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "onReceiveNewMessage", name: didReceiveNewMessage, object: nil)

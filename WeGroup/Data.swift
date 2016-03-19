@@ -10,9 +10,14 @@ import Foundation
 import CoreData
 import Parse
 
+protocol ContactDelegate {
+    func newContactFetched()
+}
+
 struct Data {
     static var contacts = [Contact]()
     static var conversations = [Conversation]()
+    static var contactDelegate: ContactDelegate?
     
     static func loadContactsFromLocalStorage(completion: (()->Void)?) {
         let fetchRequest = NSFetchRequest(entityName: "Contact")
@@ -58,7 +63,7 @@ struct Data {
                             let contact = Contact.getContactWithPFUser(user)
                             Data.contacts.append(contact)
                         }
-                        received?()
+                        contactDelegate?.newContactFetched()
                     }
                 }
             }
