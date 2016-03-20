@@ -36,7 +36,7 @@ class ContactPickerView: UIViewController {
         if let indexPaths = tableView.indexPathsForSelectedRows {
             var selected = [Contact]()
             for indexPath in indexPaths {
-                selected.append(Data.contacts[indexPath.row])
+                selected.append(filteredContacts![indexPath.row])
             }
             // check if the conversation already exits
             if let _ = Data.getConversationWithContacts(selected) {
