@@ -31,7 +31,7 @@ Here's a walkthrough of implemented user stories:
 
 ![WeGroup-demo](WeGroup-demo.gif)
 
-![WeGroup-demo](WeGroup-demo2.gif)
+![WeGroup-demo](WeGroup-demo_2.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
