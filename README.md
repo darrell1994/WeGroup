@@ -29,7 +29,9 @@ Time spent: **4 weeks** spent in total
 
 Here's a walkthrough of implemented user stories:
 
-![WeGroup-demo]()
+![WeGroup-demo](WeGroup-demo.gif)
+
+![WeGroup-demo](WeGroup-demo2.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
