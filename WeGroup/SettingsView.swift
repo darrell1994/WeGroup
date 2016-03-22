@@ -44,7 +44,7 @@ class SettingsView: UITableViewController {
             shortBioTextField.text = shortBio
         }
         
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: "onChangeProfile")
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SettingsView.onChangeProfile))
         gestureRecognizer.numberOfTapsRequired = 1
         profileImageView.addGestureRecognizer(gestureRecognizer)
     }
@@ -111,7 +111,7 @@ class SettingsView: UITableViewController {
     private func popupMessage(message: String?) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .Alert)
         self.presentViewController(alert, animated: true) { () -> Void in
-            let recognizer = UITapGestureRecognizer(target: self, action: "onTapBackground")
+            let recognizer = UITapGestureRecognizer(target: self, action: #selector(SettingsView.onTapBackground))
             alert.view.superview?.addGestureRecognizer(recognizer)
         }
     }
@@ -149,7 +149,7 @@ extension SettingsView: UIImagePickerControllerDelegate, UINavigationControllerD
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Upload", style: UIBarButtonItemStyle.Plain, target: self, action: "onUploadProfile")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Upload", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(SettingsView.onUploadProfile))
     }
     
     func textFieldDidEndEditing(textField: UITextField) {

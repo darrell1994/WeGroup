@@ -109,7 +109,7 @@ class SignupView: UIViewController {
 
 extension SignupView: UITextFieldDelegate {
     func textFieldDidBeginEditing(textField: UITextField) {
-        let gesture = UITapGestureRecognizer(target: self, action: "onDismissKeyboard")
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(SignupView.onDismissKeyboard))
         self.view.addGestureRecognizer(gesture)
     }
     

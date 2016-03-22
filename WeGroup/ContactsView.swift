@@ -147,7 +147,7 @@ extension ContactsView: UITableViewDelegate, UITableViewDataSource, UISearchBarD
     // on deleting contact
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if let currentUser = PFUser.currentUser() {
-            let friend = PFUser(withoutDataWithObjectId: Data.contacts[indexPath.row].contactID)
+            let friend = PFUser(outDataWithObjectId: Data.contacts[indexPath.row].contactID)
             let query1 = PFQuery(className: "Friendship")
             query1.whereKey("user", equalTo: currentUser)
             query1.whereKey("friend", equalTo: friend)

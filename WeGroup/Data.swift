@@ -139,7 +139,7 @@ struct Data {
             if chatter.username == PFUser.currentUser()?.username {
                 return index
             }
-            index++
+            index += 1
         }
         return nil
     }

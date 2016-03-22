@@ -33,8 +33,8 @@ class MessageView: UIViewController, MessageDelegate {
         inputBox.sizeToFit()
         
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: "onReceiveNewMessage", name: didReceiveNewMessage, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide", name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MessageView.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MessageView.keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -65,7 +65,7 @@ class MessageView: UIViewController, MessageDelegate {
             let message_obj = PFObject(className: "Message")
             message_obj["from"] = PFUser.currentUser()
             let user = conversation?.toUsers.allObjects[0] as! Contact
-            message_obj["to"] = PFUser(withoutDataWithObjectId: user.contactID)
+            message_obj["to"] = PFUser(outDataWithObjectId: user.contactID)
             message_obj["text"] = messageText
             message_obj["isGroupMessage"] = false
             message_obj["chatters"] = [PFUser]()
@@ -78,13 +78,13 @@ class MessageView: UIViewController, MessageDelegate {
             for user in conversation.toUsers {
                 let message_obj = PFObject(className: "Message")
                 message_obj["from"] = PFUser.currentUser()
-                message_obj["to"] = PFUser(withoutDataWithObjectId: (user as! Contact).contactID)
+                message_obj["to"] = PFUser(outDataWithObjectId: (user as! Contact).contactID)
                 message_obj["text"] = messageText
                 message_obj["isGroupMessage"] = true
                 var chatters = [PFUser]()
                 chatters.append(PFUser.currentUser()!)
                 for contact in conversation.toUsers {
-                    let user = PFUser(withoutDataWithObjectId: (contact as! Contact).contactID)
+                    let user = PFUser(outDataWithObjectId: (contact as! Contact).contactID)
                     chatters.append(user)
                 }
                 message_obj["chatters"] = chatters

@@ -25,9 +25,9 @@ class ConversationsView: UIViewController {
         tableView.dataSource = self
         searchBar.delegate = self
         
-        timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: "onTimer", userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: #selector(ConversationsView.onTimer), userInfo: nil, repeats: true)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "onReceiveNewMessage", name: didReceiveNewMessage, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ConversationsView.onReceiveNewMessage), name: didReceiveNewMessage, object: nil)
         
         Data.loadConversationsFromLocalStorage { () -> Void in
             self.filteredConversations = Data.conversations
