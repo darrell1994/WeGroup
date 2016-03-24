@@ -9,8 +9,6 @@
 import UIKit
 import Parse
 
-var messageTimer = NSTimer()
-
 class MessageView: UIViewController, MessageDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var inputBox: UITextView!
@@ -32,7 +30,6 @@ class MessageView: UIViewController, MessageDelegate {
         
         inputBox.sizeToFit()
         
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "onReceiveNewMessage", name: didReceiveNewMessage, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MessageView.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MessageView.keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
     }
@@ -173,21 +170,13 @@ extension MessageView: UITableViewDelegate, UITableViewDataSource, UITextViewDel
     }
     
     func setTabBarVisible(visible:Bool, animated:Bool) {
-        
-        //* This cannot be called before viewDidLayoutSubviews(), because the frame is not set before this time
-        
-        // bail if the current state matches the desired state
         if (tabBarIsVisible() == visible) { return }
         
-        // get a frame calculation ready
         let frame = self.tabBarController?.tabBar.frame
         let height = frame?.size.height
         let offsetY = (visible ? -height! : height)
-        
-        // zero duration means no animation
         let duration:NSTimeInterval = (animated ? 0.3 : 0.0)
         
-        //  animate the tabBar
         if frame != nil {
             UIView.animateWithDuration(duration) {
                 self.tabBarController?.tabBar.frame = CGRectOffset(frame!, 0, offsetY!)

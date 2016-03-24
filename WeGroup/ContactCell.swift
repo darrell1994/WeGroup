@@ -21,6 +21,10 @@ class ContactCell: UITableViewCell {
             if let profileData = contact.profileImageData {
                 let image = UIImage(data: profileData)
                 profileImageView.image = image
+            } else {
+                if let red = contact.red, green = contact.green, blue = contact.blue {
+                    profileImageView.backgroundColor = UIColor(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: 0.5)
+                }
             }
         }
     }

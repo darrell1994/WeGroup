@@ -22,7 +22,9 @@ class ProfileView: UIViewController {
         if let profileData = contact.profileImageData {
             profileImageView.image = UIImage(data: profileData)
         } else {
-            profileImageView.backgroundColor = UIColor(red: 164/265, green: 198/265, blue: 99/265, alpha: 1)
+            if let red = contact.red, green = contact.green, blue = contact.blue {
+                profileImageView.backgroundColor = UIColor(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: 0.5)
+            }
         }
         regionLabel.text = contact.region
         shortBioLabel.text = contact.shortBio

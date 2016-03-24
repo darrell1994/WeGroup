@@ -37,5 +37,9 @@ extension Conversation {
     @NSManaged var updatedAt: NSDate
     @NSManaged var messages: NSOrderedSet
     @NSManaged var toUsers: NSSet
+    @NSManaged var red: NSNumber?
+    @NSManaged var green: NSNumber?
+    @NSManaged var blue: NSNumber?
+    
     
 }

@@ -127,7 +127,6 @@ struct Data {
                         }
                         obj.deleteInBackground()
                     }
-                    NSNotificationCenter.defaultCenter().postNotificationName(didReceiveNewMessage, object: nil)
                     received?()
                 }
             }}

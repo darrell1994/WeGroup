@@ -39,13 +39,17 @@ class ConversationCell: UITableViewCell {
             profileImageView.clipsToBounds = true
             profileImageView.layer.cornerRadius = 25
             if conversation.isGroupChat {
-//                profileImageView.backgroundColor = conversation.profileColor
+                if let red = conversation.red, green = conversation.green, blue = conversation.blue {
+                    profileImageView.backgroundColor = UIColor(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: 0.5)
+                }
             } else {
                 if let profileData = toUsers.first?.profileImageData {
                     let image = UIImage(data: profileData)
                     profileImageView.image = image
                 } else {
-                    // TODO assign a random color
+                    if let red = toUsers.first!.red, green = toUsers.first!.green, blue = toUsers.first!.blue {
+                        profileImageView.backgroundColor = UIColor(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: 0.5)
+                    }
                 }
             }
             

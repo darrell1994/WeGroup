@@ -10,7 +10,6 @@ import UIKit
 import Parse
 
 var timer = NSTimer()
-let didReceiveNewMessage = "didReceiveNewMessage"
 
 class ConversationsView: UIViewController {
     @IBOutlet var tableView: UITableView!
@@ -26,8 +25,6 @@ class ConversationsView: UIViewController {
         searchBar.delegate = self
         
         timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: #selector(ConversationsView.onTimer), userInfo: nil, repeats: true)
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ConversationsView.onReceiveNewMessage), name: didReceiveNewMessage, object: nil)
         
         Data.loadConversationsFromLocalStorage { () -> Void in
             self.filteredConversations = Data.conversations
@@ -57,10 +54,6 @@ class ConversationsView: UIViewController {
     
     @IBAction func onAddConversation(sender: AnyObject) {
         self.performSegueWithIdentifier("ToContactPicker", sender: nil)
-    }
-    
-    func onReceiveNewMessage() {
-        // TODO add notification
     }
     
     /*
