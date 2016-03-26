@@ -42,17 +42,19 @@ class ContactPickerView: UIViewController {
             if let _ = Data.getConversationWithContacts(selected) {
                 popupMessage(nil, message: "Conversation already exists")
             } else {
-                var conversation: Conversation
-                if selected.count == 1 { // direct chat
-                    conversation = Conversation(toUsers: selected, isGroupChat: false)
-                } else { // group chat
-                    conversation = Conversation(toUsers: selected, isGroupChat: true)
-                    conversation.red = Float(arc4random_uniform(200))/255.0
-                    conversation.green = Float(arc4random_uniform(255))/255.0
-                    conversation.blue = Float(arc4random_uniform(255))/255.0
+                if selected.count < 7 {
+                    var conversation: Conversation
+                    if selected.count == 1 { // direct chat
+                        conversation = Conversation(toUsers: selected, isGroupChat: false)
+                    } else { // group chat
+                        conversation = Conversation(toUsers: selected, isGroupChat: true)
+                        conversation.red = Float(arc4random_uniform(200))/255.0
+                        conversation.green = Float(arc4random_uniform(255))/255.0
+                        conversation.blue = Float(arc4random_uniform(255))/255.0
+                    }
+                    Data.conversations.append(conversation)
+                    self.dismissViewControllerAnimated(true, completion: nil)
                 }
-                Data.conversations.append(conversation)
-                self.dismissViewControllerAnimated(true, completion: nil)
             }
         } else {
             dismissViewControllerAnimated(true, completion: nil)

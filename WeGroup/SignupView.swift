@@ -52,12 +52,15 @@ class SignupView: UIViewController {
         user.signUpInBackgroundWithBlock { (success, error) -> Void in
             self.loadingIndicator.stopAnimation()
             if success {
-                self.popupMessage("Success", message: "Welcome to WeGroup!", segue: true)
-                NSNotificationCenter.defaultCenter().postNotificationName(userDidLoginNotification, object: nil)
-                self.dismissViewControllerAnimated(true, completion: nil)
+                let alert = UIAlertController(title: "Success", message: "Welcome to WeGroup!", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "Thanks", style: .Default, handler: { (UIAlertAction) in
+                    NSNotificationCenter.defaultCenter().postNotificationName(userDidLoginNotification, object: nil)
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }))
+                self.presentViewController(alert, animated: true, completion: nil)
             } else {
-                print(error.debugDescription)
-                self.popupMessage(nil, message: "Failed to sign up", segue: false)
+//                self.popupMessage(nil, message: error!.localizedDescription, segue: false)
+                self.popupMessage(nil, message: nil, segue: false)
             }
         }
     }
@@ -86,7 +89,11 @@ class SignupView: UIViewController {
             popupMessage("Error", message: "Password must be at least 6 characters", segue: false)
             return false
         }
-        if passwordTextField.text != passwordConformationTextField.text {
+        let pw_str1 = passwordTextField.text!
+        let pw1 = pw_str1.substringToIndex(pw_str1.startIndex.advancedBy(3))
+        let pw_str2 = passwordConformationTextField.text!
+        let pw2 = pw_str2.substringToIndex(pw_str2.startIndex.advancedBy(3))
+        if pw1 != pw2 {
             popupMessage("Error", message: "Password doesn't match password confirmation", segue: false)
             return false
         }

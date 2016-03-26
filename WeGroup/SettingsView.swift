@@ -93,6 +93,11 @@ class SettingsView: UITableViewController {
     }
     
     func uploadProfile() {
+        let temp = profileImageView.image!
+        if temp.size.height > 800 || temp.size.width > 800 {
+            print("too big")
+            return
+        }
         let profileImage = resizeImage(profileImageView.image!, newSize: CGSize(width: 128, height: 128))
         let user = PFUser.currentUser()
         if let imageData = UIImagePNGRepresentation(profileImage) {
@@ -159,7 +164,7 @@ extension SettingsView: UIImagePickerControllerDelegate, UINavigationControllerD
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+//        textField.resignFirstResponder()
         return true
     }
     

@@ -50,48 +50,50 @@ class MessageView: UIViewController, MessageDelegate {
     }
     
     @IBAction func onSend(sender: AnyObject) {
-        let messageText = inputBox.text
-        conversation.appendMessage(Message(text: messageText, from: Contact.getContactWithPFUser(PFUser.currentUser()!)))
-        conversation.updatedAt = NSDate()
-        let index = conversation.messages.count-1
-        tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Right)
-//        tableView.reloadData()
-        tableViewScrollToBottom(true)
-        inputBox.text = ""
-        sendButton.enabled = false
-        if conversation.toUsers.count == 1 { // direct chat
-            let message_obj = PFObject(className: "Message")
-            message_obj["from"] = PFUser.currentUser()
-            let user = conversation?.toUsers.allObjects[0] as! Contact
-            message_obj["to"] = PFUser(outDataWithObjectId: user.contactID)
-            message_obj["text"] = messageText
-            message_obj["isGroupMessage"] = false
-            message_obj["chatters"] = [PFUser]()
-            message_obj.saveInBackgroundWithBlock({ (success, error) -> Void in
-                if !success {
-                    print("Failed to send message")
-                }
-            })
-        } else { // group chat
-            for user in conversation.toUsers {
+        if conversation.messages.count <= 100 {
+            let messageText = inputBox.text
+            conversation.appendMessage(Message(text: messageText, from: Contact.getContactWithPFUser(PFUser.currentUser()!)))
+            conversation.updatedAt = NSDate()
+            let index = conversation.messages.count-1
+            tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Right)
+            //        tableView.reloadData()
+            tableViewScrollToBottom(true)
+            inputBox.text = ""
+            sendButton.enabled = false
+            if conversation.toUsers.count == 1 { // direct chat
                 let message_obj = PFObject(className: "Message")
                 message_obj["from"] = PFUser.currentUser()
-                message_obj["to"] = PFUser(outDataWithObjectId: (user as! Contact).contactID)
+                let user = conversation?.toUsers.allObjects[0] as! Contact
+                message_obj["to"] = PFUser(outDataWithObjectId: user.contactID)
                 message_obj["text"] = messageText
-                message_obj["isGroupMessage"] = true
-                var chatters = [PFUser]()
-                chatters.append(PFUser.currentUser()!)
-                for contact in conversation.toUsers {
-                    let user = PFUser(outDataWithObjectId: (contact as! Contact).contactID)
-                    chatters.append(user)
-                }
-                message_obj["chatters"] = chatters
+                message_obj["isGroupMessage"] = false
+                message_obj["chatters"] = [PFUser]()
                 message_obj.saveInBackgroundWithBlock({ (success, error) -> Void in
                     if !success {
-                        // TODO warn user
                         print("Failed to send message")
                     }
                 })
+            } else { // group chat
+                for user in conversation.toUsers {
+                    let message_obj = PFObject(className: "Message")
+                    message_obj["from"] = PFUser.currentUser()
+                    message_obj["to"] = PFUser(outDataWithObjectId: (user as! Contact).contactID)
+                    message_obj["text"] = messageText
+                    message_obj["isGroupMessage"] = true
+                    var chatters = [PFUser]()
+                    chatters.append(PFUser.currentUser()!)
+                    for contact in conversation.toUsers {
+                        let user = PFUser(outDataWithObjectId: (contact as! Contact).contactID)
+                        chatters.append(user)
+                    }
+                    message_obj["chatters"] = chatters
+                    message_obj.saveInBackgroundWithBlock({ (success, error) -> Void in
+                        if !success {
+                            // TODO warn user
+                            print("Failed to send message")
+                        }
+                    })
+                }
             }
         }
     }

@@ -65,6 +65,7 @@ class ContactsView: UIViewController, ContactDelegate {
                             self.popupMessage("Cannot add yourself")
                             return
                         }
+                        /*
                         // check if they are already freinds
                         for contact in Data.contacts {
                             if contact.username == friend.username {
@@ -72,33 +73,40 @@ class ContactsView: UIViewController, ContactDelegate {
                                 return
                             }
                         }
-                        // create relationship
-                        let relationship1 = PFObject(className: "Friendship")
-                        relationship1["user"] = PFUser.currentUser()!
-                        relationship1["friend"] = friend
-                        let relationship2 = PFObject(className: "Friendship")
-                        relationship2["user"] = friend
-                        relationship2["friend"] = PFUser.currentUser()!
-                        relationship1.saveInBackgroundWithBlock({ (success, error) -> Void in
-                            if success {
-                            } else {
-                                self.popupMessage("Failed to add friend")
-                            }
-                        })
-                        relationship2.saveInBackgroundWithBlock({ (success, error) -> Void in
-                            if success {
-                                self.popupMessage("friend added")
-                                let contact = Contact.getContactWithPFUser(friend)
-                                Data.contacts.append(contact)
-                                self.filteredContacts?.append(contact)
-                                self.tableView.reloadData()
-                            } else {
-                                self.popupMessage("Failed to add friend")
-                            }
-                        })
+                        */
+                        
+                        
+                        if Data.contacts.count < 11 {
+                            // create relationship
+                            let relationship1 = PFObject(className: "Friendship")
+                            relationship1["user"] = PFUser.currentUser()!
+                            relationship1["friend"] = friend
+                            let relationship2 = PFObject(className: "Friendship")
+                            relationship2["user"] = friend
+                            relationship2["friend"] = PFUser.currentUser()!
+                            relationship1.saveInBackgroundWithBlock({ (success, error) -> Void in
+                                if success {
+                                } else {
+                                    self.popupMessage("Failed to add friend")
+                                }
+                            })
+                            relationship2.saveInBackgroundWithBlock({ (success, error) -> Void in
+                                if success {
+                                    self.popupMessage("friend added")
+                                    let contact = Contact.getContactWithPFUser(friend)
+                                    Data.contacts.append(contact)
+                                    self.filteredContacts?.append(contact)
+                                    self.tableView.reloadData()
+                                } else {
+                                    self.popupMessage("Failed to add friend")
+                                }
+                            })
+                        }
                     } else {
                         self.popupMessage("Did not find any matching")
                     }
+                    
+                    
                 })
             }
         }))
@@ -116,7 +124,8 @@ class ContactsView: UIViewController, ContactDelegate {
         if segue.identifier == "ToProfileView" {
             let vc = segue.destinationViewController as! ProfileView
             let indexPath = sender as! NSIndexPath
-            vc.contact = filteredContacts[indexPath.row]
+//            vc.contact = filteredContacts[indexPath.row]
+            vc.contact = Data.contacts[indexPath.row]
         }
     }
 }
@@ -147,14 +156,18 @@ extension ContactsView: UITableViewDelegate, UITableViewDataSource, UISearchBarD
     // on deleting contact
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if let currentUser = PFUser.currentUser() {
+            if Data.contacts.count == 1 {
+                return
+            }
             let friend = PFUser(outDataWithObjectId: Data.contacts[indexPath.row].contactID)
             let query1 = PFQuery(className: "Friendship")
             query1.whereKey("user", equalTo: currentUser)
             query1.whereKey("friend", equalTo: friend)
+            /*
             let query2 = PFQuery(className: "Friendship")
             query2.whereKey("user", equalTo: friend)
             query2.whereKey("friend", equalTo: currentUser)
-            
+            */
             _managedObjectContext.deleteObject(Data.contacts[indexPath.row])
             Data.contacts.removeAtIndex(indexPath.row)
             self.filteredContacts = Data.contacts
@@ -167,6 +180,7 @@ extension ContactsView: UITableViewDelegate, UITableViewDataSource, UISearchBarD
                     }
                 }
             }
+            /*
             query2.findObjectsInBackgroundWithBlock({ (results, error) -> Void in
                 if let results = results {
                     for result in results {
@@ -174,20 +188,26 @@ extension ContactsView: UITableViewDelegate, UITableViewDataSource, UISearchBarD
                     }
                 }
             })
+            */
         }
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        if let searchText = searchBar.text {
-            if searchText == "" {
-                filteredContacts = Data.contacts
-            } else {
-                filteredContacts = Data.contacts.filter({ (user) -> Bool in
-                    let username = user.username
-                    return username.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: nil) != nil
-                })
-            }
+        var _searchText: String
+        if searchText == "a" || searchText == "A"{
+            _searchText = "an"
+        } else {
+            _searchText = searchText
         }
+        if _searchText == "" {
+            filteredContacts = Data.contacts
+        } else {
+            filteredContacts = Data.contacts.filter({ (user) -> Bool in
+                let username = user.username
+                return username.rangeOfString(_searchText, options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: nil) != nil
+            })
+        }
+        
         tableView.reloadData()
     }
     
