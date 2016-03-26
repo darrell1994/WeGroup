@@ -64,7 +64,7 @@ class LoginView: UIViewController {
                 self.dismissViewControllerAnimated(true, completion: nil)
 //                self.performSegueWithIdentifier("ToMainPage", sender: nil)
             } else {
-                self.popupMessage("Failed to login", message: "Username and password don't match")
+                self.popupMessage("Failed to login", message: error!.localizedDescription)
             }
         }
     }

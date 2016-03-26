@@ -146,8 +146,10 @@ struct Data {
     static func getConversationWithContact(contact: Contact)->Conversation? {
         for conversation in conversations {
             let toUsers = conversation.toUsers.allObjects as! [Contact]
-            if toUsers.first?.username == contact.username {
-                return conversation
+            if toUsers.count == 1 {
+                if toUsers.first?.username == contact.username {
+                    return conversation
+                }
             }
         }
         return nil
@@ -195,5 +197,21 @@ struct Data {
             _managedObjectContext.deleteObject(conversation)
         }
         Data.conversations.removeAll()
+    }
+    
+    static func getRandomUIColor()->UIColor {
+        let color = UIColor(red: CGFloat(arc4random_uniform(256))/255.0, green: CGFloat(arc4random_uniform(256))/255.0, blue: CGFloat(arc4random_uniform(256))/255.0, alpha: 0.5)
+        return color
+    }
+    
+    static func imageFromColor(color: UIColor) -> UIImage {
+        let rect = CGRect(x: 0, y: 0, width: 128, height: 128)
+        UIGraphicsBeginImageContext(rect.size)
+        let context = UIGraphicsGetCurrentContext()
+        CGContextSetFillColorWithColor(context, color.CGColor)
+        CGContextFillRect(context, rect)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
     }
 }

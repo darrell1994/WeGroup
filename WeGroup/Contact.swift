@@ -35,12 +35,6 @@ class Contact: NSManagedObject {
         
         let contact = Contact(contactID: user.objectId!, username: user.username!, profileImageData: profileImageData)
         
-        if profileImageData == nil {
-            contact.red = Float(arc4random_uniform(200))/255.0
-            contact.green = Float(arc4random_uniform(255))/255.0
-            contact.blue = Float(arc4random_uniform(255))/255.0
-        }
-        
         if let region = user["region"] as? String {
             contact.region = region
         }

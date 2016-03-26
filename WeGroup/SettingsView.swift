@@ -79,7 +79,7 @@ class SettingsView: UITableViewController {
         
         self.presentViewController(alert, animated: true, completion: nil)
     }
-    
+        
     private func resizeImage(image: UIImage, newSize: CGSize) -> UIImage {
         let resizeImageView = UIImageView(frame: CGRectMake(0, 0, newSize.width, newSize.height))
         resizeImageView.contentMode = UIViewContentMode.ScaleAspectFill
@@ -93,7 +93,7 @@ class SettingsView: UITableViewController {
     }
     
     func uploadProfile() {
-        let profileImage = resizeImage(profileImageView.image!, newSize: CGSize(width: 128, height: 128))
+        let profileImage = profileImageView.image!
         let user = PFUser.currentUser()
         if let imageData = UIImagePNGRepresentation(profileImage) {
             user!["profile_image"] = imageData
@@ -142,7 +142,7 @@ class SettingsView: UITableViewController {
 extension SettingsView: UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         let edited = info[UIImagePickerControllerEditedImage] as! UIImage
-        profileImageView.image = edited
+        profileImageView.image = resizeImage(edited, newSize: CGSize(width: 128, height: 128))
         picker.dismissViewControllerAnimated(true, completion: {()->Void in
             self.uploadProfile()
         })
@@ -165,6 +165,14 @@ extension SettingsView: UIImagePickerControllerDelegate, UINavigationControllerD
     
     func onUploadProfile() {
         self.view.endEditing(true)
+        if regionTextField.text?.characters.count > 100 {
+            popupMessage("Region must be less than 100 characters")
+            return
+        }
+        if shortBioTextField.text?.characters.count > 500 {
+            popupMessage("Short bio must be less than 500 characters")
+            return
+        }
         if let user = PFUser.currentUser() {
             user.setValue(regionTextField.text, forKey: "region")
             user.setValue(shortBioTextField.text, forKey: "shortBio")

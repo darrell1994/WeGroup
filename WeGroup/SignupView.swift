@@ -52,8 +52,15 @@ class SignupView: UIViewController {
         user.signUpInBackgroundWithBlock { (success, error) -> Void in
             self.loadingIndicator.stopAnimation()
             if success {
-                self.popupMessage("Success", message: "Welcome to WeGroup!", segue: true)
                 NSNotificationCenter.defaultCenter().postNotificationName(userDidLoginNotification, object: nil)
+                let profile = Data.imageFromColor(Data.getRandomUIColor())
+                if let user = PFUser.currentUser() {
+                    if let imageData = UIImagePNGRepresentation(profile) {
+                        user["profile_image"] = imageData
+                        user.saveInBackground()
+                    }
+                }
+                self.popupMessage("Success", message: "Welcome to WeGroup!", segue: true)
                 self.dismissViewControllerAnimated(true, completion: nil)
             } else {
                 self.popupMessage(nil, message: error!.localizedDescription, segue: false)

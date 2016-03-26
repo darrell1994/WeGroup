@@ -630,6 +630,7 @@
                                 <searchBar key="tableHeaderView" contentMode="redraw" id="2Jf-b7-b2l">
                                     <rect key="frame" x="0.0" y="0.0" width="328" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="tintColor" red="0.52156862749999999" green="0.68235294120000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </searchBar>
                                 <prototypes>
