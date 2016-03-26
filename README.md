@@ -19,7 +19,6 @@ Time spent: **4 weeks** spent in total
 - [x] As a user, I would like to send messages in a group conversation
 - [x] As a user, I would like to receive message from the group conversations I am in
 - [x] As a user, I would like people in the groups I’m involved in to be added to my contacts automatically
-- [ ] As a user, I would like to see the conversations with unread messages to be marked
 - [x] As a user, I would like to delete conversations
 - [x] As a user, I would like to search a friend in contacts
 - [x] As a user, I would like to search for groups that a friend is in
