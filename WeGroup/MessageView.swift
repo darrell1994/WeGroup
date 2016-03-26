@@ -37,6 +37,7 @@ class MessageView: UIViewController, MessageDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         setTabBarVisible(false, animated: true)
+        tableViewScrollToBottom(true)
     }
     
     override func viewWillDisappear(animated: Bool) {
