@@ -103,12 +103,12 @@ struct Data {
                             if let conversation = getConversationWithContacts(Contact.getContactsWithPFUsers(chatters)) {
                                 let index = conversation.messages.count
                                 conversation.appendMessage(message)
+                                conversation.updatedAt = NSDate()
                                 messageDelegate?.newMessageReceived(NSIndexPath(forRow: index, inSection: 0))
                             } else {
                                 let conversation = Conversation(toUsers: users, isGroupChat: true)
                                 conversation.appendMessage(message)
                                 Data.conversations.append(conversation)
-                                messageDelegate?.newMessageReceived(NSIndexPath(forRow: 0, inSection: 0))
                             }
                         } else { // direct message
                             // if the conversation already exists
@@ -117,12 +117,12 @@ struct Data {
                             if let conversation = self.getConversationWithContact(from) {
                                 let index = conversation.messages.count
                                 conversation.appendMessage(message)
+                                conversation.updatedAt = NSDate()
                                 messageDelegate?.newMessageReceived(NSIndexPath(forRow: index, inSection: 0))
                             } else {
                                 let conversation = Conversation(toUsers: [from], isGroupChat: false)
                                 conversation.appendMessage(message)
                                 Data.conversations.append(conversation)
-                                messageDelegate?.newMessageReceived(NSIndexPath(forRow: 0, inSection: 0))
                             }
                         }
                         obj.deleteInBackground()

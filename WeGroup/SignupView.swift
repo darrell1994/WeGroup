@@ -42,7 +42,7 @@ class SignupView: UIViewController {
 
     @IBAction func onSignup(sender: AnyObject) {
         if !checkInputValidity() {
-           return
+            return
         }
         loadingIndicator.startAnimation(.FullCircle)
         let user = PFUser()
@@ -52,7 +52,11 @@ class SignupView: UIViewController {
         user.signUpInBackgroundWithBlock { (success, error) -> Void in
             self.loadingIndicator.stopAnimation()
             if success {
-                NSNotificationCenter.defaultCenter().postNotificationName(userDidLoginNotification, object: nil)
+                let alert = UIAlertController(title: "Success", message: "Welcome to WeGroup!", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "Thanks", style: .Default, handler: { (UIAlertAction) in
+                    NSNotificationCenter.defaultCenter().postNotificationName(userDidLoginNotification, object: nil)
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }))
                 let profile = Data.imageFromColor(Data.getRandomUIColor())
                 if let user = PFUser.currentUser() {
                     if let imageData = UIImagePNGRepresentation(profile) {
@@ -60,8 +64,7 @@ class SignupView: UIViewController {
                         user.saveInBackground()
                     }
                 }
-                self.popupMessage("Success", message: "Welcome to WeGroup!", segue: true)
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.presentViewController(alert, animated: true, completion: nil)
             } else {
                 self.popupMessage(nil, message: error!.localizedDescription, segue: false)
             }

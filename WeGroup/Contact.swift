@@ -93,8 +93,5 @@ extension Contact {
     @NSManaged var conversations: NSSet?
     @NSManaged var region: String?
     @NSManaged var shortBio: String?
-    @NSManaged var red: NSNumber?
-    @NSManaged var green: NSNumber?
-    @NSManaged var blue: NSNumber?
     
 }
