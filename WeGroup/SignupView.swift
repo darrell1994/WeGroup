@@ -56,8 +56,7 @@ class SignupView: UIViewController {
                 NSNotificationCenter.defaultCenter().postNotificationName(userDidLoginNotification, object: nil)
                 self.dismissViewControllerAnimated(true, completion: nil)
             } else {
-                print(error.debugDescription)
-                self.popupMessage(nil, message: "Failed to sign up", segue: false)
+                self.popupMessage(nil, message: error!.localizedDescription, segue: false)
             }
         }
     }
@@ -73,6 +72,11 @@ class SignupView: UIViewController {
         }
         if usernameTextField.text?.characters.count > 14 {
             popupMessage("Error", message: "Username must be 0-14 characters", segue: false)
+            return false
+        }
+        if usernameTextField.text!.containsString(" ") {
+            popupMessage("Error", message: "Username cannot contain white space", segue: false)
+            return false
         }
         if emailTextField.text == "" {
             popupMessage("Error", message: "Please provide email address", segue: false)
