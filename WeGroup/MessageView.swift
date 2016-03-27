@@ -51,7 +51,7 @@ class MessageView: UIViewController, MessageDelegate {
     
     @IBAction func onSend(sender: AnyObject) {
         let messageText = inputBox.text
-        conversation.appendMessage(Message(text: messageText, from: Contact.getContactWithPFUser(PFUser.currentUser()!)))
+        conversation.appendMessage(Message(text: messageText, from: Contact.getCurrentUserContact()!))
         conversation.updatedAt = NSDate()
         let index = conversation.messages.count-1
         tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Right)

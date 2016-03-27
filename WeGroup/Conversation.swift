@@ -18,6 +18,9 @@ class Conversation: NSManagedObject {
         self.isGroupChat = isGroupChat
         self.updatedAt = NSDate()
         self.messages = NSOrderedSet(array: [Message]())
+        self.red = Float(arc4random_uniform(256))/255.0
+        self.green = Float(arc4random_uniform(256))/255.0
+        self.blue = Float(arc4random_uniform(256))/255.0
     }
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
@@ -40,6 +43,5 @@ extension Conversation {
     @NSManaged var red: NSNumber?
     @NSManaged var green: NSNumber?
     @NSManaged var blue: NSNumber?
-    
     
 }

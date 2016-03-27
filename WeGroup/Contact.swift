@@ -12,8 +12,10 @@ import Parse
 
 class Contact: NSManagedObject {
     static var contactDelegate: ContactDelegate?
+    static var currentContact: Contact?
 
     init(contactID: String, username: String, profileImageData: NSData?) {
+        print("creating contact \(username)")
         super.init(entity: contactEntity, insertIntoManagedObjectContext: _managedObjectContext)
         self.contactID = contactID
         self.username = username
@@ -22,6 +24,24 @@ class Contact: NSManagedObject {
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
+    }
+    
+    static func getCurrentUserContact()->Contact? {
+        if let currentUser = PFUser.currentUser() {
+            if currentContact == nil {
+                let profileImageData = currentUser["profile_image"] as? NSData
+                currentContact = Contact(contactID: currentUser.objectId!, username: currentUser.username!, profileImageData: profileImageData)
+                if let region = currentUser["region"] as? String {
+                    currentContact!.region = region
+                }
+                if let shortBio = currentUser["shortBio"] as? String {
+                    currentContact!.shortBio = shortBio
+                }
+            }
+            return currentContact
+        } else {
+            return nil
+        }
     }
     
     static func getContactWithPFUser(user: PFUser)->Contact {

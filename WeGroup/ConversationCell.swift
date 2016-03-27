@@ -19,6 +19,9 @@ class ConversationCell: UITableViewCell {
     var conversation: Conversation! {
         didSet {
             let toUsers = conversation.toUsers.allObjects as! [Contact]
+            if toUsers.count == 0 {
+                return
+            }
             
             var username = ""
             for index in 0...toUsers.count-1 {

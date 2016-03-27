@@ -25,10 +25,13 @@ struct Data {
     static var messageDelegate: MessageDelegate?
     
     static func loadContactsFromLocalStorage(completion: (()->Void)?) {
+        print("-----------------------------------")
+        print("Loading contacts from local storage")
         let fetchRequest = NSFetchRequest(entityName: "Contact")
         do {
             if let results = try _managedObjectContext.executeFetchRequest(fetchRequest) as? [Contact] {
                 for contact in results {
+                    print("loaded \(contact.username)")
                     if contact.contactID == PFUser.currentUser()!.objectId {
                         continue
                     }
@@ -55,18 +58,22 @@ struct Data {
     }
     
     static func checkNewContacts(received: (()->Void)?) {
+        print("-----------------------------------")
+        print("Fetching contacts from server")
         if let currentUser = PFUser.currentUser() {
             let query = PFQuery(className: "Friendship")
             query.includeKey("friend")
             query.whereKey("user", equalTo: currentUser)
             query.findObjectsInBackgroundWithBlock { (results, error) -> Void in
                 if let results = results {
-                    if results.count > contacts.count {                        
+                    print("results.count=\(results.count)  contacts.count=\(contacts.count)")
+                    if results.count != contacts.count {
                         Data.contacts.removeAll()
                         for result in results {
                             let user = result["friend"] as! PFUser
                             let contact = Contact.getContactWithPFUser(user)
                             Data.contacts.append(contact)
+                            print("fetched \(contact.username)")
                         }
                         contactDelegate?.newContactFetched()
                     }
@@ -92,6 +99,12 @@ struct Data {
                         if isGroupMessage {
                             // check if the conversation already exists
                             var chatters = obj["chatters"] as! [PFUser]
+                            
+                            print("All chatters")
+                            for chatter in chatters {
+                                print(chatter.username)
+                            }
+                            
                             if let indexOfCurrentUser = indexOfCurrentUserInChatters(chatters) {
                                 chatters.removeAtIndex(indexOfCurrentUser)
                             }
@@ -186,15 +199,32 @@ struct Data {
     }
     
     static func clearAllContacts() {
-        for contact in Data.contacts {
-            _managedObjectContext.deleteObject(contact)
+        print("-----------------------------------")
+        print("Clearing all contacts from local storage")
+        let fetchRequest = NSFetchRequest(entityName: "Contact")
+        do {
+            if let results = try _managedObjectContext.executeFetchRequest(fetchRequest) as? [Contact] {
+                for contact in results {
+                    print("deleting \(contact.username)")
+                    _managedObjectContext.deleteObject(contact)
+                }
+            }
+        } catch {
+            fatalError("Error fetching data!")
         }
         Data.contacts.removeAll()
     }
     
     static func clearAllConversations() {
-        for conversation in Data.conversations{
-            _managedObjectContext.deleteObject(conversation)
+        let fetchRequest = NSFetchRequest(entityName: "Conversation")
+        do {
+            if let results = try _managedObjectContext.executeFetchRequest(fetchRequest) as? [Conversation] {
+                for conversation in results {
+                    _managedObjectContext.deleteObject(conversation)
+                }
+            }
+        } catch {
+            fatalError("Error fetching data!")
         }
         Data.conversations.removeAll()
     }

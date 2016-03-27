@@ -724,11 +724,11 @@
             </objects>
             <point key="canvasLocation" x="338" y="1041"/>
         </scene>
-        <!--Chat-->
+        <!--Chats-->
         <scene sceneID="BrF-Mm-MSQ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Gut-7z-Mm6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Chat" image="chats" id="Trk-T8-hrc"/>
+                    <tabBarItem key="tabBarItem" title="Chats" image="chats" id="Trk-T8-hrc"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="eSI-8B-HeT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -776,7 +776,7 @@
         <scene sceneID="KR3-xb-PBo">
             <objects>
                 <tableViewController id="cAr-cl-ARX" customClass="SettingsView" customModule="WeGroup" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="LbG-YG-9fT">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="LbG-YG-9fT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -868,22 +868,35 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="48.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log out" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gax-po-02u">
-                                                    <rect key="frame" x="131" y="14.5" width="58" height="20.5"/>
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gax-po-02u">
+                                                    <rect key="frame" x="160" y="24" width="0.0" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="SLj-r7-Rt8">
-                                                    <rect key="frame" x="103" y="15" width="20" height="20"/>
+                                                    <rect key="frame" x="102" y="15" width="20" height="20"/>
                                                 </activityIndicatorView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dUt-3S-Qd8">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                                                    <state key="normal" title="Logout">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="logoutClicked:" destination="cAr-cl-ARX" eventType="touchUpInside" id="6nD-oG-cZB"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" red="0.98431372549999996" green="0.31764705879999999" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="dUt-3S-Qd8" secondAttribute="trailing" id="1Ra-JX-yp3"/>
+                                                <constraint firstItem="dUt-3S-Qd8" firstAttribute="leading" secondItem="Wad-nq-EvN" secondAttribute="leading" id="2fH-5p-6Pe"/>
                                                 <constraint firstItem="Gax-po-02u" firstAttribute="centerX" secondItem="Wad-nq-EvN" secondAttribute="centerX" id="7yz-er-2J0"/>
+                                                <constraint firstAttribute="bottom" secondItem="dUt-3S-Qd8" secondAttribute="bottom" id="Rci-QA-2kS"/>
                                                 <constraint firstItem="Gax-po-02u" firstAttribute="centerY" secondItem="Wad-nq-EvN" secondAttribute="centerY" id="UeL-Ct-D2S"/>
                                                 <constraint firstItem="SLj-r7-Rt8" firstAttribute="centerY" secondItem="Wad-nq-EvN" secondAttribute="centerY" id="Wlm-Tn-YXZ"/>
-                                                <constraint firstItem="Gax-po-02u" firstAttribute="leading" secondItem="SLj-r7-Rt8" secondAttribute="trailing" constant="8" id="lKg-Ye-Eqv"/>
+                                                <constraint firstItem="dUt-3S-Qd8" firstAttribute="top" secondItem="Wad-nq-EvN" secondAttribute="top" id="YP3-fO-1iQ"/>
+                                                <constraint firstItem="Gax-po-02u" firstAttribute="leading" secondItem="SLj-r7-Rt8" secondAttribute="trailing" constant="38" id="lKg-Ye-Eqv"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

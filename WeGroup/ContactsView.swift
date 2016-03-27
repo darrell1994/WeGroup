@@ -79,12 +79,7 @@ class ContactsView: UIViewController, ContactDelegate {
                         let relationship2 = PFObject(className: "Friendship")
                         relationship2["user"] = friend
                         relationship2["friend"] = PFUser.currentUser()!
-                        relationship1.saveInBackgroundWithBlock({ (success, error) -> Void in
-                            if success {
-                            } else {
-                                self.popupMessage("Failed to add friend")
-                            }
-                        })
+                        relationship1.saveInBackground()
                         relationship2.saveInBackgroundWithBlock({ (success, error) -> Void in
                             if success {
                                 self.popupMessage("friend added")

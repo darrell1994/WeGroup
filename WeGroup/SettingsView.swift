@@ -24,10 +24,8 @@ class SettingsView: UITableViewController {
         tableView.dataSource = self
         regionTextField.delegate = self
         shortBioTextField.delegate = self
-        self.navigationController?.navigationBarHidden = false
-        self.title = "Setting"
-        //self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
-        self.tableView.tableFooterView = UIView()
+//        self.navigationController?.navigationBarHidden = false
+//        self.tableView.tableFooterView = UIView()
         
         nameLabel.text = PFUser.currentUser()?.username
         profileImageView.contentMode = UIViewContentMode.ScaleAspectFill
@@ -51,12 +49,6 @@ class SettingsView: UITableViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 1 {
-            onLogout()
-        }
     }
     
     func onChangeProfile() {
@@ -120,9 +112,8 @@ class SettingsView: UITableViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    private func onLogout() {
+    @IBAction func logoutClicked(sender: AnyObject) {
         logoutProcessIndicator.startAnimating()
-        
         timer.invalidate()
         
         PFUser.logOutInBackgroundWithBlock({ (error) -> Void in
