@@ -17,6 +17,7 @@ class MessageView: UIViewController, MessageDelegate {
     @IBOutlet weak var sendButton: UIButton!
     var inputBoxEditing = false
     var conversation: Conversation!
+    var viewPresent = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,12 +37,14 @@ class MessageView: UIViewController, MessageDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        viewPresent = true
         setTabBarVisible(false, animated: true)
         tableViewScrollToBottom(true)
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
+        viewPresent = false
         setTabBarVisible(true, animated: true)
     }
 
@@ -97,8 +100,10 @@ class MessageView: UIViewController, MessageDelegate {
     }
     
     func newMessageReceived(indexPath: NSIndexPath) {
-        tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Left)
-        tableViewScrollToBottom(true)
+        if viewPresent {
+            tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Left)
+            tableViewScrollToBottom(true)
+        }
     }
 }
 

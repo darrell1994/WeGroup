@@ -44,6 +44,10 @@ class Contact: NSManagedObject {
         }
     }
     
+    static func setCurrentUserContactToNil() {
+        currentContact = nil
+    }
+    
     static func getContactWithPFUser(user: PFUser)->Contact {
         let userID = user.objectId
         for contact in Data.contacts {

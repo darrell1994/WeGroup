@@ -429,13 +429,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Region" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRr-NV-OkX">
-                                                <rect key="frame" x="137" y="233.5" width="47.5" height="18"/>
+                                                <rect key="frame" x="137" y="233" width="47.5" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Short Bio" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sOr-OK-jeZ">
-                                                <rect key="frame" x="129" y="296.5" width="63.5" height="18"/>
+                                                <rect key="frame" x="129" y="296" width="63.5" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -451,14 +451,18 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstItem="eRr-NV-OkX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4hh-Wa-J6G" secondAttribute="leading" constant="12" id="6kK-f5-gx8"/>
                                             <constraint firstItem="ILv-bd-tba" firstAttribute="top" secondItem="Iqu-Od-g9e" secondAttribute="bottom" constant="45" id="8n1-1f-5yP"/>
+                                            <constraint firstItem="sOr-OK-jeZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4hh-Wa-J6G" secondAttribute="leading" constant="20" id="Ibd-PF-iOv"/>
                                             <constraint firstItem="sOr-OK-jeZ" firstAttribute="top" secondItem="eRr-NV-OkX" secondAttribute="bottom" constant="45" id="JGd-Br-uQa"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="sOr-OK-jeZ" secondAttribute="trailing" constant="20" id="JOx-uk-IBc"/>
                                             <constraint firstItem="sOr-OK-jeZ" firstAttribute="centerX" secondItem="4hh-Wa-J6G" secondAttribute="centerX" id="JXb-YJ-Ths"/>
                                             <constraint firstAttribute="width" constant="320" id="JcK-zl-2Qx"/>
                                             <constraint firstItem="eRr-NV-OkX" firstAttribute="top" secondItem="ILv-bd-tba" secondAttribute="bottom" constant="45" id="Jnq-vi-drD"/>
                                             <constraint firstItem="Iqu-Od-g9e" firstAttribute="top" secondItem="4hh-Wa-J6G" secondAttribute="top" constant="42" id="Kuv-DC-yGB"/>
                                             <constraint firstItem="ILv-bd-tba" firstAttribute="centerX" secondItem="4hh-Wa-J6G" secondAttribute="centerX" id="S6Y-J4-0EN"/>
                                             <constraint firstAttribute="height" constant="455" id="SWH-Ea-TCD"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="eRr-NV-OkX" secondAttribute="trailing" constant="12" id="cVW-P0-tf7"/>
                                             <constraint firstItem="eRr-NV-OkX" firstAttribute="centerX" secondItem="4hh-Wa-J6G" secondAttribute="centerX" id="d85-bd-Mqr"/>
                                             <constraint firstItem="Iqu-Od-g9e" firstAttribute="centerX" secondItem="4hh-Wa-J6G" secondAttribute="centerX" id="kl5-Xx-Lx3"/>
                                         </constraints>

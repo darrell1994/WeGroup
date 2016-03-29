@@ -113,15 +113,19 @@ class SettingsView: UITableViewController {
     }
     
     @IBAction func logoutClicked(sender: AnyObject) {
-        logoutProcessIndicator.startAnimating()
         timer.invalidate()
-        
+        if !Data.isConnectedToNetwork() {
+            popupMessage("Failed to connect to Internet")
+            return
+        }
+        logoutProcessIndicator.startAnimating()
         PFUser.logOutInBackgroundWithBlock({ (error) -> Void in
             if error != nil {
                 print("Failed to logout")
             } else {
                 Data.clearAllConversations()
                 Data.clearAllContacts()
+                Contact.setCurrentUserContactToNil()
                 self.logoutProcessIndicator.stopAnimating()
                 self.dismissViewControllerAnimated(true, completion: nil)
                 NSNotificationCenter.defaultCenter().postNotificationName(userDidLogoutNotification, object: nil)

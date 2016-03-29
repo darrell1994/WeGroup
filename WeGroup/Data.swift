@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 import Parse
+import SystemConfiguration
 
 protocol ContactDelegate {
     func newContactFetched()
@@ -18,15 +19,22 @@ protocol MessageDelegate {
     func newMessageReceived(indexPath: NSIndexPath)
 }
 
+protocol ConversationDelegate {
+    func newConversationCreated(indexPath: NSIndexPath)
+    func conversationUpdated()
+}
+
 struct Data {
     static var contacts = [Contact]()
     static var conversations = [Conversation]()
     static var contactDelegate: ContactDelegate?
     static var messageDelegate: MessageDelegate?
+    static var conversationDelegate: ConversationDelegate?
     
     static func loadContactsFromLocalStorage(completion: (()->Void)?) {
         print("-----------------------------------")
         print("Loading contacts from local storage")
+        print("-----------------------------------")
         let fetchRequest = NSFetchRequest(entityName: "Contact")
         do {
             if let results = try _managedObjectContext.executeFetchRequest(fetchRequest) as? [Contact] {
@@ -60,6 +68,7 @@ struct Data {
     static func checkNewContacts(received: (()->Void)?) {
         print("-----------------------------------")
         print("Fetching contacts from server")
+        print("-----------------------------------")
         if let currentUser = PFUser.currentUser() {
             let query = PFQuery(className: "Friendship")
             query.includeKey("friend")
@@ -99,12 +108,6 @@ struct Data {
                         if isGroupMessage {
                             // check if the conversation already exists
                             var chatters = obj["chatters"] as! [PFUser]
-                            
-                            print("All chatters")
-                            for chatter in chatters {
-                                print(chatter.username)
-                            }
-                            
                             if let indexOfCurrentUser = indexOfCurrentUserInChatters(chatters) {
                                 chatters.removeAtIndex(indexOfCurrentUser)
                             }
@@ -117,11 +120,15 @@ struct Data {
                                 let index = conversation.messages.count
                                 conversation.appendMessage(message)
                                 conversation.updatedAt = NSDate()
+                                conversationDelegate?.conversationUpdated()
                                 messageDelegate?.newMessageReceived(NSIndexPath(forRow: index, inSection: 0))
                             } else {
                                 let conversation = Conversation(toUsers: users, isGroupChat: true)
                                 conversation.appendMessage(message)
+                                let index = conversations.count
                                 Data.conversations.append(conversation)
+                                conversationDelegate?.newConversationCreated(NSIndexPath(forRow: index, inSection: 0))
+                                messageDelegate?.newMessageReceived(NSIndexPath(forRow: 0, inSection: 0))
                             }
                         } else { // direct message
                             // if the conversation already exists
@@ -131,11 +138,15 @@ struct Data {
                                 let index = conversation.messages.count
                                 conversation.appendMessage(message)
                                 conversation.updatedAt = NSDate()
+                                conversationDelegate?.conversationUpdated()
                                 messageDelegate?.newMessageReceived(NSIndexPath(forRow: index, inSection: 0))
                             } else {
                                 let conversation = Conversation(toUsers: [from], isGroupChat: false)
                                 conversation.appendMessage(message)
+                                let index = conversations.count
                                 Data.conversations.append(conversation)
+                                conversationDelegate?.newConversationCreated(NSIndexPath(forRow: index, inSection: 0))
+                                messageDelegate?.newMessageReceived(NSIndexPath(forRow: 0, inSection: 0))
                             }
                         }
                         obj.deleteInBackground()
@@ -243,5 +254,21 @@ struct Data {
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image
+    }
+    
+    static func isConnectedToNetwork() -> Bool {
+        var zeroAddress = sockaddr_in()
+        zeroAddress.sin_len = UInt8(sizeofValue(zeroAddress))
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        let defaultRouteReachability = withUnsafePointer(&zeroAddress) {
+            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
+        }
+        var flags = SCNetworkReachabilityFlags()
+        if !SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) {
+            return false
+        }
+        let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
+        let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
+        return (isReachable && !needsConnection)
     }
 }

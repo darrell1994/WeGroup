@@ -56,6 +56,10 @@ class LoginView: UIViewController {
         if !checkInputValidity() {
             return
         }
+        if !Data.isConnectedToNetwork() {
+            popupMessage("Network Error", message: "Please check network")
+            return
+        }
         loadingIndicator.startAnimation(.FullCircle)
         PFUser.logInWithUsernameInBackground(usernameTextField.text!, password: passwordTextField.text!) { (user, error) -> Void in
             self.loadingIndicator.stopAnimation()

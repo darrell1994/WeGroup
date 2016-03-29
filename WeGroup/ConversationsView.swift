@@ -11,7 +11,7 @@ import Parse
 
 var timer = NSTimer()
 
-class ConversationsView: UIViewController {
+class ConversationsView: UIViewController, ConversationDelegate {
     @IBOutlet var tableView: UITableView!
     
     @IBOutlet weak var searchBar: UISearchBar!
@@ -23,6 +23,7 @@ class ConversationsView: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
+        Data.conversationDelegate = self
         
         timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: #selector(ConversationsView.onTimer), userInfo: nil, repeats: true)
         
@@ -46,10 +47,24 @@ class ConversationsView: UIViewController {
     }
     
     func onTimer() {
-        Data.checkNewMessages { () -> Void in
-            self.filteredConversations = Data.conversations
-            self.tableView.reloadData()
+        if !Data.isConnectedToNetwork() {
+            print("network error")
+            return
         }
+        Data.checkNewMessages { () -> Void in
+//            self.filteredConversations = Data.conversations
+//            self.tableView.reloadData()
+        }
+        
+    }
+    
+    func newConversationCreated(indexPath: NSIndexPath) {
+        filteredConversations = Data.conversations
+        tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Left)
+    }
+    
+    func conversationUpdated() {
+        tableView.reloadData()
     }
     
     @IBAction func onAddConversation(sender: AnyObject) {

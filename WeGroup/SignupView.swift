@@ -44,6 +44,10 @@ class SignupView: UIViewController {
         if !checkInputValidity() {
             return
         }
+        if !Data.isConnectedToNetwork() {
+            popupMessage("Network Error", message: "Please check network", segue: false)
+            return
+        }
         loadingIndicator.startAnimation(.FullCircle)
         let user = PFUser()
         user.username = usernameTextField.text
