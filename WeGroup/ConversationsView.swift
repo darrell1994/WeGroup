@@ -32,7 +32,7 @@ class ConversationsView: UIViewController, ConversationDelegate {
             self.tableView.reloadData()
         }
         Data.loadContactsFromLocalStorage(nil)
-        Data.checkNewContacts(nil)
+        Data.checkNewContacts()
         onTimer()
     }
     
@@ -47,15 +47,9 @@ class ConversationsView: UIViewController, ConversationDelegate {
     }
     
     func onTimer() {
-        if !Data.isConnectedToNetwork() {
-            print("network error")
-            return
+        if Data.isConnectedToNetwork() {
+            Data.checkNewMessages()
         }
-        Data.checkNewMessages { () -> Void in
-//            self.filteredConversations = Data.conversations
-//            self.tableView.reloadData()
-        }
-        
     }
     
     func newConversationCreated(indexPath: NSIndexPath) {
@@ -117,7 +111,7 @@ extension ConversationsView: UITableViewDelegate, UITableViewDataSource, UISearc
         return true
     }
     
-    // on deleting conversation
+    // deleting conversation
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         _managedObjectContext.deleteObject(Data.conversations[indexPath.row])
         Data.conversations.removeAtIndex(indexPath.row)

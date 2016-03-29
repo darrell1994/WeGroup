@@ -121,7 +121,7 @@ class SettingsView: UITableViewController {
         logoutProcessIndicator.startAnimating()
         PFUser.logOutInBackgroundWithBlock({ (error) -> Void in
             if error != nil {
-                print("Failed to logout")
+                self.popupMessage("Failed to logout")
             } else {
                 Data.clearAllConversations()
                 Data.clearAllContacts()

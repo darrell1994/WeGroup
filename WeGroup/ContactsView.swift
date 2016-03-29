@@ -31,7 +31,7 @@ class ContactsView: UIViewController, ContactDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        Data.checkNewContacts(nil)
+        Data.checkNewContacts()
     }
     
     func newContactFetched() {
@@ -139,7 +139,7 @@ extension ContactsView: UITableViewDelegate, UITableViewDataSource, UISearchBarD
         return true
     }
     
-    // on deleting contact
+    // deleting contact
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if let currentUser = PFUser.currentUser() {
             let friend = PFUser(outDataWithObjectId: Data.contacts[indexPath.row].contactID)

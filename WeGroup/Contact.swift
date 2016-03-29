@@ -15,7 +15,6 @@ class Contact: NSManagedObject {
     static var currentContact: Contact?
 
     init(contactID: String, username: String, profileImageData: NSData?) {
-        print("creating contact \(username)")
         super.init(entity: contactEntity, insertIntoManagedObjectContext: _managedObjectContext)
         self.contactID = contactID
         self.username = username

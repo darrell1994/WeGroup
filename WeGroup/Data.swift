@@ -32,14 +32,10 @@ struct Data {
     static var conversationDelegate: ConversationDelegate?
     
     static func loadContactsFromLocalStorage(completion: (()->Void)?) {
-        print("-----------------------------------")
-        print("Loading contacts from local storage")
-        print("-----------------------------------")
         let fetchRequest = NSFetchRequest(entityName: "Contact")
         do {
             if let results = try _managedObjectContext.executeFetchRequest(fetchRequest) as? [Contact] {
                 for contact in results {
-                    print("loaded \(contact.username)")
                     if contact.contactID == PFUser.currentUser()!.objectId {
                         continue
                     }
@@ -65,24 +61,19 @@ struct Data {
         }
     }
     
-    static func checkNewContacts(received: (()->Void)?) {
-        print("-----------------------------------")
-        print("Fetching contacts from server")
-        print("-----------------------------------")
+    static func checkNewContacts() {
         if let currentUser = PFUser.currentUser() {
             let query = PFQuery(className: "Friendship")
             query.includeKey("friend")
             query.whereKey("user", equalTo: currentUser)
             query.findObjectsInBackgroundWithBlock { (results, error) -> Void in
                 if let results = results {
-                    print("results.count=\(results.count)  contacts.count=\(contacts.count)")
                     if results.count != contacts.count {
-                        Data.contacts.removeAll()
+                        clearAllContacts()
                         for result in results {
                             let user = result["friend"] as! PFUser
                             let contact = Contact.getContactWithPFUser(user)
                             Data.contacts.append(contact)
-                            print("fetched \(contact.username)")
                         }
                         contactDelegate?.newContactFetched()
                     }
@@ -91,7 +82,7 @@ struct Data {
         }
     }
     
-    static func checkNewMessages(received: (()->Void)?) {
+    static func checkNewMessages() {
         if let currentUser = PFUser.currentUser() {
             let query = PFQuery(className: "Message")
             query.includeKey("from")
@@ -151,7 +142,6 @@ struct Data {
                         }
                         obj.deleteInBackground()
                     }
-                    received?()
                 }
             }}
     }
@@ -210,13 +200,10 @@ struct Data {
     }
     
     static func clearAllContacts() {
-        print("-----------------------------------")
-        print("Clearing all contacts from local storage")
         let fetchRequest = NSFetchRequest(entityName: "Contact")
         do {
             if let results = try _managedObjectContext.executeFetchRequest(fetchRequest) as? [Contact] {
                 for contact in results {
-                    print("deleting \(contact.username)")
                     _managedObjectContext.deleteObject(contact)
                 }
             }
