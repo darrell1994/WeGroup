@@ -1,16 +1,19 @@
 PODS:
   - BALoadingView (0.1.1)
   - Bolts/Tasks (1.6.0)
+  - JVFloatLabeledTextField (1.1.0)
   - Parse (1.12.0):
     - Bolts/Tasks (~> 1.5)
 
 DEPENDENCIES:
   - BALoadingView
+  - JVFloatLabeledTextField
   - Parse
 
 SPEC CHECKSUMS:
   BALoadingView: 181325648e67358b06dcedbc1cedfaeee35f8398
   Bolts: f52a250053bb517ca874523c3913776359ab3def
+  JVFloatLabeledTextField: ea4a3d8387ddd43724c472bb2b8ab39b79af05d4
   Parse: de2c52a9a1421b91ae7594ab8ce191afd184f19b
 
 COCOAPODS: 0.39.0

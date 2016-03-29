@@ -86,10 +86,12 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-WeGroup/BALoadingView.framework"
   install_framework "Pods-WeGroup/Bolts.framework"
+  install_framework "Pods-WeGroup/JVFloatLabeledTextField.framework"
   install_framework "Pods-WeGroup/Parse.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-WeGroup/BALoadingView.framework"
   install_framework "Pods-WeGroup/Bolts.framework"
+  install_framework "Pods-WeGroup/JVFloatLabeledTextField.framework"
   install_framework "Pods-WeGroup/Parse.framework"
 fi
