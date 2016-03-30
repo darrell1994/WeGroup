@@ -350,7 +350,6 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lkX-GK-oRB">
                                                     <rect key="frame" x="8" y="4" width="46" height="46"/>
-                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="46" id="q2h-Pc-PBc"/>
                                                         <constraint firstAttribute="height" constant="46" id="xHd-2z-f8C"/>
@@ -643,7 +642,6 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mr6-or-76F">
                                                     <rect key="frame" x="8" y="5" width="46" height="46"/>
-                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="46" id="HJ0-aS-bf3"/>
                                                         <constraint firstAttribute="width" constant="46" id="RzD-sd-srJ"/>
@@ -795,7 +793,6 @@
                                                 </label>
                                                 <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vTn-sV-HBY">
                                                     <rect key="frame" x="8" y="11" width="56" height="56"/>
-                                                    <color key="backgroundColor" red="0.43403348806155628" green="0.5713213639748691" blue="0.11951118970844941" alpha="1" colorSpace="calibratedRGB"/>
                                                     <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="56" id="ePB-CJ-Lul"/>
