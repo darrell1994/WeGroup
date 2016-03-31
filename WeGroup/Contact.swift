@@ -11,6 +11,7 @@ import CoreData
 import Parse
 
 class Contact: NSManagedObject {
+    static var currentContact: Contact?
     static var contactDelegate: ContactDelegate?
 
     init(contactID: String, username: String, profileImageData: NSData?) {
@@ -22,6 +23,28 @@ class Contact: NSManagedObject {
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
+    }
+    
+    static func getCurrentUserContact()->Contact? {
+        if let currentUser = PFUser.currentUser() {
+            if currentContact == nil {
+                let profileImageData = currentUser["profile_image"] as? NSData
+                currentContact = Contact(contactID: currentUser.objectId!, username: currentUser.username!, profileImageData: profileImageData)
+                if let region = currentUser["region"] as? String {
+                    currentContact!.region = region
+                }
+                if let shortBio = currentUser["shortBio"] as? String {
+                    currentContact!.shortBio = shortBio
+                }
+            }
+            return currentContact
+        } else {
+            return nil
+        }
+    }
+    
+    static func setCurrentUserContactToNil() {
+        currentContact = nil
     }
     
     static func getContactWithPFUser(user: PFUser)->Contact {

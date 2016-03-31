@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 import Parse
+import SystemConfiguration
 
 protocol ContactDelegate {
     func newContactFetched()
@@ -184,16 +185,62 @@ struct Data {
     }
     
     static func clearAllContacts() {
-        for contact in Data.contacts {
-            _managedObjectContext.deleteObject(contact)
+        let fetchRequest = NSFetchRequest(entityName: "Contact")
+        do {
+            if let results = try _managedObjectContext.executeFetchRequest(fetchRequest) as? [Contact] {
+                for contact in results {
+                    _managedObjectContext.deleteObject(contact)
+                }
+            }
+        } catch {
+            fatalError("Error fetching data!")
         }
         Data.contacts.removeAll()
     }
     
     static func clearAllConversations() {
-        for conversation in Data.conversations{
-            _managedObjectContext.deleteObject(conversation)
+        let fetchRequest = NSFetchRequest(entityName: "Conversation")
+        do {
+            if let results = try _managedObjectContext.executeFetchRequest(fetchRequest) as? [Conversation] {
+                for conversation in results {
+                    _managedObjectContext.deleteObject(conversation)
+                }
+            }
+        } catch {
+            fatalError("Error fetching data!")
         }
         Data.conversations.removeAll()
+    }
+    
+    static func getRandomUIColor()->UIColor {
+        let color = UIColor(red: CGFloat(arc4random_uniform(256))/255.0, green: CGFloat(arc4random_uniform(256))/255.0, blue: CGFloat(arc4random_uniform(256))/255.0, alpha: 0.5)
+        return color
+    }
+    
+    static func imageFromColor(color: UIColor) -> UIImage {
+        let rect = CGRect(x: 0, y: 0, width: 128, height: 128)
+        UIGraphicsBeginImageContext(rect.size)
+        let context = UIGraphicsGetCurrentContext()
+        CGContextSetFillColorWithColor(context, color.CGColor)
+        CGContextFillRect(context, rect)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+    }
+    
+    static func isConnectedToNetwork() -> Bool {
+        var zeroAddress = sockaddr_in()
+        zeroAddress.sin_len = UInt8(sizeofValue(zeroAddress))
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        let defaultRouteReachability = withUnsafePointer(&zeroAddress) {
+            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
+        }
+        var flags = SCNetworkReachabilityFlags()
+        if !SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) {
+            return false
+        }
+        let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
+        let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
+        return (isReachable && !needsConnection)
     }
 }

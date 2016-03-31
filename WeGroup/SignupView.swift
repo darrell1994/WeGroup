@@ -44,6 +44,10 @@ class SignupView: UIViewController {
         if !checkInputValidity() {
            return
         }
+        if !Data.isConnectedToNetwork() {
+            popupMessage("Network Error", message: "Please check network", segue: false)
+            return
+        }
         loadingIndicator.startAnimation(.FullCircle)
         let user = PFUser()
         user.username = usernameTextField.text
@@ -57,6 +61,13 @@ class SignupView: UIViewController {
                     NSNotificationCenter.defaultCenter().postNotificationName(userDidLoginNotification, object: nil)
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }))
+                let profile = Data.imageFromColor(Data.getRandomUIColor())
+                if let user = PFUser.currentUser() {
+                    if let imageData = UIImagePNGRepresentation(profile) {
+                        user["profile_image"] = imageData
+                        user.saveInBackground()
+                    }
+                }
                 self.presentViewController(alert, animated: true, completion: nil)
             } else {
 //                self.popupMessage(nil, message: error!.localizedDescription, segue: false)
