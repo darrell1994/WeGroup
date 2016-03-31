@@ -6,5 +6,6 @@ use_frameworks!
 target 'WeGroup' do
 pod 'Parse'
 pod 'BALoadingView'
+pod 'JVFloatLabeledTextField'
 end
 
