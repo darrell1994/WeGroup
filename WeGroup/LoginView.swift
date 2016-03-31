@@ -82,7 +82,7 @@ class LoginView: UIViewController {
 
 extension LoginView: UITextFieldDelegate {
     func textFieldDidBeginEditing(textField: UITextField) {
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(LoginView.onDismissKeyboard(_:)))
+        let gesture = UIPanGestureRecognizer(target: self, action: #selector(LoginView.onDismissKeyboard(_:)))
         self.view.addGestureRecognizer(gesture)
     }
     

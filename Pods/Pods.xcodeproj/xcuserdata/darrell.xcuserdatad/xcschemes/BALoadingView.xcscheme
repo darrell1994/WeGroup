@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'F60C5E50BBA06DEE83FEC3FD'
+               BlueprintIdentifier = 'CF0F64E5DA1E7614E16265B8'
                BlueprintName = 'BALoadingView'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'BALoadingView.framework'>

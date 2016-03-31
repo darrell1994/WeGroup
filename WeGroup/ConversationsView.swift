@@ -27,11 +27,11 @@ class ConversationsView: UIViewController, ConversationDelegate {
         
         timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: #selector(ConversationsView.onTimer), userInfo: nil, repeats: true)
         
+        Data.loadContactsFromLocalStorage(nil)
         Data.loadConversationsFromLocalStorage { () -> Void in
             self.filteredConversations = Data.conversations
             self.tableView.reloadData()
         }
-        Data.loadContactsFromLocalStorage(nil)
         Data.checkNewContacts()
         onTimer()
     }
@@ -58,6 +58,7 @@ class ConversationsView: UIViewController, ConversationDelegate {
     }
     
     func conversationUpdated() {
+        filteredConversations = Data.conversations
         tableView.reloadData()
     }
     
