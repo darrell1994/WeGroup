@@ -46,10 +46,6 @@ class ConversationCell: UITableViewCell {
                 if let profileData = toUsers.first?.profileImageData {
                     let image = UIImage(data: profileData)
                     profileImageView.image = image
-                } else {
-                    if let red = toUsers.first!.red, green = toUsers.first!.green, blue = toUsers.first!.blue {
-                        profileImageView.backgroundColor = UIColor(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: 0.5)
-                    }
                 }
             }
             

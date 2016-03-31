@@ -58,12 +58,6 @@ class Contact: NSManagedObject {
         
         let contact = Contact(contactID: user.objectId!, username: user.username!, profileImageData: profileImageData)
         
-        if profileImageData == nil {
-            contact.red = Float(arc4random_uniform(200))/255.0
-            contact.green = Float(arc4random_uniform(255))/255.0
-            contact.blue = Float(arc4random_uniform(255))/255.0
-        }
-        
         if let region = user["region"] as? String {
             contact.region = region
         }
@@ -122,8 +116,5 @@ extension Contact {
     @NSManaged var conversations: NSSet?
     @NSManaged var region: String?
     @NSManaged var shortBio: String?
-    @NSManaged var red: NSNumber?
-    @NSManaged var green: NSNumber?
-    @NSManaged var blue: NSNumber?
     
 }

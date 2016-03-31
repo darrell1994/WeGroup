@@ -21,10 +21,6 @@ class ProfileView: UIViewController {
         usernameLabel.text = contact.username
         if let profileData = contact.profileImageData {
             profileImageView.image = UIImage(data: profileData)
-        } else {
-            if let red = contact.red, green = contact.green, blue = contact.blue {
-                profileImageView.backgroundColor = UIColor(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: 0.5)
-            }
         }
         regionLabel.text = contact.region
         shortBioLabel.text = contact.shortBio

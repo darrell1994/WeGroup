@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15E65" minimumToolsVersion="Xcode 7.0">
     <entity name="Contact" representedClassName=".Contact" syncable="YES">
-        <attribute name="blue" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="contactID" attributeType="String" syncable="YES"/>
-        <attribute name="green" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="profileImageData" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="red" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="region" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="shortBio" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="username" attributeType="String" syncable="YES"/>
@@ -27,7 +24,7 @@
         <relationship name="from" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Contact" inverseName="messages" inverseEntity="Contact" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Contact" positionX="-9" positionY="63" width="128" height="195"/>
+        <element name="Contact" positionX="-9" positionY="63" width="128" height="150"/>
         <element name="Conversation" positionX="-63" positionY="-18" width="128" height="150"/>
         <element name="Message" positionX="-36" positionY="18" width="128" height="90"/>
     </elements>
