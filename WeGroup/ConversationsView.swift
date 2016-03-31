@@ -28,11 +28,11 @@ class ConversationsView: UIViewController, ConversationDelegate {
         timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: #selector(ConversationsView.onTimer), userInfo: nil, repeats: true)
         
         Data.loadContactsFromLocalStorage(nil)
+        Data.checkNewContacts()
         Data.loadConversationsFromLocalStorage { () -> Void in
             self.filteredConversations = Data.conversations
             self.tableView.reloadData()
         }
-        Data.checkNewContacts()
         onTimer()
     }
     
